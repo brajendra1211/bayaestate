@@ -1,5 +1,5 @@
 import { PrismaMariaDb } from "@prisma/adapter-mariadb";
-import { PrismaClient } from "@/generated/prisma/client";
+import { PrismaClient } from "@/generated/prisma";
 
 declare global {
   // eslint-disable-next-line no-var
