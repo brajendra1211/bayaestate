@@ -1,6 +1,7 @@
 // Custom server entry point for hosts (like cPanel/WHM's "Setup Node.js App"
 // via Passenger) that need a plain Node.js file to start the app, rather than
 // running `next start` directly. Passenger sets PORT and NODE_ENV itself.
+require("dotenv/config");
 const { createServer } = require("http");
 const next = require("next");
 
