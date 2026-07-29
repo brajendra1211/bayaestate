@@ -1,5 +1,5 @@
 -- AlterTable
-ALTER TABLE `project` ADD COLUMN `reraNumber` VARCHAR(191) NULL;
+ALTER TABLE `Project` ADD COLUMN `reraNumber` VARCHAR(191) NULL;
 
 -- AlterTable
-ALTER TABLE `property` ADD COLUMN `condition` ENUM('NEW_BOOKING', 'RESALE') NULL;
+ALTER TABLE `Property` ADD COLUMN `condition` ENUM('NEW_BOOKING', 'RESALE') NULL;

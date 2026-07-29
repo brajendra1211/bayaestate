@@ -1,5 +1,5 @@
 -- DropTable
-DROP TABLE `location`;
+DROP TABLE `Location`;
 
 -- CreateTable
 CREATE TABLE `Country` (

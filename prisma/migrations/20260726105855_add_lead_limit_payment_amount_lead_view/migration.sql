@@ -1,8 +1,8 @@
 -- AlterTable
-ALTER TABLE `plan` ADD COLUMN `leadLimit` INTEGER NULL;
+ALTER TABLE `Plan` ADD COLUMN `leadLimit` INTEGER NULL;
 
 -- AlterTable
-ALTER TABLE `subscription` ADD COLUMN `amount` INTEGER NULL;
+ALTER TABLE `Subscription` ADD COLUMN `amount` INTEGER NULL;
 
 -- CreateTable
 CREATE TABLE `LeadView` (

@@ -1,14 +1,14 @@
 -- Widen Role enum so both old and new values are valid during the data migration
-ALTER TABLE `user` MODIFY `role` ENUM('ADMIN', 'AGENT', 'OWNER', 'DEALER') NOT NULL DEFAULT 'AGENT';
+ALTER TABLE `User` MODIFY `role` ENUM('ADMIN', 'AGENT', 'OWNER', 'DEALER') NOT NULL DEFAULT 'AGENT';
 
 -- DataMigration: move existing AGENT users to DEALER before narrowing the Role enum
-UPDATE `user` SET `role` = 'DEALER' WHERE `role` = 'AGENT';
+UPDATE `User` SET `role` = 'DEALER' WHERE `role` = 'AGENT';
 
 -- AlterTable
-ALTER TABLE `property` ADD COLUMN `projectId` VARCHAR(191) NULL;
+ALTER TABLE `Property` ADD COLUMN `projectId` VARCHAR(191) NULL;
 
 -- AlterTable
-ALTER TABLE `user` ADD COLUMN `about` TEXT NULL,
+ALTER TABLE `User` ADD COLUMN `about` TEXT NULL,
     ADD COLUMN `logoUrl` VARCHAR(191) NULL,
     ADD COLUMN `slug` VARCHAR(191) NULL,
     MODIFY `role` ENUM('ADMIN', 'OWNER', 'DEALER') NOT NULL DEFAULT 'OWNER';

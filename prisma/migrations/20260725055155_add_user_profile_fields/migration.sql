@@ -1,5 +1,5 @@
 -- AlterTable
-ALTER TABLE `user` ADD COLUMN `address` TEXT NULL,
+ALTER TABLE `User` ADD COLUMN `address` TEXT NULL,
     ADD COLUMN `facebookUrl` VARCHAR(191) NULL,
     ADD COLUMN `instagramUrl` VARCHAR(191) NULL,
     ADD COLUMN `licenseNumber` VARCHAR(191) NULL,

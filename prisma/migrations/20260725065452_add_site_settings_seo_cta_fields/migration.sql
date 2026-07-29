@@ -1,5 +1,5 @@
 -- AlterTable
-ALTER TABLE `sitesettings` ADD COLUMN `ctaLink` VARCHAR(191) NULL,
+ALTER TABLE `SiteSettings` ADD COLUMN `ctaLink` VARCHAR(191) NULL,
     ADD COLUMN `ctaText` VARCHAR(191) NULL,
     ADD COLUMN `favicon` VARCHAR(191) NULL,
     ADD COLUMN `googleAnalyticsId` VARCHAR(191) NULL,
