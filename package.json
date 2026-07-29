@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "start:server": "node server.js",
+    "seed:production": "tsx prisma/seed-production.ts",
     "lint": "eslint"
   },
   "dependencies": {
