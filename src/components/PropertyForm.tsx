@@ -51,12 +51,14 @@ export function PropertyForm({
   submitLabel,
   amenityOptions,
   listAsOptions,
+  allowManualCoordinates,
 }: {
   action: (formData: FormData) => void | Promise<void>;
   defaultValues?: Partial<PropertyFormValues>;
   submitLabel: string;
   amenityOptions: { id: string; name: string }[];
   listAsOptions?: { id: string; label: string }[];
+  allowManualCoordinates?: boolean;
 }) {
   const [images, setImages] = useState<ImageItem[]>(defaultValues?.images ?? []);
   const selectedAmenities = parseAmenitiesString(defaultValues?.amenities ?? null);
@@ -286,6 +288,7 @@ export function PropertyForm({
           defaultLocalityName={defaultValues?.locality ?? undefined}
           defaultProjectId={defaultValues?.projectId ?? undefined}
           excludePropertyId={defaultValues?.id}
+          allowManualCoordinates={allowManualCoordinates}
         />
 
         <div className="sm:col-span-2">

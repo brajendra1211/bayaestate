@@ -47,12 +47,20 @@ function readPropertyCondition(formData: FormData): "NEW_BOOKING" | "RESALE" | n
   return raw === "NEW_BOOKING" || raw === "RESALE" ? raw : null;
 }
 
+function readManualCoords(formData: FormData) {
+  const latitude = Number(formData.get("newLocalityLatitude"));
+  const longitude = Number(formData.get("newLocalityLongitude"));
+  if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return null;
+  if (latitude === 0 && longitude === 0) return null;
+  return { latitude, longitude };
+}
+
 async function resolveLocalityName(formData: FormData) {
   const cityId = String(formData.get("cityId") ?? "").trim();
   const newLocalityName = String(formData.get("newLocalityName") ?? "").trim();
 
   if (newLocalityName && cityId) {
-    const locality = await findOrCreateLocality(newLocalityName, cityId);
+    const locality = await findOrCreateLocality(newLocalityName, cityId, readManualCoords(formData));
     if (locality) return locality.name;
   }
 

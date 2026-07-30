@@ -76,6 +76,7 @@ export default async function EditPropertyPage({
           action={updateProperty}
           submitLabel="Save changes"
           amenityOptions={amenityOptions}
+          allowManualCoordinates={isAdminLike}
           defaultValues={{
             id: property.id,
             title: property.title,

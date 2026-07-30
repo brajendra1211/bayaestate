@@ -31,6 +31,7 @@ export function LocationFields({
   defaultLocalityName,
   defaultProjectId,
   excludePropertyId,
+  allowManualCoordinates,
 }: {
   defaultCountryId?: string;
   defaultStateId?: string;
@@ -40,6 +41,7 @@ export function LocationFields({
   defaultLocalityName?: string;
   defaultProjectId?: string;
   excludePropertyId?: string;
+  allowManualCoordinates?: boolean;
 }) {
   const [countries, setCountries] = useState<Option[]>([]);
   const [countryId, setCountryId] = useState(defaultCountryId ?? "");
@@ -56,6 +58,8 @@ export function LocationFields({
   const [localityName, setLocalityName] = useState(defaultLocalityName ?? "");
   const [newLocalityName, setNewLocalityName] = useState("");
   const [newLocalityDraft, setNewLocalityDraft] = useState("");
+  const [newLocalityLatitude, setNewLocalityLatitude] = useState("");
+  const [newLocalityLongitude, setNewLocalityLongitude] = useState("");
 
   const [listingsCache, setListingsCache] = useState<ListingsTagged | null>(null);
   const [projectId, setProjectId] = useState(defaultProjectId ?? "");
@@ -140,6 +144,8 @@ export function LocationFields({
               setLocalityName("");
               setNewLocalityName("");
               setNewLocalityDraft("");
+              setNewLocalityLatitude("");
+              setNewLocalityLongitude("");
               setProjectId("");
             }}
             className={selectClass}
@@ -169,6 +175,8 @@ export function LocationFields({
               setLocalityName("");
               setNewLocalityName("");
               setNewLocalityDraft("");
+              setNewLocalityLatitude("");
+              setNewLocalityLongitude("");
               setProjectId("");
             }}
             className={selectClass}
@@ -201,6 +209,8 @@ export function LocationFields({
             setLocalityName("");
             setNewLocalityName("");
             setNewLocalityDraft("");
+            setNewLocalityLatitude("");
+            setNewLocalityLongitude("");
             setProjectId("");
           }}
         />
@@ -219,12 +229,16 @@ export function LocationFields({
             setLocalityName("");
             setNewLocalityName("");
             setNewLocalityDraft("");
+            setNewLocalityLatitude("");
+            setNewLocalityLongitude("");
           }}
           onSelect={(locality) => {
             setLocalityId(locality.id);
             setLocalityName(locality.name);
             setNewLocalityName("");
             setNewLocalityDraft("");
+            setNewLocalityLatitude("");
+            setNewLocalityLongitude("");
             setProjectId("");
           }}
         />
@@ -233,20 +247,53 @@ export function LocationFields({
       {cityId && (
         <div className="rounded-xl border border-dashed border-blue-200 bg-blue-50/50 p-3">
           {newLocalityName ? (
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <p className="text-sm text-slate-700">
-                Adding new locality: <span className="font-semibold">“{newLocalityName}”</span>
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setNewLocalityDraft(newLocalityName);
-                  setNewLocalityName("");
-                }}
-                className="text-xs font-medium text-blue-600 hover:underline"
-              >
-                Change
-              </button>
+            <div className="space-y-2">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <p className="text-sm text-slate-700">
+                  Adding new locality: <span className="font-semibold">“{newLocalityName}”</span>
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setNewLocalityDraft(newLocalityName);
+                    setNewLocalityName("");
+                  }}
+                  className="text-xs font-medium text-blue-600 hover:underline"
+                >
+                  Change
+                </button>
+              </div>
+              {allowManualCoordinates ? (
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <label className="text-xs font-medium text-slate-500">Latitude</label>
+                    <input
+                      type="number"
+                      step="any"
+                      value={newLocalityLatitude}
+                      onChange={(event) => setNewLocalityLatitude(event.target.value)}
+                      placeholder="e.g. 28.5355"
+                      className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-sm focus:border-blue-500 focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-slate-500">Longitude</label>
+                    <input
+                      type="number"
+                      step="any"
+                      value={newLocalityLongitude}
+                      onChange={(event) => setNewLocalityLongitude(event.target.value)}
+                      placeholder="e.g. 77.3910"
+                      className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-sm focus:border-blue-500 focus:outline-none"
+                    />
+                  </div>
+                  <p className="col-span-2 text-xs text-slate-400">
+                    Optional — leave blank to auto-detect the coordinates.
+                  </p>
+                </div>
+              ) : (
+                <p className="text-xs text-slate-400">Its map location will be auto-detected.</p>
+              )}
             </div>
           ) : (
             <>
@@ -334,6 +381,8 @@ export function LocationFields({
       <input type="hidden" name="cityId" value={cityId} />
       <input type="hidden" name="locality" value={localityName} />
       <input type="hidden" name="newLocalityName" value={newLocalityName} />
+      <input type="hidden" name="newLocalityLatitude" value={newLocalityLatitude} />
+      <input type="hidden" name="newLocalityLongitude" value={newLocalityLongitude} />
       <input type="hidden" name="projectId" value={projectId} />
     </div>
   );

@@ -136,6 +136,7 @@ export default async function NewPropertyPage({ searchParams }: { searchParams: 
           submitLabel={isAdminLister ? "Publish property" : "Submit for review"}
           amenityOptions={amenityOptions}
           listAsOptions={listAsOptions}
+          allowManualCoordinates={isAdminLister}
         />
       </div>
     </div>
