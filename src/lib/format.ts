@@ -9,6 +9,31 @@ export function formatPrice(price: number, listingType: "SALE" | "RENT") {
   return listingType === "RENT" ? `${formatted}/mo` : formatted;
 }
 
+export function getYoutubeEmbedUrl(url: string): string | null {
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.replace(/^www\./, "");
+
+    let videoId: string | null = null;
+    if (host === "youtu.be") {
+      videoId = parsed.pathname.slice(1);
+    } else if (host === "youtube.com" || host === "m.youtube.com") {
+      if (parsed.pathname === "/watch") {
+        videoId = parsed.searchParams.get("v");
+      } else if (parsed.pathname.startsWith("/embed/")) {
+        videoId = parsed.pathname.split("/embed/")[1];
+      } else if (parsed.pathname.startsWith("/shorts/")) {
+        videoId = parsed.pathname.split("/shorts/")[1];
+      }
+    }
+
+    videoId = videoId?.split(/[?&]/)[0] || null;
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+  } catch {
+    return null;
+  }
+}
+
 export const PROPERTY_TYPE_LABELS: Record<string, string> = {
   APARTMENT: "Apartment",
   VILLA: "Villa",

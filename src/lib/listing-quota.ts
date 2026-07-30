@@ -19,7 +19,7 @@ export async function getActiveSubscription(userId: string) {
 }
 
 export async function getListingLimit(userId: string, role: string) {
-  if (role === "ADMIN") return Infinity;
+  if (role === "ADMIN" || role === "SUBADMIN") return Infinity;
   const activeSubscription = await getActiveSubscription(userId);
   return activeSubscription?.plan.listingLimit ?? FREE_LISTING_LIMITS[role] ?? 0;
 }

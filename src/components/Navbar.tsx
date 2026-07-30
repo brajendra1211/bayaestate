@@ -26,7 +26,11 @@ export async function Navbar({
     { href: "/dealers", label: "Dealers" },
     { href: "/owners", label: "Owners" },
   ];
-  if (session?.user.role === "OWNER" || session?.user.role === "DEALER") {
+  if (
+    session?.user.role === "OWNER" ||
+    session?.user.role === "DEALER" ||
+    session?.user.role === "SUBADMIN"
+  ) {
     links.push({ href: "/dashboard", label: "My Listings" });
   }
   if (session?.user.role === "BUYER") {

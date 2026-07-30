@@ -7,7 +7,11 @@ export async function MobileBottomNav() {
   let middle: BottomNavItem = { href: "/register", label: "Post", icon: "plus" };
   let account: BottomNavItem = { href: "/login", label: "Login", icon: "user" };
 
-  if (session?.user.role === "OWNER" || session?.user.role === "DEALER") {
+  if (
+    session?.user.role === "OWNER" ||
+    session?.user.role === "DEALER" ||
+    session?.user.role === "SUBADMIN"
+  ) {
     middle = { href: "/dashboard/properties/new", label: "Add", icon: "plus" };
     account = { href: "/dashboard/profile", label: "Account", icon: "user" };
   } else if (session?.user.role === "ADMIN") {

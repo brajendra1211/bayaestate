@@ -92,16 +92,32 @@ export default async function NewPropertyPage({ searchParams }: { searchParams: 
   }
 
   const amenityOptions = await prisma.amenity.findMany({ orderBy: { order: "asc" } });
+  const isAdminLister = session.user.role === "ADMIN" || session.user.role === "SUBADMIN";
+  const listAsOptions = isAdminLister
+    ? (
+        await prisma.user.findMany({
+          where: { role: { in: ["DEALER", "OWNER"] } },
+          orderBy: [{ role: "asc" }, { name: "asc" }],
+        })
+      ).map((user) => ({
+        id: user.id,
+        label: `${user.company ?? user.name} (${user.role === "DEALER" ? "Dealer" : "Owner"})`,
+      }))
+    : undefined;
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
       <h1 className="text-2xl font-bold text-slate-900">Add property</h1>
       <p className="mt-1 text-sm text-slate-500">
-        Your listing will be reviewed by an admin before it appears publicly.
+        {isAdminLister
+          ? "Listings you create are published immediately."
+          : "Your listing will be reviewed by an admin before it appears publicly."}
       </p>
-      <p className="mt-1 text-sm text-slate-500">
-        {usage.used} of {usage.limit} listing{usage.limit === 1 ? "" : "s"} used.
-      </p>
+      {Number.isFinite(usage.limit) && (
+        <p className="mt-1 text-sm text-slate-500">
+          {usage.used} of {usage.limit} listing{usage.limit === 1 ? "" : "s"} used.
+        </p>
+      )}
 
       {error === "limit" && (
         <p className="mt-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
@@ -115,7 +131,12 @@ export default async function NewPropertyPage({ searchParams }: { searchParams: 
       )}
 
       <div className="mt-6">
-        <PropertyForm action={createProperty} submitLabel="Submit for review" amenityOptions={amenityOptions} />
+        <PropertyForm
+          action={createProperty}
+          submitLabel={isAdminLister ? "Publish property" : "Submit for review"}
+          amenityOptions={amenityOptions}
+          listAsOptions={listAsOptions}
+        />
       </div>
     </div>
   );

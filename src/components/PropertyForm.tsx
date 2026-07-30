@@ -27,6 +27,8 @@ type PropertyFormValues = {
   contactPhone: string | null;
   contactEmail: string | null;
   images: ImageItem[];
+  brochureUrl?: string | null;
+  youtubeUrl?: string | null;
   countryId?: string | null;
   stateId?: string | null;
   cityId?: string | null;
@@ -48,11 +50,13 @@ export function PropertyForm({
   defaultValues,
   submitLabel,
   amenityOptions,
+  listAsOptions,
 }: {
   action: (formData: FormData) => void | Promise<void>;
   defaultValues?: Partial<PropertyFormValues>;
   submitLabel: string;
   amenityOptions: { id: string; name: string }[];
+  listAsOptions?: { id: string; label: string }[];
 }) {
   const [images, setImages] = useState<ImageItem[]>(defaultValues?.images ?? []);
   const selectedAmenities = parseAmenitiesString(defaultValues?.amenities ?? null);
@@ -60,6 +64,33 @@ export function PropertyForm({
   const [pendingCategory, setPendingCategory] = useState<string>("OTHER");
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [brochureUrl, setBrochureUrl] = useState<string | null>(defaultValues?.brochureUrl ?? null);
+  const [brochureUploading, setBrochureUploading] = useState(false);
+  const [brochureError, setBrochureError] = useState<string | null>(null);
+
+  async function handleBrochureFile(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setBrochureUploading(true);
+    setBrochureError(null);
+
+    const body = new FormData();
+    body.append("file", file);
+    try {
+      const response = await fetch("/api/upload/document", { method: "POST", body });
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.error ?? "Upload failed");
+      }
+      const data = await response.json();
+      setBrochureUrl(data.url);
+    } catch (error) {
+      setBrochureError(error instanceof Error ? error.message : "Upload failed");
+    }
+
+    setBrochureUploading(false);
+    event.target.value = "";
+  }
 
   async function handleFiles(event: ChangeEvent<HTMLInputElement>) {
     const files = event.target.files;
@@ -98,6 +129,30 @@ export function PropertyForm({
   return (
     <form action={action} className="space-y-6">
       {defaultValues?.id && <input type="hidden" name="id" value={defaultValues.id} />}
+      {brochureUrl && <input type="hidden" name="brochureUrl" value={brochureUrl} />}
+
+      {listAsOptions && listAsOptions.length > 0 && (
+        <div className="rounded-xl border border-blue-200 bg-blue-50 p-4">
+          <label className="text-sm font-medium text-blue-900">List this property as</label>
+          <select
+            name="onBehalfOfUserId"
+            defaultValue=""
+            className="mt-1 w-full rounded-xl border border-blue-200 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          >
+            <option value="">Myself</option>
+            {listAsOptions.map((option) => (
+              <option key={option.id} value={option.id}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <p className="mt-1 text-xs text-blue-700">
+            Choose a dealer or owner account to list this property on their behalf. Leave as
+            &quot;Myself&quot; to list it under your own account.
+          </p>
+        </div>
+      )}
+
       {images.map((image) => (
         <input key={`url-${image.url}`} type="hidden" name="imageUrls" value={image.url} />
       ))}
@@ -310,6 +365,50 @@ export function PropertyForm({
             className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
           />
         </div>
+
+        <div className="sm:col-span-2">
+          <label className="text-sm font-medium text-slate-700">YouTube video link</label>
+          <input
+            type="url"
+            name="youtubeUrl"
+            placeholder="https://www.youtube.com/watch?v=..."
+            defaultValue={defaultValues?.youtubeUrl ?? undefined}
+            className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+          <p className="mt-1 text-xs text-slate-500">Optional — shown as an embedded video on the listing page.</p>
+        </div>
+      </div>
+
+      <div>
+        <label className="text-sm font-medium text-slate-700">Brochure (PDF)</label>
+        <p className="mt-1 text-xs text-slate-500">
+          Upload a PDF brochure — buyers will see a download button on the listing page.
+        </p>
+        <div className="mt-2 flex flex-wrap items-center gap-3">
+          <input
+            type="file"
+            accept="application/pdf"
+            onChange={handleBrochureFile}
+            disabled={brochureUploading}
+            className="block text-sm"
+          />
+          {brochureUploading && <p className="text-xs text-slate-500">Uploading…</p>}
+        </div>
+        {brochureError && <p className="mt-1 text-xs text-red-600">{brochureError}</p>}
+        {brochureUrl && (
+          <div className="mt-2 flex items-center gap-2 text-sm">
+            <a href={brochureUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              View uploaded brochure
+            </a>
+            <button
+              type="button"
+              onClick={() => setBrochureUrl(null)}
+              className="text-xs font-medium text-red-600 hover:underline"
+            >
+              Remove
+            </button>
+          </div>
+        )}
       </div>
 
       <div>

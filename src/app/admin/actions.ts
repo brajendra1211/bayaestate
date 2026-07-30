@@ -8,6 +8,7 @@ import { geocodeLocation } from "@/lib/geocode";
 import { readAmenitiesFromForm } from "@/lib/amenities";
 import { uniqueLocalitySlug } from "@/lib/locality";
 import { notifyUser } from "@/lib/notify";
+import { hashPassword } from "@/lib/password";
 
 async function requireAdmin() {
   const session = await auth();
@@ -757,4 +758,50 @@ export async function toggleLocalityPublished(formData: FormData) {
   if (!locality) redirect("/admin/sitemap");
   await prisma.locality.update({ where: { id }, data: { published: !locality.published } });
   redirect("/admin/sitemap");
+}
+
+export async function createSubAdmin(formData: FormData) {
+  await requireAdmin();
+
+  const name = String(formData.get("name") ?? "").trim();
+  const email = String(formData.get("email") ?? "").trim().toLowerCase();
+  const password = String(formData.get("password") ?? "");
+
+  if (!name || !email || password.length < 8) {
+    redirect("/admin/subadmins?error=validation");
+  }
+
+  const existing = await prisma.user.findUnique({ where: { email } });
+  if (existing) {
+    redirect("/admin/subadmins?error=duplicate");
+  }
+
+  await prisma.user.create({
+    data: {
+      name,
+      email,
+      passwordHash: await hashPassword(password),
+      role: "SUBADMIN",
+      verified: true,
+    },
+  });
+
+  redirect("/admin/subadmins?saved=1");
+}
+
+export async function deleteSubAdmin(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+
+  const subAdmin = await prisma.user.findUnique({
+    where: { id },
+    select: { role: true, _count: { select: { properties: true } } },
+  });
+  if (!subAdmin || subAdmin.role !== "SUBADMIN") redirect("/admin/subadmins");
+  if (subAdmin._count.properties > 0) {
+    redirect("/admin/subadmins?error=hasListings");
+  }
+
+  await prisma.user.delete({ where: { id } });
+  redirect("/admin/subadmins");
 }

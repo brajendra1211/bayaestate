@@ -10,6 +10,8 @@ const ALLOWED_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
 const MAX_SIZE_BYTES = 8 * 1024 * 1024;
 const MAX_WIDTH = 1920;
 
+const MAX_DOCUMENT_SIZE_BYTES = 15 * 1024 * 1024;
+
 export class UploadValidationError extends Error {}
 
 export async function saveUploadedImage(file: File) {
@@ -32,6 +34,27 @@ export async function saveUploadedImage(file: File) {
     .toBuffer();
 
   await writeFile(path.join(uploadsDir, filename), optimized);
+
+  return {
+    filename,
+    url: `${UPLOADS_URL_PREFIX}/${filename}`,
+  };
+}
+
+export async function saveUploadedDocument(file: File) {
+  if (file.type !== "application/pdf") {
+    throw new UploadValidationError("Only PDF files are allowed");
+  }
+  if (file.size > MAX_DOCUMENT_SIZE_BYTES) {
+    throw new UploadValidationError("File must be smaller than 15MB");
+  }
+
+  const buffer = Buffer.from(await file.arrayBuffer());
+  const filename = `${randomUUID()}.pdf`;
+  const uploadsDir = path.resolve(process.cwd(), UPLOADS_DIR);
+  await mkdir(uploadsDir, { recursive: true });
+
+  await writeFile(path.join(uploadsDir, filename), buffer);
 
   return {
     filename,

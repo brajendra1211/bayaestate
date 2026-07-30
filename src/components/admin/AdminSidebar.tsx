@@ -42,6 +42,22 @@ const NAV_ITEMS: PanelNavItem[] = [
     ),
   },
   {
+    href: "/admin/subadmins",
+    label: "Sub-admins",
+    icon: (
+      <>
+        <circle cx="8" cy="8" r="3" strokeWidth={1.75} />
+        <circle cx="17" cy="6" r="2.5" strokeWidth={1.75} />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.75}
+          d="M2.5 20c0-3.6 2.5-6.5 5.5-6.5s5.5 2.9 5.5 6.5M14.5 15a5 5 0 014.9 4.2"
+        />
+      </>
+    ),
+  },
+  {
     href: "/admin/developers",
     label: "Developers",
     icon: (

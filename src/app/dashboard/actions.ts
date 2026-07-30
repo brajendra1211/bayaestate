@@ -17,6 +17,10 @@ async function requireListerOrAdmin() {
   return session;
 }
 
+function isAdminLike(role: string) {
+  return role === "ADMIN" || role === "SUBADMIN";
+}
+
 async function uniqueSlug(title: string, ignoreId?: string) {
   const base = slugify(title) || "property";
   let slug = base;
@@ -84,13 +88,35 @@ async function readPropertyFields(formData: FormData) {
     contactPhone: String(formData.get("contactPhone") ?? "").trim() || null,
     contactEmail: String(formData.get("contactEmail") ?? "").trim() || null,
     projectId: String(formData.get("projectId") ?? "").trim() || null,
+    brochureUrl: String(formData.get("brochureUrl") ?? "").trim() || null,
+    youtubeUrl: String(formData.get("youtubeUrl") ?? "").trim() || null,
   };
+}
+
+// ADMIN/SUBADMIN can list a property under an existing DEALER/OWNER account instead of their own.
+async function resolveOwnerId(session: { user: { id: string; role: string } }, formData: FormData) {
+  if (session.user.role !== "ADMIN" && session.user.role !== "SUBADMIN") {
+    return { ownerId: session.user.id, ownerRole: session.user.role };
+  }
+
+  const onBehalfOfUserId = String(formData.get("onBehalfOfUserId") ?? "").trim();
+  if (!onBehalfOfUserId) {
+    return { ownerId: session.user.id, ownerRole: session.user.role };
+  }
+
+  const target = await prisma.user.findUnique({ where: { id: onBehalfOfUserId } });
+  if (!target || (target.role !== "DEALER" && target.role !== "OWNER")) {
+    return { ownerId: session.user.id, ownerRole: session.user.role };
+  }
+
+  return { ownerId: target.id, ownerRole: target.role };
 }
 
 export async function createProperty(formData: FormData) {
   const session = await requireListerOrAdmin();
+  const { ownerId, ownerRole } = await resolveOwnerId(session, formData);
 
-  const usage = await getListingUsage(session.user.id, session.user.role);
+  const usage = await getListingUsage(ownerId, ownerRole);
   if (usage.atLimit) {
     redirect("/dashboard/properties/new?error=limit");
   }
@@ -102,13 +128,14 @@ export async function createProperty(formData: FormData) {
 
   const images = readImages(formData);
   const slug = await uniqueSlug(fields.title);
+  const isAdminAuthored = session.user.role === "ADMIN" || session.user.role === "SUBADMIN";
 
   const property = await prisma.property.create({
     data: {
       ...fields,
       slug,
-      ownerId: session.user.id,
-      approvalStatus: session.user.role === "ADMIN" ? "APPROVED" : "PENDING",
+      ownerId,
+      approvalStatus: isAdminAuthored ? "APPROVED" : "PENDING",
       expiresAt: addListingDuration(),
       images: {
         create: images.map(({ url, category, order }) => ({
@@ -128,7 +155,7 @@ export async function updateProperty(formData: FormData) {
   const id = String(formData.get("id") ?? "");
   const property = await prisma.property.findUnique({ where: { id } });
   if (!property) redirect("/dashboard");
-  if (session.user.role !== "ADMIN" && property!.ownerId !== session.user.id) {
+  if (!isAdminLike(session.user.role) && property!.ownerId !== session.user.id) {
     redirect("/dashboard");
   }
 
@@ -147,7 +174,7 @@ export async function updateProperty(formData: FormData) {
       data: {
         ...fields,
         slug,
-        approvalStatus: session.user.role === "ADMIN" ? property!.approvalStatus : "PENDING",
+        approvalStatus: isAdminLike(session.user.role) ? property!.approvalStatus : "PENDING",
         images: {
           create: images.map(({ url, category, order }) => ({
             url,
@@ -167,7 +194,7 @@ export async function deleteProperty(formData: FormData) {
   const id = String(formData.get("id") ?? "");
   const property = await prisma.property.findUnique({ where: { id } });
   if (!property) redirect("/dashboard");
-  if (session.user.role !== "ADMIN" && property!.ownerId !== session.user.id) {
+  if (!isAdminLike(session.user.role) && property!.ownerId !== session.user.id) {
     redirect("/dashboard");
   }
 
@@ -180,7 +207,7 @@ export async function renewProperty(formData: FormData) {
   const id = String(formData.get("id") ?? "");
   const property = await prisma.property.findUnique({ where: { id } });
   if (!property) redirect("/dashboard");
-  if (session.user.role !== "ADMIN" && property!.ownerId !== session.user.id) {
+  if (!isAdminLike(session.user.role) && property!.ownerId !== session.user.id) {
     redirect("/dashboard");
   }
 

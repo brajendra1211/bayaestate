@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { formatPrice, PROPERTY_TYPE_LABELS } from "@/lib/format";
+import { formatPrice, getYoutubeEmbedUrl, PROPERTY_TYPE_LABELS } from "@/lib/format";
 import { absoluteUrl } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -108,6 +108,8 @@ export default async function PropertyDetailPage({
     { label: "Area", value: property.areaSqft ? `${property.areaSqft} sqft` : "—" },
     { label: "Status", value: property.status === "AVAILABLE" ? "Available" : property.status },
   ];
+
+  const youtubeEmbedUrl = property.youtubeUrl ? getYoutubeEmbedUrl(property.youtubeUrl) : null;
 
   const listingJsonLd = {
     "@context": "https://schema.org",
@@ -222,6 +224,37 @@ export default async function PropertyDetailPage({
               <h2 className="text-lg font-semibold text-slate-900">Description</h2>
               <p className="mt-2 whitespace-pre-line text-slate-600">{property.description}</p>
             </div>
+
+            {property.brochureUrl && (
+              <div className="mt-6">
+                <a
+                  href={property.brochureUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 py-2.5 text-sm font-semibold text-blue-700 hover:bg-blue-100"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+                  </svg>
+                  Download Brochure (PDF)
+                </a>
+              </div>
+            )}
+
+            {youtubeEmbedUrl && (
+              <div className="mt-8">
+                <h2 className="text-lg font-semibold text-slate-900">Video</h2>
+                <div className="relative mt-2 aspect-video overflow-hidden rounded-2xl bg-black">
+                  <iframe
+                    src={youtubeEmbedUrl}
+                    title={`${property.title} video`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 h-full w-full"
+                  />
+                </div>
+              </div>
+            )}
 
             {property.amenities && (
               <div className="mt-8">

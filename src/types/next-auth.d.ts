@@ -2,13 +2,13 @@ import { DefaultSession } from "next-auth";
 
 declare module "next-auth" {
   interface User {
-    role: "ADMIN" | "OWNER" | "DEALER" | "BUYER";
+    role: "ADMIN" | "SUBADMIN" | "OWNER" | "DEALER" | "BUYER";
   }
 
   interface Session {
     user: {
       id: string;
-      role: "ADMIN" | "OWNER" | "DEALER" | "BUYER";
+      role: "ADMIN" | "SUBADMIN" | "OWNER" | "DEALER" | "BUYER";
     } & DefaultSession["user"];
   }
 }
@@ -16,6 +16,6 @@ declare module "next-auth" {
 declare module "@auth/core/jwt" {
   interface JWT {
     id: string;
-    role: "ADMIN" | "OWNER" | "DEALER" | "BUYER";
+    role: "ADMIN" | "SUBADMIN" | "OWNER" | "DEALER" | "BUYER";
   }
 }

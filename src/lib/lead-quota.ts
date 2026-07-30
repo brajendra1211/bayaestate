@@ -8,7 +8,7 @@ export const FREE_LEAD_LIMITS: Record<string, number> = {
 };
 
 export async function getLeadLimit(userId: string, role: string) {
-  if (role === "ADMIN") return Infinity;
+  if (role === "ADMIN" || role === "SUBADMIN") return Infinity;
   const activeSubscription = await getActiveSubscription(userId);
   if (activeSubscription && activeSubscription.plan.leadLimit === null) return Infinity;
   return activeSubscription?.plan.leadLimit ?? FREE_LEAD_LIMITS[role] ?? 0;

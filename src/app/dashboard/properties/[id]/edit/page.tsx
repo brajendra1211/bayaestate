@@ -26,7 +26,8 @@ export default async function EditPropertyPage({
   });
 
   if (!property) notFound();
-  if (session.user.role !== "ADMIN" && property.ownerId !== session.user.id) {
+  const isAdminLike = session.user.role === "ADMIN" || session.user.role === "SUBADMIN";
+  if (!isAdminLike && property.ownerId !== session.user.id) {
     redirect("/dashboard");
   }
 
@@ -61,7 +62,7 @@ export default async function EditPropertyPage({
 
       {saved === "1" && (
         <p className="mt-4 rounded-lg bg-green-50 px-3 py-2 text-sm text-green-700">
-          Saved. {session.user.role !== "ADMIN" && "It will be reviewed before going live."}
+          Saved. {!isAdminLike && "It will be reviewed before going live."}
         </p>
       )}
       {error === "location" && (
@@ -95,6 +96,8 @@ export default async function EditPropertyPage({
             contactPhone: property.contactPhone,
             contactEmail: property.contactEmail,
             images: property.images.map((image) => ({ url: image.url, category: image.category })),
+            brochureUrl: property.brochureUrl,
+            youtubeUrl: property.youtubeUrl,
             countryId: matchedCity?.state.countryId ?? null,
             stateId: matchedCity?.stateId ?? null,
             cityId: matchedCity?.id ?? null,
