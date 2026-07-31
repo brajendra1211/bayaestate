@@ -42,6 +42,25 @@ export default async function Home() {
     });
   }
 
+  // Fall back to the latest listings if nothing has been marked featured yet,
+  // so the homepage never looks empty while there are live listings.
+  let usingLatestFallback = false;
+  if (featuredProperties.length === 0) {
+    usingLatestFallback = true;
+    featuredProperties = await prisma.property.findMany({
+      where: {
+        approvalStatus: "APPROVED",
+        status: "AVAILABLE",
+        owner: PUBLIC_LISTER_FILTER,
+        ...notExpiredFilter(),
+        ...(location ? { city: { contains: location.cityName } } : {}),
+      },
+      include: { images: { orderBy: { order: "asc" }, take: 1 } },
+      orderBy: { createdAt: "desc" },
+      take: 6,
+    });
+  }
+
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -110,7 +129,8 @@ export default async function Home() {
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <div className="mb-6 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-slate-900">
-            Featured properties{location ? ` in ${location.cityName}` : ""}
+            {usingLatestFallback ? "Latest properties" : "Featured properties"}
+            {location ? ` in ${location.cityName}` : ""}
           </h2>
           <Link
             href={location ? `/properties?city=${encodeURIComponent(location.cityName)}` : "/properties"}
@@ -122,7 +142,7 @@ export default async function Home() {
 
         {featuredProperties.length === 0 ? (
           <p className="rounded-2xl border border-dashed border-slate-300 p-10 text-center text-slate-500">
-            No featured properties yet. Check back soon.
+            No properties listed yet. Check back soon.
           </p>
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
