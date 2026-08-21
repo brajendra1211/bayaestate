@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Prisma } from "@/generated/prisma/client";
 import { prisma } from "@/lib/prisma";
 import { PropertyCard } from "@/components/PropertyCard";
 import { SearchBar } from "@/components/SearchBar";
@@ -12,34 +13,31 @@ import { SITE_URL } from "@/lib/seo";
 export default async function Home() {
   const [settings, location] = await Promise.all([getSiteSettings(), getLocationCookie()]);
 
-  let featuredProperties = await prisma.property.findMany({
-    where: {
-      approvalStatus: "APPROVED",
-      status: "AVAILABLE",
-      featured: true,
-      owner: PUBLIC_LISTER_FILTER,
-      ...notExpiredFilter(),
-      ...(location ? { city: { contains: location.cityName } } : {}),
-    },
-    include: { images: { orderBy: { order: "asc" }, take: 1 } },
-    orderBy: { createdAt: "desc" },
-    take: 6,
-  });
+  const baseFilter: Prisma.PropertyWhereInput = {
+    approvalStatus: "APPROVED",
+    status: "AVAILABLE",
+    owner: PUBLIC_LISTER_FILTER,
+    ...notExpiredFilter(),
+  };
+  const cityFilter: Prisma.PropertyWhereInput = location
+    ? { city: { contains: location.cityName } }
+    : {};
 
-  // Fall back to city-wide featured properties if there's nothing featured yet in the selected city.
-  if (location && featuredProperties.length === 0) {
-    featuredProperties = await prisma.property.findMany({
-      where: {
-        approvalStatus: "APPROVED",
-        status: "AVAILABLE",
-        featured: true,
-        owner: PUBLIC_LISTER_FILTER,
-        ...notExpiredFilter(),
-      },
+  const findHomepageProperties = (where: Prisma.PropertyWhereInput) =>
+    prisma.property.findMany({
+      where,
       include: { images: { orderBy: { order: "asc" }, take: 1 } },
       orderBy: { createdAt: "desc" },
       take: 6,
     });
+
+  let featuredProperties = await findHomepageProperties({ ...baseFilter, featured: true, ...cityFilter });
+  let isCityScoped = Boolean(location);
+
+  // Fall back to city-wide featured properties if there's nothing featured yet in the selected city.
+  if (location && featuredProperties.length === 0) {
+    featuredProperties = await findHomepageProperties({ ...baseFilter, featured: true });
+    isCityScoped = false;
   }
 
   // Fall back to the latest listings if nothing has been marked featured yet,
@@ -47,18 +45,14 @@ export default async function Home() {
   let usingLatestFallback = false;
   if (featuredProperties.length === 0) {
     usingLatestFallback = true;
-    featuredProperties = await prisma.property.findMany({
-      where: {
-        approvalStatus: "APPROVED",
-        status: "AVAILABLE",
-        owner: PUBLIC_LISTER_FILTER,
-        ...notExpiredFilter(),
-        ...(location ? { city: { contains: location.cityName } } : {}),
-      },
-      include: { images: { orderBy: { order: "asc" }, take: 1 } },
-      orderBy: { createdAt: "desc" },
-      take: 6,
-    });
+    isCityScoped = Boolean(location);
+    featuredProperties = await findHomepageProperties({ ...baseFilter, ...cityFilter });
+  }
+
+  // And if the selected city has no live listings at all, widen to the latest site-wide.
+  if (location && usingLatestFallback && featuredProperties.length === 0) {
+    isCityScoped = false;
+    featuredProperties = await findHomepageProperties(baseFilter);
   }
 
   const organizationJsonLd = {
@@ -130,7 +124,7 @@ export default async function Home() {
         <div className="mb-6 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-slate-900">
             {usingLatestFallback ? "Latest properties" : "Featured properties"}
-            {location ? ` in ${location.cityName}` : ""}
+            {isCityScoped && location ? ` in ${location.cityName}` : ""}
           </h2>
           <Link
             href={location ? `/properties?city=${encodeURIComponent(location.cityName)}` : "/properties"}
