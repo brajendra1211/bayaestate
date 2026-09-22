@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { formatPrice, PROPERTY_TYPE_LABELS } from "@/lib/format";
 
-type PropertyCardData = {
+export type PropertyCardData = {
   slug: string;
   title: string;
   city: string;

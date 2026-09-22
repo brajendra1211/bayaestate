@@ -367,6 +367,7 @@ exports.Prisma.SiteSettingsScalarFieldEnum = {
   ogImage: 'ogImage',
   googleAnalyticsId: 'googleAnalyticsId',
   googleSiteVerification: 'googleSiteVerification',
+  homeTheme: 'homeTheme',
   updatedAt: 'updatedAt'
 };
 
@@ -563,7 +564,8 @@ exports.Prisma.SiteSettingsOrderByRelevanceFieldEnum = {
   metaDescription: 'metaDescription',
   ogImage: 'ogImage',
   googleAnalyticsId: 'googleAnalyticsId',
-  googleSiteVerification: 'googleSiteVerification'
+  googleSiteVerification: 'googleSiteVerification',
+  homeTheme: 'homeTheme'
 };
 exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN',

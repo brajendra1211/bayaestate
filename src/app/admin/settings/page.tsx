@@ -114,6 +114,42 @@ export default async function AdminSettingsPage({ searchParams }: { searchParams
           <SingleImageField name="favicon" label="Favicon" defaultValue={settings?.favicon} />
         </Section>
 
+        <Section title="Homepage theme" description="Choose the visual design used for the homepage.">
+          <div className="sm:col-span-2">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {[
+                {
+                  value: "theme1",
+                  name: "Theme 1 — Classic",
+                  description: "Centered hero, simple 3-column listing grid. The current default.",
+                },
+                {
+                  value: "theme2",
+                  name: "Theme 2 — Premium",
+                  description: "Dark split hero with gold accents, trust badges, and a gradient CTA banner.",
+                },
+              ].map((theme) => (
+                <label
+                  key={theme.value}
+                  className="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 p-3 text-sm has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50"
+                >
+                  <input
+                    type="radio"
+                    name="homeTheme"
+                    value={theme.value}
+                    defaultChecked={(settings?.homeTheme ?? "theme1") === theme.value}
+                    className="mt-0.5"
+                  />
+                  <span>
+                    <span className="block font-medium text-slate-800">{theme.name}</span>
+                    <span className="mt-0.5 block text-xs text-slate-500">{theme.description}</span>
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+        </Section>
+
         <Section
           title="Homepage & lead generation"
           description="The hero section and primary call-to-action buyers/sellers see first."

@@ -390,5 +390,6 @@ model SiteSettings {
   ogImage                String?
   googleAnalyticsId      String?
   googleSiteVerification String?
+  homeTheme              String   @default("theme1")
   updatedAt      DateTime @updatedAt
 }
