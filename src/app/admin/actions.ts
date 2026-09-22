@@ -9,6 +9,7 @@ import { readAmenitiesFromForm } from "@/lib/amenities";
 import { uniqueLocalitySlug } from "@/lib/locality";
 import { notifyUser } from "@/lib/notify";
 import { hashPassword } from "@/lib/password";
+import { addListingDuration } from "@/lib/propertyVisibility";
 
 async function requireAdmin() {
   const session = await auth();
@@ -813,4 +814,23 @@ export async function deleteSubAdmin(formData: FormData) {
 
   await prisma.user.delete({ where: { id } });
   redirect("/admin/subadmins");
+}
+
+export async function renewPropertyAsAdmin(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  await prisma.property.update({
+    where: { id },
+    data: { expiresAt: addListingDuration() },
+  });
+  redirect("/admin/properties?renewed=1");
+}
+
+export async function renewAllExpiredProperties() {
+  await requireAdmin();
+  await prisma.property.updateMany({
+    where: { expiresAt: { lt: new Date() } },
+    data: { expiresAt: addListingDuration() },
+  });
+  redirect("/admin/properties?renewed=all");
 }
