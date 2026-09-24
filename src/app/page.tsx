@@ -55,6 +55,22 @@ export default async function Home() {
     featuredProperties = await findHomepageProperties(baseFilter);
   }
 
+  const [totalListings, verifiedListers, distinctCities, cityGroups] = await Promise.all([
+    prisma.property.count({ where: baseFilter }),
+    prisma.user.count({ where: { role: { in: ["DEALER", "OWNER"] }, verified: true } }),
+    prisma.property.findMany({ where: baseFilter, select: { city: true }, distinct: ["city"] }),
+    prisma.property.groupBy({
+      by: ["city"],
+      where: baseFilter,
+      _count: { city: true },
+      orderBy: { _count: { city: "desc" } },
+      take: 6,
+    }),
+  ]);
+
+  const stats = { totalListings, totalCities: distinctCities.length, verifiedListers };
+  const topCities = cityGroups.map((group) => ({ name: group.city, count: group._count.city }));
+
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -98,6 +114,8 @@ export default async function Home() {
         location={location}
         usingLatestFallback={usingLatestFallback}
         isCityScoped={isCityScoped}
+        stats={stats}
+        topCities={topCities}
       />
     </div>
   );
