@@ -98,6 +98,8 @@ async function readPropertyFields(formData: FormData) {
     projectId: String(formData.get("projectId") ?? "").trim() || null,
     brochureUrl: String(formData.get("brochureUrl") ?? "").trim() || null,
     youtubeUrl: String(formData.get("youtubeUrl") ?? "").trim() || null,
+    metaTitle: String(formData.get("metaTitle") ?? "").trim() || null,
+    metaDescription: String(formData.get("metaDescription") ?? "").trim() || null,
   };
 }
 

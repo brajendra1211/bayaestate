@@ -99,6 +99,8 @@ export default async function EditPropertyPage({
             images: property.images.map((image) => ({ url: image.url, category: image.category })),
             brochureUrl: property.brochureUrl,
             youtubeUrl: property.youtubeUrl,
+            metaTitle: property.metaTitle,
+            metaDescription: property.metaDescription,
             countryId: matchedCity?.state.countryId ?? null,
             stateId: matchedCity?.stateId ?? null,
             cityId: matchedCity?.id ?? null,

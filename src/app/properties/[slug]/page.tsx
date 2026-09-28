@@ -5,6 +5,7 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { formatPrice, getYoutubeEmbedUrl, PROPERTY_TYPE_LABELS } from "@/lib/format";
 import { absoluteUrl } from "@/lib/seo";
+import { getSiteSettings } from "@/lib/site-settings";
 import { JsonLd } from "@/components/JsonLd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { PropertyGallery } from "@/components/PropertyGallery";
@@ -45,9 +46,12 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const property = await getProperty(slug);
   if (!property || property.approvalStatus !== "APPROVED") return {};
 
+  const settings = await getSiteSettings();
   const locationLabel = [property.locality, property.city].filter(Boolean).join(", ");
   const action = property.listingType === "SALE" ? "for Sale" : "for Rent";
-  const title = `${property.title} ${action} in ${locationLabel} — ${formatPrice(property.price, property.listingType)}`;
+  const title =
+    property.metaTitle ??
+    `${property.title} ${action} in ${locationLabel} — ${formatPrice(property.price, property.listingType)}`;
   const description =
     property.metaDescription ??
     `${PROPERTY_TYPE_LABELS[property.propertyType] ?? property.propertyType} ${action} in ${locationLabel}. ${property.description.slice(0, 140)}`;
@@ -59,11 +63,13 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     description,
     alternates: { canonical: url },
     openGraph: {
+      siteName: settings.siteName,
+      locale: "en_IN",
       title,
       description,
       url,
       type: "website",
-      images: image ? [{ url: image }] : undefined,
+      images: image ? [{ url: image, alt: property.title }] : undefined,
     },
     twitter: {
       card: "summary_large_image",
@@ -111,6 +117,7 @@ export default async function PropertyDetailPage({
 
   const youtubeEmbedUrl = property.youtubeUrl ? getYoutubeEmbedUrl(property.youtubeUrl) : null;
 
+  const listerName = property.contactName ?? property.owner.company ?? property.owner.name;
   const listingJsonLd = {
     "@context": "https://schema.org",
     "@type": "RealEstateListing",
@@ -118,9 +125,16 @@ export default async function PropertyDetailPage({
     description: property.description,
     url: absoluteUrl(`/properties/${property.slug}`),
     datePosted: property.createdAt.toISOString(),
+    dateModified: property.updatedAt.toISOString(),
     image: property.images.map((image) => image.url),
+    numberOfRooms: property.bedrooms ?? undefined,
+    numberOfBathroomsTotal: property.bathrooms ?? undefined,
+    floorSize: property.areaSqft
+      ? { "@type": "QuantitativeValue", value: property.areaSqft, unitCode: "FTK" }
+      : undefined,
     address: {
       "@type": "PostalAddress",
+      streetAddress: property.address ?? undefined,
       addressLocality: property.locality ?? property.city,
       addressRegion: property.city,
       addressCountry: "IN",
@@ -130,7 +144,31 @@ export default async function PropertyDetailPage({
       price: property.price,
       priceCurrency: "INR",
       availability: "https://schema.org/InStock",
+      businessFunction:
+        property.listingType === "SALE" ? "http://purl.org/goodrelations/v1#Sell" : "http://purl.org/goodrelations/v1#LeaseOut",
+      seller: listerName ? { "@type": "Organization", name: listerName } : undefined,
     },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+      { "@type": "ListItem", position: 2, name: "Properties", item: absoluteUrl("/properties") },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: property.city,
+        item: absoluteUrl(`/properties?city=${encodeURIComponent(property.city)}`),
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: property.title,
+        item: absoluteUrl(`/properties/${property.slug}`),
+      },
+    ],
   };
 
   return (
@@ -144,6 +182,7 @@ export default async function PropertyDetailPage({
         ]}
       />
       <JsonLd data={listingJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
 
       <div className="mx-auto max-w-6xl px-4 pb-10 pt-4 sm:px-6">
         <PropertyGallery images={property.images} title={property.title} />

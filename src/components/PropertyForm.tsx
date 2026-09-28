@@ -29,6 +29,8 @@ type PropertyFormValues = {
   images: ImageItem[];
   brochureUrl?: string | null;
   youtubeUrl?: string | null;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
   countryId?: string | null;
   stateId?: string | null;
   cityId?: string | null;
@@ -379,6 +381,28 @@ export function PropertyForm({
             className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
           />
           <p className="mt-1 text-xs text-slate-500">Optional — shown as an embedded video on the listing page.</p>
+        </div>
+
+        <div>
+          <label className="text-sm font-medium text-slate-700">SEO title</label>
+          <input
+            type="text"
+            name="metaTitle"
+            defaultValue={defaultValues?.metaTitle ?? undefined}
+            placeholder="Leave blank to auto-generate from title, location and price"
+            className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="text-sm font-medium text-slate-700">SEO description</label>
+          <input
+            type="text"
+            name="metaDescription"
+            defaultValue={defaultValues?.metaDescription ?? undefined}
+            placeholder="Leave blank to auto-generate from description"
+            className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
         </div>
       </div>
 
