@@ -417,7 +417,7 @@ export function PropertyForm({
             accept="application/pdf"
             onChange={handleBrochureFile}
             disabled={brochureUploading}
-            className="block text-sm"
+            className="block text-sm text-slate-500 file:mr-3 file:cursor-pointer file:rounded-xl file:border-0 file:bg-blue-600 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white file:transition hover:file:bg-blue-700 disabled:file:cursor-not-allowed disabled:file:opacity-60"
           />
           {brochureUploading && <p className="text-xs text-slate-500">Uploading…</p>}
         </div>
@@ -463,7 +463,7 @@ export function PropertyForm({
             multiple
             onChange={handleFiles}
             disabled={uploading}
-            className="block text-sm"
+            className="block text-sm text-slate-500 file:mr-3 file:cursor-pointer file:rounded-xl file:border-0 file:bg-blue-600 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white file:transition hover:file:bg-blue-700 disabled:file:cursor-not-allowed disabled:file:opacity-60"
           />
         </div>
         {uploading && <p className="mt-1 text-xs text-slate-500">Uploading…</p>}
