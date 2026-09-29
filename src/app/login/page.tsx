@@ -1,4 +1,5 @@
 import { login } from "./actions";
+import { PasswordInput } from "@/components/PasswordInput";
 
 type SearchParams = Promise<{ error?: string; callbackUrl?: string }>;
 
@@ -36,8 +37,7 @@ export default async function LoginPage({
         </div>
         <div>
           <label className="text-sm font-medium text-slate-700">Password</label>
-          <input
-            type="password"
+          <PasswordInput
             name="password"
             required
             className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"

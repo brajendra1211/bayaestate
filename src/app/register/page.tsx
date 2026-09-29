@@ -1,4 +1,5 @@
 import { register } from "./actions";
+import { PasswordInput } from "@/components/PasswordInput";
 
 type SearchParams = Promise<{ error?: string; type?: string }>;
 
@@ -99,8 +100,7 @@ export default async function RegisterPage({
         </div>
         <div>
           <label className="text-sm font-medium text-slate-700">Password</label>
-          <input
-            type="password"
+          <PasswordInput
             name="password"
             required
             minLength={8}
