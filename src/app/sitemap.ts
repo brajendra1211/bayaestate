@@ -3,6 +3,10 @@ import { prisma } from "@/lib/prisma";
 import { SITE_URL } from "@/lib/seo";
 import { PUBLIC_LISTER_FILTER, notExpiredFilter } from "@/lib/propertyVisibility";
 
+// Must stay dynamic: it reflects live listings, and statically prerendering it
+// at build time means it goes stale the moment a property/project/city changes.
+export const dynamic = "force-dynamic";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [properties, dealers, owners, developers, projects, cities] = await Promise.all([
     prisma.property.findMany({
