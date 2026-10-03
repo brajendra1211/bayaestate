@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { absoluteUrl } from "@/lib/seo";
+import type { Prisma } from "@/generated/prisma/client";
 
 const PROJECT_STATUS_LABELS: Record<string, string> = {
   UPCOMING: "Upcoming",
@@ -17,6 +18,10 @@ const inr = new Intl.NumberFormat("en-IN", {
   notation: "compact",
 });
 
+type SearchParams = Promise<{ status?: string }>;
+
+const PROJECT_STATUSES = new Set(["UPCOMING", "UNDER_CONSTRUCTION", "READY_TO_MOVE"]);
+
 export function generateMetadata(): Metadata {
   const title = "New Real Estate Projects";
   const description = "Browse upcoming, under-construction and ready-to-move projects from verified developers.";
@@ -27,8 +32,16 @@ export function generateMetadata(): Metadata {
   };
 }
 
-export default async function ProjectsPage() {
+export default async function ProjectsPage({ searchParams }: { searchParams: SearchParams }) {
+  const { status } = await searchParams;
+  const statusFilter = status && PROJECT_STATUSES.has(status) ? status : undefined;
+
+  const where: Prisma.ProjectWhereInput | undefined = statusFilter
+    ? { status: statusFilter as Prisma.ProjectWhereInput["status"] }
+    : undefined;
+
   const projects = await prisma.project.findMany({
+    where,
     include: {
       developer: { select: { name: true, slug: true } },
       images: { orderBy: { order: "asc" }, take: 1 },
@@ -38,7 +51,9 @@ export default async function ProjectsPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-      <h1 className="text-2xl font-bold text-slate-900">New Projects</h1>
+      <h1 className="text-2xl font-bold text-slate-900">
+        {statusFilter === "UPCOMING" ? "Latest Launches" : "New Projects"}
+      </h1>
       <p className="mt-1 text-sm text-slate-500">
         Explore residential and commercial projects from verified developers.
       </p>

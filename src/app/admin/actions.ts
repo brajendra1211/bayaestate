@@ -551,6 +551,13 @@ function homeTheme(formData: FormData) {
   return HOME_THEMES.has(value) ? value : "theme1";
 }
 
+const NAV_VARIANTS = new Set(["default", "intent"]);
+
+function navVariant(formData: FormData) {
+  const value = String(formData.get("navVariant") ?? "");
+  return NAV_VARIANTS.has(value) ? value : "default";
+}
+
 export async function updateSiteSettings(formData: FormData) {
   await requireAdmin();
 
@@ -581,6 +588,7 @@ export async function updateSiteSettings(formData: FormData) {
       googleAnalyticsId: text(formData, "googleAnalyticsId"),
       googleSiteVerification: text(formData, "googleSiteVerification"),
       homeTheme: homeTheme(formData),
+      navVariant: navVariant(formData),
     },
     create: {
       id: "singleton",
@@ -608,6 +616,7 @@ export async function updateSiteSettings(formData: FormData) {
       googleAnalyticsId: text(formData, "googleAnalyticsId"),
       googleSiteVerification: text(formData, "googleSiteVerification"),
       homeTheme: homeTheme(formData),
+      navVariant: navVariant(formData),
     },
   });
 

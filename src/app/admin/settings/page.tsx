@@ -150,6 +150,43 @@ export default async function AdminSettingsPage({ searchParams }: { searchParams
           </div>
         </Section>
 
+        <Section title="Navigation menu" description="Choose which menu is shown in the site header.">
+          <div className="sm:col-span-2">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {[
+                {
+                  value: "default",
+                  name: "Default",
+                  description: "Home, Properties, Developers, Dealers, Owners + login/register.",
+                },
+                {
+                  value: "intent",
+                  name: "Intent-based",
+                  description:
+                    "Home, Projects, Latest Launch, Hot Deals, and a Search menu split by Buyer / Seller / Property Agents / Tenant / Rent Out.",
+                },
+              ].map((variant) => (
+                <label
+                  key={variant.value}
+                  className="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 p-3 text-sm has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50"
+                >
+                  <input
+                    type="radio"
+                    name="navVariant"
+                    value={variant.value}
+                    defaultChecked={(settings?.navVariant ?? "default") === variant.value}
+                    className="mt-0.5"
+                  />
+                  <span>
+                    <span className="block font-medium text-slate-800">{variant.name}</span>
+                    <span className="mt-0.5 block text-xs text-slate-500">{variant.description}</span>
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+        </Section>
+
         <Section
           title="Homepage & lead generation"
           description="The hero section and primary call-to-action buyers/sellers see first."

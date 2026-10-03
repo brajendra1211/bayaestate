@@ -3,29 +3,48 @@ import { auth } from "@/auth";
 import { LogoutButton } from "@/components/LogoutButton";
 import { LocationMenu } from "@/components/LocationMenu";
 import { NavbarMobileMenu } from "@/components/NavbarMobileMenu";
+import { NavDropdown } from "@/components/NavDropdown";
 
 type NavLink = { href: string; label: string };
+
+const SEARCH_INTENT_LINKS: NavLink[] = [
+  { href: "/properties?listingType=SALE", label: "Buyer" },
+  { href: "/register?type=OWNER", label: "Seller" },
+  { href: "/dealers", label: "Property Agents" },
+  { href: "/properties?listingType=RENT", label: "Tenant" },
+  { href: "/register?type=OWNER", label: "Rent Out" },
+];
 
 export async function Navbar({
   siteName,
   logoUrl,
   currentCity,
   cities,
+  navVariant = "default",
 }: {
   siteName: string;
   logoUrl?: string | null;
   currentCity: { slug: string; name: string } | null;
   cities: { slug: string; name: string }[];
+  navVariant?: string;
 }) {
   const session = await auth();
+  const isIntentNav = navVariant === "intent";
 
-  const links: NavLink[] = [
-    { href: "/", label: "Home" },
-    { href: "/properties", label: "Properties" },
-    { href: "/developers", label: "Developers" },
-    { href: "/dealers", label: "Dealers" },
-    { href: "/owners", label: "Owners" },
-  ];
+  const links: NavLink[] = isIntentNav
+    ? [
+        { href: "/", label: "Home" },
+        { href: "/projects", label: "Projects" },
+        { href: "/projects?status=UPCOMING", label: "Latest Launch" },
+        { href: "/properties?featured=true", label: "Hot Deals" },
+      ]
+    : [
+        { href: "/", label: "Home" },
+        { href: "/properties", label: "Properties" },
+        { href: "/developers", label: "Developers" },
+        { href: "/dealers", label: "Dealers" },
+        { href: "/owners", label: "Owners" },
+      ];
   if (
     session?.user.role === "OWNER" ||
     session?.user.role === "DEALER" ||
@@ -67,6 +86,7 @@ export async function Navbar({
               {link.label}
             </Link>
           ))}
+          {isIntentNav && <NavDropdown label="Search" items={SEARCH_INTENT_LINKS} />}
         </nav>
 
         <div className="flex items-center gap-3">
@@ -102,6 +122,22 @@ export async function Navbar({
                   {link.label}
                 </Link>
               ))}
+              {isIntentNav && (
+                <>
+                  <p className="px-3 pt-3 text-xs font-semibold uppercase tracking-wide text-slate-400">
+                    Search
+                  </p>
+                  {SEARCH_INTENT_LINKS.map((link) => (
+                    <Link
+                      key={link.label}
+                      href={link.href}
+                      className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </>
+              )}
             </div>
 
             <div className="my-2 border-t border-slate-100" />

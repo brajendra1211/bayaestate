@@ -26,6 +26,7 @@ const DEFAULT_SETTINGS = {
   googleAnalyticsId: null as string | null,
   googleSiteVerification: null as string | null,
   homeTheme: "theme1",
+  navVariant: "default",
 };
 
 export async function getSiteSettings() {

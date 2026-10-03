@@ -16,6 +16,7 @@ type SearchParams = Promise<{
   minPrice?: string;
   maxPrice?: string;
   bedrooms?: string;
+  featured?: string;
 }>;
 
 const LISTING_TYPES = [
@@ -94,6 +95,9 @@ export default async function PropertiesPage({
   if (params.bedrooms) {
     where.bedrooms = { gte: Number(params.bedrooms) };
   }
+  if (params.featured === "true") {
+    where.featured = true;
+  }
   if (params.minPrice || params.maxPrice) {
     where.price = {
       ...(params.minPrice ? { gte: Number(params.minPrice) } : {}),
@@ -126,7 +130,9 @@ export default async function PropertiesPage({
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
       <JsonLd data={collectionJsonLd} />
-      <h1 className="text-2xl font-bold text-slate-900">Properties</h1>
+      <h1 className="text-2xl font-bold text-slate-900">
+        {params.featured === "true" ? "Hot Deals" : "Properties"}
+      </h1>
 
       <form
         method="get"

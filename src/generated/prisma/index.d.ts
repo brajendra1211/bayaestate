@@ -20430,6 +20430,7 @@ export namespace Prisma {
     googleAnalyticsId: string | null
     googleSiteVerification: string | null
     homeTheme: string | null
+    navVariant: string | null
     updatedAt: Date | null
   }
 
@@ -20459,6 +20460,7 @@ export namespace Prisma {
     googleAnalyticsId: string | null
     googleSiteVerification: string | null
     homeTheme: string | null
+    navVariant: string | null
     updatedAt: Date | null
   }
 
@@ -20488,6 +20490,7 @@ export namespace Prisma {
     googleAnalyticsId: number
     googleSiteVerification: number
     homeTheme: number
+    navVariant: number
     updatedAt: number
     _all: number
   }
@@ -20519,6 +20522,7 @@ export namespace Prisma {
     googleAnalyticsId?: true
     googleSiteVerification?: true
     homeTheme?: true
+    navVariant?: true
     updatedAt?: true
   }
 
@@ -20548,6 +20552,7 @@ export namespace Prisma {
     googleAnalyticsId?: true
     googleSiteVerification?: true
     homeTheme?: true
+    navVariant?: true
     updatedAt?: true
   }
 
@@ -20577,6 +20582,7 @@ export namespace Prisma {
     googleAnalyticsId?: true
     googleSiteVerification?: true
     homeTheme?: true
+    navVariant?: true
     updatedAt?: true
     _all?: true
   }
@@ -20679,6 +20685,7 @@ export namespace Prisma {
     googleAnalyticsId: string | null
     googleSiteVerification: string | null
     homeTheme: string
+    navVariant: string
     updatedAt: Date
     _count: SiteSettingsCountAggregateOutputType | null
     _min: SiteSettingsMinAggregateOutputType | null
@@ -20725,6 +20732,7 @@ export namespace Prisma {
     googleAnalyticsId?: boolean
     googleSiteVerification?: boolean
     homeTheme?: boolean
+    navVariant?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["siteSettings"]>
 
@@ -20756,10 +20764,11 @@ export namespace Prisma {
     googleAnalyticsId?: boolean
     googleSiteVerification?: boolean
     homeTheme?: boolean
+    navVariant?: boolean
     updatedAt?: boolean
   }
 
-  export type SiteSettingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "siteName" | "tagline" | "logoUrl" | "favicon" | "heroImage" | "heroTitle" | "heroSubtitle" | "ctaText" | "ctaLink" | "whatsappNumber" | "contactEmail" | "contactPhone" | "contactAddress" | "instagramUrl" | "facebookUrl" | "youtubeUrl" | "linkedinUrl" | "footerText" | "metaTitle" | "metaDescription" | "ogImage" | "googleAnalyticsId" | "googleSiteVerification" | "homeTheme" | "updatedAt", ExtArgs["result"]["siteSettings"]>
+  export type SiteSettingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "siteName" | "tagline" | "logoUrl" | "favicon" | "heroImage" | "heroTitle" | "heroSubtitle" | "ctaText" | "ctaLink" | "whatsappNumber" | "contactEmail" | "contactPhone" | "contactAddress" | "instagramUrl" | "facebookUrl" | "youtubeUrl" | "linkedinUrl" | "footerText" | "metaTitle" | "metaDescription" | "ogImage" | "googleAnalyticsId" | "googleSiteVerification" | "homeTheme" | "navVariant" | "updatedAt", ExtArgs["result"]["siteSettings"]>
 
   export type $SiteSettingsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "SiteSettings"
@@ -20790,6 +20799,7 @@ export namespace Prisma {
       googleAnalyticsId: string | null
       googleSiteVerification: string | null
       homeTheme: string
+      navVariant: string
       updatedAt: Date
     }, ExtArgs["result"]["siteSettings"]>
     composites: {}
@@ -21185,6 +21195,7 @@ export namespace Prisma {
     readonly googleAnalyticsId: FieldRef<"SiteSettings", 'String'>
     readonly googleSiteVerification: FieldRef<"SiteSettings", 'String'>
     readonly homeTheme: FieldRef<"SiteSettings", 'String'>
+    readonly navVariant: FieldRef<"SiteSettings", 'String'>
     readonly updatedAt: FieldRef<"SiteSettings", 'DateTime'>
   }
     
@@ -21825,6 +21836,7 @@ export namespace Prisma {
     googleAnalyticsId: 'googleAnalyticsId',
     googleSiteVerification: 'googleSiteVerification',
     homeTheme: 'homeTheme',
+    navVariant: 'navVariant',
     updatedAt: 'updatedAt'
   };
 
@@ -22082,7 +22094,8 @@ export namespace Prisma {
     ogImage: 'ogImage',
     googleAnalyticsId: 'googleAnalyticsId',
     googleSiteVerification: 'googleSiteVerification',
-    homeTheme: 'homeTheme'
+    homeTheme: 'homeTheme',
+    navVariant: 'navVariant'
   };
 
   export type SiteSettingsOrderByRelevanceFieldEnum = (typeof SiteSettingsOrderByRelevanceFieldEnum)[keyof typeof SiteSettingsOrderByRelevanceFieldEnum]
@@ -23686,6 +23699,7 @@ export namespace Prisma {
     googleAnalyticsId?: StringNullableFilter<"SiteSettings"> | string | null
     googleSiteVerification?: StringNullableFilter<"SiteSettings"> | string | null
     homeTheme?: StringFilter<"SiteSettings"> | string
+    navVariant?: StringFilter<"SiteSettings"> | string
     updatedAt?: DateTimeFilter<"SiteSettings"> | Date | string
   }
 
@@ -23715,6 +23729,7 @@ export namespace Prisma {
     googleAnalyticsId?: SortOrderInput | SortOrder
     googleSiteVerification?: SortOrderInput | SortOrder
     homeTheme?: SortOrder
+    navVariant?: SortOrder
     updatedAt?: SortOrder
     _relevance?: SiteSettingsOrderByRelevanceInput
   }
@@ -23748,6 +23763,7 @@ export namespace Prisma {
     googleAnalyticsId?: StringNullableFilter<"SiteSettings"> | string | null
     googleSiteVerification?: StringNullableFilter<"SiteSettings"> | string | null
     homeTheme?: StringFilter<"SiteSettings"> | string
+    navVariant?: StringFilter<"SiteSettings"> | string
     updatedAt?: DateTimeFilter<"SiteSettings"> | Date | string
   }, "id">
 
@@ -23777,6 +23793,7 @@ export namespace Prisma {
     googleAnalyticsId?: SortOrderInput | SortOrder
     googleSiteVerification?: SortOrderInput | SortOrder
     homeTheme?: SortOrder
+    navVariant?: SortOrder
     updatedAt?: SortOrder
     _count?: SiteSettingsCountOrderByAggregateInput
     _max?: SiteSettingsMaxOrderByAggregateInput
@@ -23812,6 +23829,7 @@ export namespace Prisma {
     googleAnalyticsId?: StringNullableWithAggregatesFilter<"SiteSettings"> | string | null
     googleSiteVerification?: StringNullableWithAggregatesFilter<"SiteSettings"> | string | null
     homeTheme?: StringWithAggregatesFilter<"SiteSettings"> | string
+    navVariant?: StringWithAggregatesFilter<"SiteSettings"> | string
     updatedAt?: DateTimeWithAggregatesFilter<"SiteSettings"> | Date | string
   }
 
@@ -25443,6 +25461,7 @@ export namespace Prisma {
     googleAnalyticsId?: string | null
     googleSiteVerification?: string | null
     homeTheme?: string
+    navVariant?: string
     updatedAt?: Date | string
   }
 
@@ -25472,6 +25491,7 @@ export namespace Prisma {
     googleAnalyticsId?: string | null
     googleSiteVerification?: string | null
     homeTheme?: string
+    navVariant?: string
     updatedAt?: Date | string
   }
 
@@ -25501,6 +25521,7 @@ export namespace Prisma {
     googleAnalyticsId?: NullableStringFieldUpdateOperationsInput | string | null
     googleSiteVerification?: NullableStringFieldUpdateOperationsInput | string | null
     homeTheme?: StringFieldUpdateOperationsInput | string
+    navVariant?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -25530,6 +25551,7 @@ export namespace Prisma {
     googleAnalyticsId?: NullableStringFieldUpdateOperationsInput | string | null
     googleSiteVerification?: NullableStringFieldUpdateOperationsInput | string | null
     homeTheme?: StringFieldUpdateOperationsInput | string
+    navVariant?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -25559,6 +25581,7 @@ export namespace Prisma {
     googleAnalyticsId?: string | null
     googleSiteVerification?: string | null
     homeTheme?: string
+    navVariant?: string
     updatedAt?: Date | string
   }
 
@@ -25588,6 +25611,7 @@ export namespace Prisma {
     googleAnalyticsId?: NullableStringFieldUpdateOperationsInput | string | null
     googleSiteVerification?: NullableStringFieldUpdateOperationsInput | string | null
     homeTheme?: StringFieldUpdateOperationsInput | string
+    navVariant?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -25617,6 +25641,7 @@ export namespace Prisma {
     googleAnalyticsId?: NullableStringFieldUpdateOperationsInput | string | null
     googleSiteVerification?: NullableStringFieldUpdateOperationsInput | string | null
     homeTheme?: StringFieldUpdateOperationsInput | string
+    navVariant?: StringFieldUpdateOperationsInput | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -27102,6 +27127,7 @@ export namespace Prisma {
     googleAnalyticsId?: SortOrder
     googleSiteVerification?: SortOrder
     homeTheme?: SortOrder
+    navVariant?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -27131,6 +27157,7 @@ export namespace Prisma {
     googleAnalyticsId?: SortOrder
     googleSiteVerification?: SortOrder
     homeTheme?: SortOrder
+    navVariant?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -27160,6 +27187,7 @@ export namespace Prisma {
     googleAnalyticsId?: SortOrder
     googleSiteVerification?: SortOrder
     homeTheme?: SortOrder
+    navVariant?: SortOrder
     updatedAt?: SortOrder
   }
 

@@ -101,6 +101,7 @@ export default async function RootLayout({
           logoUrl={settings.logoUrl}
           currentCity={location ? { slug: location.citySlug, name: location.cityName } : null}
           cities={cities}
+          navVariant={settings.navVariant}
         />
         <main className="flex-1">{children}</main>
         <Footer

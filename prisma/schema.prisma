@@ -391,5 +391,6 @@ model SiteSettings {
   googleAnalyticsId      String?
   googleSiteVerification String?
   homeTheme              String   @default("theme1")
+  navVariant             String   @default("default")
   updatedAt      DateTime @updatedAt
 }
