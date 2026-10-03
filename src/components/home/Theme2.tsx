@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SearchBar } from "@/components/SearchBar";
 import { NearMeButton } from "@/components/NearMeButton";
+import { HeroSlider } from "@/components/HeroSlider";
 import { PROPERTY_TYPE_LABELS } from "@/lib/format";
 import { PremiumPropertyCard } from "./PremiumPropertyCard";
 import type { HomeThemeProps } from "./types";
@@ -59,6 +60,7 @@ export function Theme2({
   isCityScoped,
   stats,
   topCities,
+  slides,
 }: HomeThemeProps) {
   const statCards = [
     {
@@ -80,6 +82,7 @@ export function Theme2({
 
   return (
     <div>
+      {slides.length > 0 && <HeroSlider slides={slides} />}
       <section className="bg-slate-900 pb-20 sm:pb-24">
         <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 pt-16 sm:px-6 lg:grid-cols-2 lg:pt-24">
           <div className="text-white">

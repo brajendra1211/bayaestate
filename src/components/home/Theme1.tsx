@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PropertyCard } from "@/components/PropertyCard";
 import { SearchBar } from "@/components/SearchBar";
 import { NearMeButton } from "@/components/NearMeButton";
+import { HeroSlider } from "@/components/HeroSlider";
 import type { HomeThemeProps } from "./types";
 
 // The original/default homepage design — kept exactly as it was before themes
@@ -13,9 +14,11 @@ export function Theme1({
   location,
   usingLatestFallback,
   isCityScoped,
+  slides,
 }: HomeThemeProps) {
   return (
     <div>
+      {slides.length > 0 && <HeroSlider slides={slides} />}
       <section
         className={`relative overflow-hidden bg-cover bg-center px-4 py-20 text-center text-white sm:px-6 ${
           settings.heroImage ? "" : "bg-gradient-to-b from-slate-900 to-slate-800"

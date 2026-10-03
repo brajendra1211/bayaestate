@@ -1,6 +1,7 @@
 import type { PropertyCardData } from "@/components/PropertyCard";
 import type { LocationCookieValue } from "@/lib/location-context";
 import type { getSiteSettings } from "@/lib/site-settings";
+import type { Slide } from "@/components/HeroSlider";
 
 export type HomeStats = {
   totalListings: number;
@@ -18,4 +19,5 @@ export type HomeThemeProps = {
   isCityScoped: boolean;
   stats: HomeStats;
   topCities: TopCity[];
+  slides: Slide[];
 };

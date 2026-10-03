@@ -55,7 +55,7 @@ export default async function Home() {
     featuredProperties = await findHomepageProperties(baseFilter);
   }
 
-  const [totalListings, verifiedListers, distinctCities, cityGroups] = await Promise.all([
+  const [totalListings, verifiedListers, distinctCities, cityGroups, slides] = await Promise.all([
     prisma.property.count({ where: baseFilter }),
     prisma.user.count({ where: { role: { in: ["DEALER", "OWNER"] }, verified: true } }),
     prisma.property.findMany({ where: baseFilter, select: { city: true }, distinct: ["city"] }),
@@ -65,6 +65,11 @@ export default async function Home() {
       _count: { city: true },
       orderBy: { _count: { city: "desc" } },
       take: 6,
+    }),
+    prisma.heroSlide.findMany({
+      where: { active: true },
+      orderBy: { order: "asc" },
+      select: { id: true, imageUrl: true, title: true, subtitle: true, ctaText: true, ctaLink: true },
     }),
   ]);
 
@@ -116,6 +121,7 @@ export default async function Home() {
         isCityScoped={isCityScoped}
         stats={stats}
         topCities={topCities}
+        slides={slides}
       />
     </div>
   );

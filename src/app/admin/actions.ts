@@ -843,3 +843,68 @@ export async function renewAllExpiredProperties() {
   });
   redirect("/admin/properties?renewed=all");
 }
+
+export async function createHeroSlide(formData: FormData) {
+  await requireAdmin();
+  const imageUrl = text(formData, "imageUrl");
+  if (!imageUrl) redirect("/admin/slider?error=image");
+
+  const count = await prisma.heroSlide.count();
+  await prisma.heroSlide.create({
+    data: {
+      imageUrl: imageUrl!,
+      title: text(formData, "title"),
+      subtitle: text(formData, "subtitle"),
+      ctaText: text(formData, "ctaText"),
+      ctaLink: text(formData, "ctaLink"),
+      order: count,
+    },
+  });
+  redirect("/admin/slider?saved=1");
+}
+
+export async function updateHeroSlide(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  const imageUrl = text(formData, "imageUrl");
+  if (!imageUrl) redirect("/admin/slider?error=image");
+
+  await prisma.heroSlide.update({
+    where: { id },
+    data: {
+      imageUrl: imageUrl!,
+      title: text(formData, "title"),
+      subtitle: text(formData, "subtitle"),
+      ctaText: text(formData, "ctaText"),
+      ctaLink: text(formData, "ctaLink"),
+      active: formData.get("active") === "on",
+    },
+  });
+  redirect("/admin/slider?saved=1");
+}
+
+export async function deleteHeroSlide(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  await prisma.heroSlide.delete({ where: { id } });
+  redirect("/admin/slider?saved=1");
+}
+
+export async function moveHeroSlide(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  const direction = String(formData.get("direction") ?? "");
+
+  const slides = await prisma.heroSlide.findMany({ orderBy: { order: "asc" } });
+  const index = slides.findIndex((slide) => slide.id === id);
+  const swapWith = direction === "up" ? index - 1 : index + 1;
+  if (index === -1 || swapWith < 0 || swapWith >= slides.length) {
+    redirect("/admin/slider");
+  }
+
+  await prisma.$transaction([
+    prisma.heroSlide.update({ where: { id: slides[index].id }, data: { order: slides[swapWith].order } }),
+    prisma.heroSlide.update({ where: { id: slides[swapWith].id }, data: { order: slides[index].order } }),
+  ]);
+  redirect("/admin/slider");
+}

@@ -126,6 +126,16 @@ const NAV_ITEMS: PanelNavItem[] = [
     ),
   },
   {
+    href: "/admin/slider",
+    label: "Home slider",
+    icon: (
+      <>
+        <rect x="3" y="5" width="18" height="12" rx="2" strokeWidth={1.75} />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M8 21h8M3 10l4-2v6l-4-2zM21 10l-4-2v6l4-2z" />
+      </>
+    ),
+  },
+  {
     href: "/admin/settings",
     label: "Website Settings",
     icon: (

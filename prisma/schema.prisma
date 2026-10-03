@@ -365,6 +365,21 @@ model Amenity {
   createdAt DateTime @default(now())
 }
 
+model HeroSlide {
+  id        String   @id @default(cuid())
+  imageUrl  String
+  title     String?
+  subtitle  String?  @db.Text
+  ctaText   String?
+  ctaLink   String?
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([active, order])
+}
+
 model SiteSettings {
   id                     String   @id @default("singleton")
   siteName               String   @default("BayaEstate")

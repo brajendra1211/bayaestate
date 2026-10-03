@@ -342,6 +342,19 @@ exports.Prisma.AmenityScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.HeroSlideScalarFieldEnum = {
+  id: 'id',
+  imageUrl: 'imageUrl',
+  title: 'title',
+  subtitle: 'subtitle',
+  ctaText: 'ctaText',
+  ctaLink: 'ctaLink',
+  order: 'order',
+  active: 'active',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SiteSettingsScalarFieldEnum = {
   id: 'id',
   siteName: 'siteName',
@@ -541,6 +554,15 @@ exports.Prisma.AmenityOrderByRelevanceFieldEnum = {
   slug: 'slug'
 };
 
+exports.Prisma.HeroSlideOrderByRelevanceFieldEnum = {
+  id: 'id',
+  imageUrl: 'imageUrl',
+  title: 'title',
+  subtitle: 'subtitle',
+  ctaText: 'ctaText',
+  ctaLink: 'ctaLink'
+};
+
 exports.Prisma.SiteSettingsOrderByRelevanceFieldEnum = {
   id: 'id',
   siteName: 'siteName',
@@ -662,6 +684,7 @@ exports.Prisma.ModelName = {
   OtpCode: 'OtpCode',
   SavedProperty: 'SavedProperty',
   Amenity: 'Amenity',
+  HeroSlide: 'HeroSlide',
   SiteSettings: 'SiteSettings'
 };
 
