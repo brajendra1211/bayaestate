@@ -9,6 +9,8 @@ import { getSiteSettings } from "@/lib/site-settings";
 import { JsonLd } from "@/components/JsonLd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { PropertyGallery } from "@/components/PropertyGallery";
+import { AmenitiesGrid } from "@/components/AmenitiesGrid";
+import { parseAmenitiesString } from "@/lib/amenities";
 import { isOwnerPublic, isPropertyExpired } from "@/lib/propertyVisibility";
 import { toggleSavedProperty } from "@/app/buyer/actions";
 import { submitEnquiry } from "./actions";
@@ -298,7 +300,9 @@ export default async function PropertyDetailPage({
             {property.amenities && (
               <div className="mt-8">
                 <h2 className="text-lg font-semibold text-slate-900">Amenities</h2>
-                <p className="mt-2 whitespace-pre-line text-slate-600">{property.amenities}</p>
+                <div className="mt-3">
+                  <AmenitiesGrid amenities={parseAmenitiesString(property.amenities)} />
+                </div>
               </div>
             )}
 

@@ -8,8 +8,10 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { EmiCalculator } from "@/components/EmiCalculator";
+import { AmenitiesGrid } from "@/components/AmenitiesGrid";
 import { absoluteUrl } from "@/lib/seo";
 import { getYoutubeEmbedUrl } from "@/lib/format";
+import { parseAmenitiesString } from "@/lib/amenities";
 import { PUBLIC_LISTER_FILTER, notExpiredFilter } from "@/lib/propertyVisibility";
 import { submitProjectEnquiry } from "./actions";
 
@@ -320,7 +322,9 @@ export default async function ProjectDetailPage({
             {project.amenities && (
               <div className="mt-8">
                 <h2 className="text-lg font-semibold text-slate-900">Amenities</h2>
-                <p className="mt-2 whitespace-pre-line text-slate-600">{project.amenities}</p>
+                <div className="mt-3">
+                  <AmenitiesGrid amenities={parseAmenitiesString(project.amenities)} />
+                </div>
               </div>
             )}
 
