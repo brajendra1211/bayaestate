@@ -9,6 +9,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { EmiCalculator } from "@/components/EmiCalculator";
 import { absoluteUrl } from "@/lib/seo";
+import { getYoutubeEmbedUrl } from "@/lib/format";
 import { PUBLIC_LISTER_FILTER, notExpiredFilter } from "@/lib/propertyVisibility";
 import { submitProjectEnquiry } from "./actions";
 
@@ -98,6 +99,7 @@ export default async function ProjectDetailPage({
   ]);
 
   const highlights = parseLines(project.highlights);
+  const youtubeEmbedUrl = project.youtubeUrl ? getYoutubeEmbedUrl(project.youtubeUrl) : null;
   const landmarksByCategory = project.landmarks.reduce<Record<string, typeof project.landmarks>>((acc, landmark) => {
     (acc[landmark.category] ??= []).push(landmark);
     return acc;
@@ -255,6 +257,21 @@ export default async function ProjectDetailPage({
               <p className="mt-2 whitespace-pre-line text-slate-600">{project.description}</p>
             </div>
 
+            {youtubeEmbedUrl && (
+              <div className="mt-8">
+                <h2 className="text-lg font-semibold text-slate-900">Video</h2>
+                <div className="relative mt-2 aspect-video overflow-hidden rounded-2xl bg-black">
+                  <iframe
+                    src={youtubeEmbedUrl}
+                    title={`${project.name} video`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 h-full w-full"
+                  />
+                </div>
+              </div>
+            )}
+
             {project.floorPlans.length > 0 && (
               <div className="mt-8">
                 <h2 className="text-lg font-semibold text-slate-900">
@@ -281,6 +298,21 @@ export default async function ProjectDetailPage({
                       ))}
                     </tbody>
                   </table>
+                </div>
+              </div>
+            )}
+
+            {project.sitePlanUrl && (
+              <div className="mt-8">
+                <h2 className="text-lg font-semibold text-slate-900">Site Plan</h2>
+                <div className="relative mt-3 aspect-[4/3] w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 sm:aspect-[16/9]">
+                  <Image
+                    src={project.sitePlanUrl}
+                    alt={`${project.name} site plan`}
+                    fill
+                    className="object-contain"
+                    sizes="(min-width: 1024px) 700px, 100vw"
+                  />
                 </div>
               </div>
             )}

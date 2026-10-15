@@ -206,6 +206,8 @@ exports.Prisma.ProjectScalarFieldEnum = {
   reraNumber: 'reraNumber',
   highlights: 'highlights',
   brochureUrl: 'brochureUrl',
+  youtubeUrl: 'youtubeUrl',
+  sitePlanUrl: 'sitePlanUrl',
   metaTitle: 'metaTitle',
   metaDescription: 'metaDescription',
   createdAt: 'createdAt',
@@ -487,6 +489,8 @@ exports.Prisma.ProjectOrderByRelevanceFieldEnum = {
   reraNumber: 'reraNumber',
   highlights: 'highlights',
   brochureUrl: 'brochureUrl',
+  youtubeUrl: 'youtubeUrl',
+  sitePlanUrl: 'sitePlanUrl',
   metaTitle: 'metaTitle',
   metaDescription: 'metaDescription'
 };

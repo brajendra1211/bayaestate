@@ -8469,6 +8469,8 @@ export namespace Prisma {
     reraNumber: string | null
     highlights: string | null
     brochureUrl: string | null
+    youtubeUrl: string | null
+    sitePlanUrl: string | null
     metaTitle: string | null
     metaDescription: string | null
     createdAt: Date | null
@@ -8492,6 +8494,8 @@ export namespace Prisma {
     reraNumber: string | null
     highlights: string | null
     brochureUrl: string | null
+    youtubeUrl: string | null
+    sitePlanUrl: string | null
     metaTitle: string | null
     metaDescription: string | null
     createdAt: Date | null
@@ -8515,6 +8519,8 @@ export namespace Prisma {
     reraNumber: number
     highlights: number
     brochureUrl: number
+    youtubeUrl: number
+    sitePlanUrl: number
     metaTitle: number
     metaDescription: number
     createdAt: number
@@ -8550,6 +8556,8 @@ export namespace Prisma {
     reraNumber?: true
     highlights?: true
     brochureUrl?: true
+    youtubeUrl?: true
+    sitePlanUrl?: true
     metaTitle?: true
     metaDescription?: true
     createdAt?: true
@@ -8573,6 +8581,8 @@ export namespace Prisma {
     reraNumber?: true
     highlights?: true
     brochureUrl?: true
+    youtubeUrl?: true
+    sitePlanUrl?: true
     metaTitle?: true
     metaDescription?: true
     createdAt?: true
@@ -8596,6 +8606,8 @@ export namespace Prisma {
     reraNumber?: true
     highlights?: true
     brochureUrl?: true
+    youtubeUrl?: true
+    sitePlanUrl?: true
     metaTitle?: true
     metaDescription?: true
     createdAt?: true
@@ -8706,6 +8718,8 @@ export namespace Prisma {
     reraNumber: string | null
     highlights: string | null
     brochureUrl: string | null
+    youtubeUrl: string | null
+    sitePlanUrl: string | null
     metaTitle: string | null
     metaDescription: string | null
     createdAt: Date
@@ -8748,6 +8762,8 @@ export namespace Prisma {
     reraNumber?: boolean
     highlights?: boolean
     brochureUrl?: boolean
+    youtubeUrl?: boolean
+    sitePlanUrl?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     createdAt?: boolean
@@ -8781,13 +8797,15 @@ export namespace Prisma {
     reraNumber?: boolean
     highlights?: boolean
     brochureUrl?: boolean
+    youtubeUrl?: boolean
+    sitePlanUrl?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "name" | "description" | "status" | "developerId" | "city" | "locality" | "address" | "priceMin" | "priceMax" | "possessionDate" | "amenities" | "reraNumber" | "highlights" | "brochureUrl" | "metaTitle" | "metaDescription" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "name" | "description" | "status" | "developerId" | "city" | "locality" | "address" | "priceMin" | "priceMax" | "possessionDate" | "amenities" | "reraNumber" | "highlights" | "brochureUrl" | "youtubeUrl" | "sitePlanUrl" | "metaTitle" | "metaDescription" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     developer?: boolean | DeveloperDefaultArgs<ExtArgs>
     units?: boolean | Project$unitsArgs<ExtArgs>
@@ -8827,6 +8845,8 @@ export namespace Prisma {
       reraNumber: string | null
       highlights: string | null
       brochureUrl: string | null
+      youtubeUrl: string | null
+      sitePlanUrl: string | null
       metaTitle: string | null
       metaDescription: string | null
       createdAt: Date
@@ -9223,6 +9243,8 @@ export namespace Prisma {
     readonly reraNumber: FieldRef<"Project", 'String'>
     readonly highlights: FieldRef<"Project", 'String'>
     readonly brochureUrl: FieldRef<"Project", 'String'>
+    readonly youtubeUrl: FieldRef<"Project", 'String'>
+    readonly sitePlanUrl: FieldRef<"Project", 'String'>
     readonly metaTitle: FieldRef<"Project", 'String'>
     readonly metaDescription: FieldRef<"Project", 'String'>
     readonly createdAt: FieldRef<"Project", 'DateTime'>
@@ -26099,6 +26121,8 @@ export namespace Prisma {
     reraNumber: 'reraNumber',
     highlights: 'highlights',
     brochureUrl: 'brochureUrl',
+    youtubeUrl: 'youtubeUrl',
+    sitePlanUrl: 'sitePlanUrl',
     metaTitle: 'metaTitle',
     metaDescription: 'metaDescription',
     createdAt: 'createdAt',
@@ -26452,6 +26476,8 @@ export namespace Prisma {
     reraNumber: 'reraNumber',
     highlights: 'highlights',
     brochureUrl: 'brochureUrl',
+    youtubeUrl: 'youtubeUrl',
+    sitePlanUrl: 'sitePlanUrl',
     metaTitle: 'metaTitle',
     metaDescription: 'metaDescription'
   };
@@ -27250,6 +27276,8 @@ export namespace Prisma {
     reraNumber?: StringNullableFilter<"Project"> | string | null
     highlights?: StringNullableFilter<"Project"> | string | null
     brochureUrl?: StringNullableFilter<"Project"> | string | null
+    youtubeUrl?: StringNullableFilter<"Project"> | string | null
+    sitePlanUrl?: StringNullableFilter<"Project"> | string | null
     metaTitle?: StringNullableFilter<"Project"> | string | null
     metaDescription?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
@@ -27280,6 +27308,8 @@ export namespace Prisma {
     reraNumber?: SortOrderInput | SortOrder
     highlights?: SortOrderInput | SortOrder
     brochureUrl?: SortOrderInput | SortOrder
+    youtubeUrl?: SortOrderInput | SortOrder
+    sitePlanUrl?: SortOrderInput | SortOrder
     metaTitle?: SortOrderInput | SortOrder
     metaDescription?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -27314,6 +27344,8 @@ export namespace Prisma {
     reraNumber?: StringNullableFilter<"Project"> | string | null
     highlights?: StringNullableFilter<"Project"> | string | null
     brochureUrl?: StringNullableFilter<"Project"> | string | null
+    youtubeUrl?: StringNullableFilter<"Project"> | string | null
+    sitePlanUrl?: StringNullableFilter<"Project"> | string | null
     metaTitle?: StringNullableFilter<"Project"> | string | null
     metaDescription?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
@@ -27344,6 +27376,8 @@ export namespace Prisma {
     reraNumber?: SortOrderInput | SortOrder
     highlights?: SortOrderInput | SortOrder
     brochureUrl?: SortOrderInput | SortOrder
+    youtubeUrl?: SortOrderInput | SortOrder
+    sitePlanUrl?: SortOrderInput | SortOrder
     metaTitle?: SortOrderInput | SortOrder
     metaDescription?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -27375,6 +27409,8 @@ export namespace Prisma {
     reraNumber?: StringNullableWithAggregatesFilter<"Project"> | string | null
     highlights?: StringNullableWithAggregatesFilter<"Project"> | string | null
     brochureUrl?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    youtubeUrl?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    sitePlanUrl?: StringNullableWithAggregatesFilter<"Project"> | string | null
     metaTitle?: StringNullableWithAggregatesFilter<"Project"> | string | null
     metaDescription?: StringNullableWithAggregatesFilter<"Project"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
@@ -29216,6 +29252,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -29246,6 +29284,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -29274,6 +29314,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29304,6 +29346,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29333,6 +29377,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -29355,6 +29401,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29378,6 +29426,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31471,6 +31521,8 @@ export namespace Prisma {
     reraNumber?: SortOrder
     highlights?: SortOrder
     brochureUrl?: SortOrder
+    youtubeUrl?: SortOrder
+    sitePlanUrl?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     createdAt?: SortOrder
@@ -31499,6 +31551,8 @@ export namespace Prisma {
     reraNumber?: SortOrder
     highlights?: SortOrder
     brochureUrl?: SortOrder
+    youtubeUrl?: SortOrder
+    sitePlanUrl?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     createdAt?: SortOrder
@@ -31522,6 +31576,8 @@ export namespace Prisma {
     reraNumber?: SortOrder
     highlights?: SortOrder
     brochureUrl?: SortOrder
+    youtubeUrl?: SortOrder
+    sitePlanUrl?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     createdAt?: SortOrder
@@ -35034,6 +35090,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -35062,6 +35120,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -35120,6 +35180,8 @@ export namespace Prisma {
     reraNumber?: StringNullableFilter<"Project"> | string | null
     highlights?: StringNullableFilter<"Project"> | string | null
     brochureUrl?: StringNullableFilter<"Project"> | string | null
+    youtubeUrl?: StringNullableFilter<"Project"> | string | null
+    sitePlanUrl?: StringNullableFilter<"Project"> | string | null
     metaTitle?: StringNullableFilter<"Project"> | string | null
     metaDescription?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
@@ -35588,6 +35650,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -35617,6 +35681,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -35660,6 +35726,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35689,6 +35757,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35716,6 +35786,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -35745,6 +35817,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -35788,6 +35862,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35817,6 +35893,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35844,6 +35922,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -35873,6 +35953,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -35916,6 +35998,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35945,6 +36029,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35972,6 +36058,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -36001,6 +36089,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -36044,6 +36134,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -36073,6 +36165,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -36530,6 +36624,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -36559,6 +36655,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -36741,6 +36839,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -36770,6 +36870,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -37093,6 +37195,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -37122,6 +37226,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -37323,6 +37429,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -37352,6 +37460,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38038,6 +38148,8 @@ export namespace Prisma {
     reraNumber?: string | null
     highlights?: string | null
     brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -38060,6 +38172,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38088,6 +38202,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38116,6 +38232,8 @@ export namespace Prisma {
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
     highlights?: NullableStringFieldUpdateOperationsInput | string | null
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

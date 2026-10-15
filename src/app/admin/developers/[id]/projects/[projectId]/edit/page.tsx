@@ -102,6 +102,8 @@ export default async function EditProjectPage({
             reraNumber: project.reraNumber,
             highlights: project.highlights,
             brochureUrl: project.brochureUrl,
+            youtubeUrl: project.youtubeUrl,
+            sitePlanUrl: project.sitePlanUrl,
             metaTitle: project.metaTitle,
             metaDescription: project.metaDescription,
             images: project.images.map((image) => ({ url: image.url })),

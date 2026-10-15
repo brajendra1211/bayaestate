@@ -2,6 +2,7 @@
 
 import { useState, type ChangeEvent } from "react";
 import { parseAmenitiesString } from "@/lib/amenities";
+import { SingleImageField } from "@/components/SingleImageField";
 
 type ImageItem = { url: string };
 
@@ -21,6 +22,8 @@ type ProjectFormValues = {
   reraNumber: string | null;
   highlights: string | null;
   brochureUrl: string | null;
+  youtubeUrl: string | null;
+  sitePlanUrl: string | null;
   metaTitle: string | null;
   metaDescription: string | null;
   images: ImageItem[];
@@ -308,6 +311,21 @@ export function ProjectForm({
             </button>
           </div>
         )}
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div>
+          <label className="text-sm font-medium text-slate-700">YouTube video link</label>
+          <input
+            type="url"
+            name="youtubeUrl"
+            placeholder="https://www.youtube.com/watch?v=..."
+            defaultValue={defaultValues?.youtubeUrl ?? undefined}
+            className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+          <p className="mt-1 text-xs text-slate-500">Optional — shown as an embedded video on the project page.</p>
+        </div>
+        <SingleImageField name="sitePlanUrl" label="Site plan (optional)" defaultValue={defaultValues?.sitePlanUrl} />
       </div>
 
       <div>
