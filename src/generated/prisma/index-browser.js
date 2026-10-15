@@ -204,6 +204,8 @@ exports.Prisma.ProjectScalarFieldEnum = {
   possessionDate: 'possessionDate',
   amenities: 'amenities',
   reraNumber: 'reraNumber',
+  highlights: 'highlights',
+  brochureUrl: 'brochureUrl',
   metaTitle: 'metaTitle',
   metaDescription: 'metaDescription',
   createdAt: 'createdAt',
@@ -214,6 +216,33 @@ exports.Prisma.ProjectImageScalarFieldEnum = {
   id: 'id',
   url: 'url',
   projectId: 'projectId',
+  order: 'order'
+};
+
+exports.Prisma.ProjectFloorPlanScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  configuration: 'configuration',
+  areaSqft: 'areaSqft',
+  price: 'price',
+  imageUrl: 'imageUrl',
+  order: 'order'
+};
+
+exports.Prisma.ProjectFAQScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  question: 'question',
+  answer: 'answer',
+  order: 'order'
+};
+
+exports.Prisma.ProjectLandmarkScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  category: 'category',
+  name: 'name',
+  distanceKm: 'distanceKm',
   order: 'order'
 };
 
@@ -313,6 +342,7 @@ exports.Prisma.EnquiryScalarFieldEnum = {
   email: 'email',
   message: 'message',
   propertyId: 'propertyId',
+  projectId: 'projectId',
   buyerId: 'buyerId',
   createdAt: 'createdAt'
 };
@@ -455,6 +485,8 @@ exports.Prisma.ProjectOrderByRelevanceFieldEnum = {
   address: 'address',
   amenities: 'amenities',
   reraNumber: 'reraNumber',
+  highlights: 'highlights',
+  brochureUrl: 'brochureUrl',
   metaTitle: 'metaTitle',
   metaDescription: 'metaDescription'
 };
@@ -463,6 +495,27 @@ exports.Prisma.ProjectImageOrderByRelevanceFieldEnum = {
   id: 'id',
   url: 'url',
   projectId: 'projectId'
+};
+
+exports.Prisma.ProjectFloorPlanOrderByRelevanceFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  configuration: 'configuration',
+  imageUrl: 'imageUrl'
+};
+
+exports.Prisma.ProjectFAQOrderByRelevanceFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  question: 'question',
+  answer: 'answer'
+};
+
+exports.Prisma.ProjectLandmarkOrderByRelevanceFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  category: 'category',
+  name: 'name'
 };
 
 exports.Prisma.CountryOrderByRelevanceFieldEnum = {
@@ -533,6 +586,7 @@ exports.Prisma.EnquiryOrderByRelevanceFieldEnum = {
   email: 'email',
   message: 'message',
   propertyId: 'propertyId',
+  projectId: 'projectId',
   buyerId: 'buyerId'
 };
 
@@ -674,6 +728,9 @@ exports.Prisma.ModelName = {
   Developer: 'Developer',
   Project: 'Project',
   ProjectImage: 'ProjectImage',
+  ProjectFloorPlan: 'ProjectFloorPlan',
+  ProjectFAQ: 'ProjectFAQ',
+  ProjectLandmark: 'ProjectLandmark',
   Country: 'Country',
   State: 'State',
   City: 'City',

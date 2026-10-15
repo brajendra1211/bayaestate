@@ -165,27 +165,33 @@ model Developer {
 }
 
 model Project {
-  id              String         @id @default(cuid())
-  slug            String         @unique
+  id              String             @id @default(cuid())
+  slug            String             @unique
   name            String
-  description     String         @db.Text
-  status          ProjectStatus  @default(UPCOMING)
+  description     String             @db.Text
+  status          ProjectStatus      @default(UPCOMING)
   developerId     String
-  developer       Developer      @relation(fields: [developerId], references: [id], onDelete: Cascade)
+  developer       Developer          @relation(fields: [developerId], references: [id], onDelete: Cascade)
   city            String
   locality        String?
-  address         String?        @db.Text
+  address         String?            @db.Text
   priceMin        Int?
   priceMax        Int?
   possessionDate  DateTime?
-  amenities       String?        @db.Text
+  amenities       String?            @db.Text
   reraNumber      String?
+  highlights      String?            @db.Text
+  brochureUrl     String?
   metaTitle       String?
-  metaDescription String?        @db.Text
+  metaDescription String?            @db.Text
   units           Property[]
   images          ProjectImage[]
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
+  floorPlans      ProjectFloorPlan[]
+  faqs            ProjectFAQ[]
+  landmarks       ProjectLandmark[]
+  enquiries       Enquiry[]
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
 
   @@index([developerId])
 }
@@ -196,6 +202,42 @@ model ProjectImage {
   projectId String
   project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
   order     Int     @default(0)
+}
+
+model ProjectFloorPlan {
+  id            String  @id @default(cuid())
+  projectId     String
+  project       Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  configuration String
+  areaSqft      Int
+  price         Int?
+  imageUrl      String?
+  order         Int     @default(0)
+
+  @@index([projectId])
+}
+
+model ProjectFAQ {
+  id        String  @id @default(cuid())
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  question  String
+  answer    String  @db.Text
+  order     Int     @default(0)
+
+  @@index([projectId])
+}
+
+model ProjectLandmark {
+  id         String  @id @default(cuid())
+  projectId  String
+  project    Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  category   String
+  name       String
+  distanceKm Float
+  order      Int     @default(0)
+
+  @@index([projectId])
 }
 
 model Country {
@@ -319,6 +361,8 @@ model Enquiry {
   message    String?    @db.Text
   propertyId String?
   property   Property?  @relation(fields: [propertyId], references: [id], onDelete: SetNull)
+  projectId  String?
+  project    Project?   @relation(fields: [projectId], references: [id], onDelete: SetNull)
   buyerId    String?
   buyer      User?      @relation("EnquiryBuyer", fields: [buyerId], references: [id], onDelete: SetNull)
   leadViews  LeadView[]

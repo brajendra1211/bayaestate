@@ -175,6 +175,8 @@ export async function createProject(formData: FormData) {
         : null,
       amenities: readAmenitiesFromForm(formData),
       reraNumber: String(formData.get("reraNumber") ?? "").trim() || null,
+      highlights: String(formData.get("highlights") ?? "").trim() || null,
+      brochureUrl: String(formData.get("brochureUrl") ?? "").trim() || null,
       metaTitle: String(formData.get("metaTitle") ?? "").trim() || null,
       metaDescription: String(formData.get("metaDescription") ?? "").trim() || null,
       images: { create: images.map((url, order) => ({ url, order })) },
@@ -217,6 +219,8 @@ export async function updateProject(formData: FormData) {
           : null,
         amenities: readAmenitiesFromForm(formData),
       reraNumber: String(formData.get("reraNumber") ?? "").trim() || null,
+        highlights: String(formData.get("highlights") ?? "").trim() || null,
+        brochureUrl: String(formData.get("brochureUrl") ?? "").trim() || null,
         metaTitle: String(formData.get("metaTitle") ?? "").trim() || null,
         metaDescription: String(formData.get("metaDescription") ?? "").trim() || null,
         images: { create: images.map((url, order) => ({ url, order })) },
@@ -907,4 +911,123 @@ export async function moveHeroSlide(formData: FormData) {
     prisma.heroSlide.update({ where: { id: slides[swapWith].id }, data: { order: slides[index].order } }),
   ]);
   redirect("/admin/slider");
+}
+
+async function reorderProjectChild<T extends { id: string; order: number }>(
+  findMany: () => Promise<T[]>,
+  update: (id: string, order: number) => Promise<unknown>,
+  id: string,
+  direction: string
+) {
+  const rows = await findMany();
+  const index = rows.findIndex((row) => row.id === id);
+  const swapWith = direction === "up" ? index - 1 : index + 1;
+  if (index === -1 || swapWith < 0 || swapWith >= rows.length) return;
+
+  await Promise.all([
+    update(rows[index].id, rows[swapWith].order),
+    update(rows[swapWith].id, rows[index].order),
+  ]);
+}
+
+function projectEditUrl(formData: FormData, query?: string) {
+  const developerId = String(formData.get("developerId") ?? "");
+  const projectId = String(formData.get("projectId") ?? "");
+  const base = `/admin/developers/${developerId}/projects/${projectId}/edit`;
+  return query ? `${base}?${query}` : base;
+}
+
+export async function createProjectFloorPlan(formData: FormData) {
+  await requireAdmin();
+  const projectId = String(formData.get("projectId") ?? "");
+  const configuration = String(formData.get("configuration") ?? "").trim();
+  const areaSqft = Number(formData.get("areaSqft") ?? 0);
+  if (!configuration || !areaSqft) redirect(projectEditUrl(formData, "error=floorplan"));
+
+  const count = await prisma.projectFloorPlan.count({ where: { projectId } });
+  await prisma.projectFloorPlan.create({
+    data: {
+      projectId,
+      configuration,
+      areaSqft,
+      price: formData.get("price") ? Number(formData.get("price")) : null,
+      imageUrl: text(formData, "imageUrl"),
+      order: count,
+    },
+  });
+  redirect(projectEditUrl(formData, "saved=1"));
+}
+
+export async function deleteProjectFloorPlan(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  await prisma.projectFloorPlan.delete({ where: { id } });
+  redirect(projectEditUrl(formData, "saved=1"));
+}
+
+export async function moveProjectFloorPlan(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  const projectId = String(formData.get("projectId") ?? "");
+  const direction = String(formData.get("direction") ?? "");
+  await reorderProjectChild(
+    () => prisma.projectFloorPlan.findMany({ where: { projectId }, orderBy: { order: "asc" } }),
+    (rowId, order) => prisma.projectFloorPlan.update({ where: { id: rowId }, data: { order } }),
+    id,
+    direction
+  );
+  redirect(projectEditUrl(formData));
+}
+
+export async function createProjectFaq(formData: FormData) {
+  await requireAdmin();
+  const projectId = String(formData.get("projectId") ?? "");
+  const question = String(formData.get("question") ?? "").trim();
+  const answer = String(formData.get("answer") ?? "").trim();
+  if (!question || !answer) redirect(projectEditUrl(formData, "error=faq"));
+
+  const count = await prisma.projectFAQ.count({ where: { projectId } });
+  await prisma.projectFAQ.create({ data: { projectId, question, answer, order: count } });
+  redirect(projectEditUrl(formData, "saved=1"));
+}
+
+export async function deleteProjectFaq(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  await prisma.projectFAQ.delete({ where: { id } });
+  redirect(projectEditUrl(formData, "saved=1"));
+}
+
+export async function moveProjectFaq(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  const projectId = String(formData.get("projectId") ?? "");
+  const direction = String(formData.get("direction") ?? "");
+  await reorderProjectChild(
+    () => prisma.projectFAQ.findMany({ where: { projectId }, orderBy: { order: "asc" } }),
+    (rowId, order) => prisma.projectFAQ.update({ where: { id: rowId }, data: { order } }),
+    id,
+    direction
+  );
+  redirect(projectEditUrl(formData));
+}
+
+export async function createProjectLandmark(formData: FormData) {
+  await requireAdmin();
+  const projectId = String(formData.get("projectId") ?? "");
+  const category = String(formData.get("category") ?? "").trim();
+  const name = String(formData.get("name") ?? "").trim();
+  const distanceKm = Number(formData.get("distanceKm") ?? 0);
+  if (!category || !name || !distanceKm) redirect(projectEditUrl(formData, "error=landmark"));
+
+  const count = await prisma.projectLandmark.count({ where: { projectId } });
+  await prisma.projectLandmark.create({ data: { projectId, category, name, distanceKm, order: count } });
+  redirect(projectEditUrl(formData, "saved=1"));
+}
+
+export async function deleteProjectLandmark(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  await prisma.projectLandmark.delete({ where: { id } });
+  redirect(projectEditUrl(formData, "saved=1"));
 }

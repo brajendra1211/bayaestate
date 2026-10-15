@@ -19,6 +19,8 @@ type ProjectFormValues = {
   possessionDate: string | null;
   amenities: string | null;
   reraNumber: string | null;
+  highlights: string | null;
+  brochureUrl: string | null;
   metaTitle: string | null;
   metaDescription: string | null;
   images: ImageItem[];
@@ -41,6 +43,33 @@ export function ProjectForm({
   const selectedAmenities = parseAmenitiesString(defaultValues?.amenities ?? null);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [brochureUrl, setBrochureUrl] = useState<string | null>(defaultValues?.brochureUrl ?? null);
+  const [brochureUploading, setBrochureUploading] = useState(false);
+  const [brochureError, setBrochureError] = useState<string | null>(null);
+
+  async function handleBrochureFile(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setBrochureUploading(true);
+    setBrochureError(null);
+
+    const body = new FormData();
+    body.append("file", file);
+    try {
+      const response = await fetch("/api/upload/document", { method: "POST", body });
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.error ?? "Upload failed");
+      }
+      const data = await response.json();
+      setBrochureUrl(data.url);
+    } catch (error) {
+      setBrochureError(error instanceof Error ? error.message : "Upload failed");
+    }
+
+    setBrochureUploading(false);
+    event.target.value = "";
+  }
 
   async function handleFiles(event: ChangeEvent<HTMLInputElement>) {
     const files = event.target.files;
@@ -194,6 +223,18 @@ export function ProjectForm({
         </div>
 
         <div className="sm:col-span-2">
+          <label className="text-sm font-medium text-slate-700">Highlights</label>
+          <p className="mt-1 text-xs text-slate-500">One per line — shown as a bulleted list on the project page.</p>
+          <textarea
+            name="highlights"
+            rows={4}
+            defaultValue={defaultValues?.highlights ?? undefined}
+            placeholder={"Located 5 mins from the highway\nOnly 4 towers, low density\nEarthquake-resistant structure"}
+            className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+
+        <div className="sm:col-span-2">
           <label className="text-sm font-medium text-slate-700">Amenities</label>
           {amenityOptions.length === 0 ? (
             <p className="mt-1 text-xs text-slate-400">
@@ -238,6 +279,35 @@ export function ProjectForm({
             className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
           />
         </div>
+      </div>
+
+      <div>
+        <label className="text-sm font-medium text-slate-700">Brochure (PDF)</label>
+        <p className="mt-1 text-xs text-slate-500">
+          Upload a PDF brochure — visitors will see a download button on the project page.
+        </p>
+        <input type="hidden" name="brochureUrl" value={brochureUrl ?? ""} />
+        <div className="mt-2 flex flex-wrap items-center gap-3">
+          <input
+            type="file"
+            accept="application/pdf"
+            onChange={handleBrochureFile}
+            disabled={brochureUploading}
+            className="block text-sm text-slate-500 file:mr-3 file:cursor-pointer file:rounded-xl file:border-0 file:bg-blue-600 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white file:transition hover:file:bg-blue-700 disabled:file:cursor-not-allowed disabled:file:opacity-60"
+          />
+          {brochureUploading && <p className="text-xs text-slate-500">Uploading…</p>}
+        </div>
+        {brochureError && <p className="mt-1 text-xs text-red-600">{brochureError}</p>}
+        {brochureUrl && (
+          <div className="mt-2 flex items-center gap-2 text-sm">
+            <a href={brochureUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              View uploaded brochure
+            </a>
+            <button type="button" onClick={() => setBrochureUrl(null)} className="text-xs font-medium text-red-600 hover:underline">
+              Remove
+            </button>
+          </div>
+        )}
       </div>
 
       <div>

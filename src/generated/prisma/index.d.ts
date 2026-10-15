@@ -49,6 +49,21 @@ export type Project = $Result.DefaultSelection<Prisma.$ProjectPayload>
  */
 export type ProjectImage = $Result.DefaultSelection<Prisma.$ProjectImagePayload>
 /**
+ * Model ProjectFloorPlan
+ * 
+ */
+export type ProjectFloorPlan = $Result.DefaultSelection<Prisma.$ProjectFloorPlanPayload>
+/**
+ * Model ProjectFAQ
+ * 
+ */
+export type ProjectFAQ = $Result.DefaultSelection<Prisma.$ProjectFAQPayload>
+/**
+ * Model ProjectLandmark
+ * 
+ */
+export type ProjectLandmark = $Result.DefaultSelection<Prisma.$ProjectLandmarkPayload>
+/**
  * Model Country
  * 
  */
@@ -456,6 +471,36 @@ export class PrismaClient<
     * ```
     */
   get projectImage(): Prisma.ProjectImageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.projectFloorPlan`: Exposes CRUD operations for the **ProjectFloorPlan** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProjectFloorPlans
+    * const projectFloorPlans = await prisma.projectFloorPlan.findMany()
+    * ```
+    */
+  get projectFloorPlan(): Prisma.ProjectFloorPlanDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.projectFAQ`: Exposes CRUD operations for the **ProjectFAQ** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProjectFAQS
+    * const projectFAQS = await prisma.projectFAQ.findMany()
+    * ```
+    */
+  get projectFAQ(): Prisma.ProjectFAQDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.projectLandmark`: Exposes CRUD operations for the **ProjectLandmark** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProjectLandmarks
+    * const projectLandmarks = await prisma.projectLandmark.findMany()
+    * ```
+    */
+  get projectLandmark(): Prisma.ProjectLandmarkDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.country`: Exposes CRUD operations for the **Country** model.
@@ -1030,6 +1075,9 @@ export namespace Prisma {
     Developer: 'Developer',
     Project: 'Project',
     ProjectImage: 'ProjectImage',
+    ProjectFloorPlan: 'ProjectFloorPlan',
+    ProjectFAQ: 'ProjectFAQ',
+    ProjectLandmark: 'ProjectLandmark',
     Country: 'Country',
     State: 'State',
     City: 'City',
@@ -1057,7 +1105,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "plan" | "subscription" | "leadView" | "developer" | "project" | "projectImage" | "country" | "state" | "city" | "locality" | "property" | "propertyImage" | "enquiry" | "otpCode" | "savedProperty" | "amenity" | "heroSlide" | "siteSettings"
+      modelProps: "user" | "plan" | "subscription" | "leadView" | "developer" | "project" | "projectImage" | "projectFloorPlan" | "projectFAQ" | "projectLandmark" | "country" | "state" | "city" | "locality" | "property" | "propertyImage" | "enquiry" | "otpCode" | "savedProperty" | "amenity" | "heroSlide" | "siteSettings"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1520,6 +1568,204 @@ export namespace Prisma {
           count: {
             args: Prisma.ProjectImageCountArgs<ExtArgs>
             result: $Utils.Optional<ProjectImageCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProjectFloorPlan: {
+        payload: Prisma.$ProjectFloorPlanPayload<ExtArgs>
+        fields: Prisma.ProjectFloorPlanFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProjectFloorPlanFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFloorPlanPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProjectFloorPlanFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFloorPlanPayload>
+          }
+          findFirst: {
+            args: Prisma.ProjectFloorPlanFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFloorPlanPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProjectFloorPlanFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFloorPlanPayload>
+          }
+          findMany: {
+            args: Prisma.ProjectFloorPlanFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFloorPlanPayload>[]
+          }
+          create: {
+            args: Prisma.ProjectFloorPlanCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFloorPlanPayload>
+          }
+          createMany: {
+            args: Prisma.ProjectFloorPlanCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ProjectFloorPlanDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFloorPlanPayload>
+          }
+          update: {
+            args: Prisma.ProjectFloorPlanUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFloorPlanPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProjectFloorPlanDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProjectFloorPlanUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ProjectFloorPlanUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFloorPlanPayload>
+          }
+          aggregate: {
+            args: Prisma.ProjectFloorPlanAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProjectFloorPlan>
+          }
+          groupBy: {
+            args: Prisma.ProjectFloorPlanGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProjectFloorPlanGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProjectFloorPlanCountArgs<ExtArgs>
+            result: $Utils.Optional<ProjectFloorPlanCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProjectFAQ: {
+        payload: Prisma.$ProjectFAQPayload<ExtArgs>
+        fields: Prisma.ProjectFAQFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProjectFAQFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFAQPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProjectFAQFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFAQPayload>
+          }
+          findFirst: {
+            args: Prisma.ProjectFAQFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFAQPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProjectFAQFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFAQPayload>
+          }
+          findMany: {
+            args: Prisma.ProjectFAQFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFAQPayload>[]
+          }
+          create: {
+            args: Prisma.ProjectFAQCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFAQPayload>
+          }
+          createMany: {
+            args: Prisma.ProjectFAQCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ProjectFAQDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFAQPayload>
+          }
+          update: {
+            args: Prisma.ProjectFAQUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFAQPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProjectFAQDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProjectFAQUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ProjectFAQUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectFAQPayload>
+          }
+          aggregate: {
+            args: Prisma.ProjectFAQAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProjectFAQ>
+          }
+          groupBy: {
+            args: Prisma.ProjectFAQGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProjectFAQGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProjectFAQCountArgs<ExtArgs>
+            result: $Utils.Optional<ProjectFAQCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProjectLandmark: {
+        payload: Prisma.$ProjectLandmarkPayload<ExtArgs>
+        fields: Prisma.ProjectLandmarkFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProjectLandmarkFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLandmarkPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProjectLandmarkFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLandmarkPayload>
+          }
+          findFirst: {
+            args: Prisma.ProjectLandmarkFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLandmarkPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProjectLandmarkFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLandmarkPayload>
+          }
+          findMany: {
+            args: Prisma.ProjectLandmarkFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLandmarkPayload>[]
+          }
+          create: {
+            args: Prisma.ProjectLandmarkCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLandmarkPayload>
+          }
+          createMany: {
+            args: Prisma.ProjectLandmarkCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ProjectLandmarkDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLandmarkPayload>
+          }
+          update: {
+            args: Prisma.ProjectLandmarkUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLandmarkPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProjectLandmarkDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProjectLandmarkUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ProjectLandmarkUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectLandmarkPayload>
+          }
+          aggregate: {
+            args: Prisma.ProjectLandmarkAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProjectLandmark>
+          }
+          groupBy: {
+            args: Prisma.ProjectLandmarkGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProjectLandmarkGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProjectLandmarkCountArgs<ExtArgs>
+            result: $Utils.Optional<ProjectLandmarkCountAggregateOutputType> | number
           }
         }
       }
@@ -2445,6 +2691,9 @@ export namespace Prisma {
     developer?: DeveloperOmit
     project?: ProjectOmit
     projectImage?: ProjectImageOmit
+    projectFloorPlan?: ProjectFloorPlanOmit
+    projectFAQ?: ProjectFAQOmit
+    projectLandmark?: ProjectLandmarkOmit
     country?: CountryOmit
     state?: StateOmit
     city?: CityOmit
@@ -2668,11 +2917,19 @@ export namespace Prisma {
   export type ProjectCountOutputType = {
     units: number
     images: number
+    floorPlans: number
+    faqs: number
+    landmarks: number
+    enquiries: number
   }
 
   export type ProjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     units?: boolean | ProjectCountOutputTypeCountUnitsArgs
     images?: boolean | ProjectCountOutputTypeCountImagesArgs
+    floorPlans?: boolean | ProjectCountOutputTypeCountFloorPlansArgs
+    faqs?: boolean | ProjectCountOutputTypeCountFaqsArgs
+    landmarks?: boolean | ProjectCountOutputTypeCountLandmarksArgs
+    enquiries?: boolean | ProjectCountOutputTypeCountEnquiriesArgs
   }
 
   // Custom InputTypes
@@ -2698,6 +2955,34 @@ export namespace Prisma {
    */
   export type ProjectCountOutputTypeCountImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProjectImageWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountFloorPlansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectFloorPlanWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountFaqsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectFAQWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountLandmarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectLandmarkWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountEnquiriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EnquiryWhereInput
   }
 
 
@@ -8182,6 +8467,8 @@ export namespace Prisma {
     possessionDate: Date | null
     amenities: string | null
     reraNumber: string | null
+    highlights: string | null
+    brochureUrl: string | null
     metaTitle: string | null
     metaDescription: string | null
     createdAt: Date | null
@@ -8203,6 +8490,8 @@ export namespace Prisma {
     possessionDate: Date | null
     amenities: string | null
     reraNumber: string | null
+    highlights: string | null
+    brochureUrl: string | null
     metaTitle: string | null
     metaDescription: string | null
     createdAt: Date | null
@@ -8224,6 +8513,8 @@ export namespace Prisma {
     possessionDate: number
     amenities: number
     reraNumber: number
+    highlights: number
+    brochureUrl: number
     metaTitle: number
     metaDescription: number
     createdAt: number
@@ -8257,6 +8548,8 @@ export namespace Prisma {
     possessionDate?: true
     amenities?: true
     reraNumber?: true
+    highlights?: true
+    brochureUrl?: true
     metaTitle?: true
     metaDescription?: true
     createdAt?: true
@@ -8278,6 +8571,8 @@ export namespace Prisma {
     possessionDate?: true
     amenities?: true
     reraNumber?: true
+    highlights?: true
+    brochureUrl?: true
     metaTitle?: true
     metaDescription?: true
     createdAt?: true
@@ -8299,6 +8594,8 @@ export namespace Prisma {
     possessionDate?: true
     amenities?: true
     reraNumber?: true
+    highlights?: true
+    brochureUrl?: true
     metaTitle?: true
     metaDescription?: true
     createdAt?: true
@@ -8407,6 +8704,8 @@ export namespace Prisma {
     possessionDate: Date | null
     amenities: string | null
     reraNumber: string | null
+    highlights: string | null
+    brochureUrl: string | null
     metaTitle: string | null
     metaDescription: string | null
     createdAt: Date
@@ -8447,6 +8746,8 @@ export namespace Prisma {
     possessionDate?: boolean
     amenities?: boolean
     reraNumber?: boolean
+    highlights?: boolean
+    brochureUrl?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     createdAt?: boolean
@@ -8454,6 +8755,10 @@ export namespace Prisma {
     developer?: boolean | DeveloperDefaultArgs<ExtArgs>
     units?: boolean | Project$unitsArgs<ExtArgs>
     images?: boolean | Project$imagesArgs<ExtArgs>
+    floorPlans?: boolean | Project$floorPlansArgs<ExtArgs>
+    faqs?: boolean | Project$faqsArgs<ExtArgs>
+    landmarks?: boolean | Project$landmarksArgs<ExtArgs>
+    enquiries?: boolean | Project$enquiriesArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -8474,17 +8779,23 @@ export namespace Prisma {
     possessionDate?: boolean
     amenities?: boolean
     reraNumber?: boolean
+    highlights?: boolean
+    brochureUrl?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "name" | "description" | "status" | "developerId" | "city" | "locality" | "address" | "priceMin" | "priceMax" | "possessionDate" | "amenities" | "reraNumber" | "metaTitle" | "metaDescription" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "name" | "description" | "status" | "developerId" | "city" | "locality" | "address" | "priceMin" | "priceMax" | "possessionDate" | "amenities" | "reraNumber" | "highlights" | "brochureUrl" | "metaTitle" | "metaDescription" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     developer?: boolean | DeveloperDefaultArgs<ExtArgs>
     units?: boolean | Project$unitsArgs<ExtArgs>
     images?: boolean | Project$imagesArgs<ExtArgs>
+    floorPlans?: boolean | Project$floorPlansArgs<ExtArgs>
+    faqs?: boolean | Project$faqsArgs<ExtArgs>
+    landmarks?: boolean | Project$landmarksArgs<ExtArgs>
+    enquiries?: boolean | Project$enquiriesArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -8494,6 +8805,10 @@ export namespace Prisma {
       developer: Prisma.$DeveloperPayload<ExtArgs>
       units: Prisma.$PropertyPayload<ExtArgs>[]
       images: Prisma.$ProjectImagePayload<ExtArgs>[]
+      floorPlans: Prisma.$ProjectFloorPlanPayload<ExtArgs>[]
+      faqs: Prisma.$ProjectFAQPayload<ExtArgs>[]
+      landmarks: Prisma.$ProjectLandmarkPayload<ExtArgs>[]
+      enquiries: Prisma.$EnquiryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8510,6 +8825,8 @@ export namespace Prisma {
       possessionDate: Date | null
       amenities: string | null
       reraNumber: string | null
+      highlights: string | null
+      brochureUrl: string | null
       metaTitle: string | null
       metaDescription: string | null
       createdAt: Date
@@ -8857,6 +9174,10 @@ export namespace Prisma {
     developer<T extends DeveloperDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DeveloperDefaultArgs<ExtArgs>>): Prisma__DeveloperClient<$Result.GetResult<Prisma.$DeveloperPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     units<T extends Project$unitsArgs<ExtArgs> = {}>(args?: Subset<T, Project$unitsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     images<T extends Project$imagesArgs<ExtArgs> = {}>(args?: Subset<T, Project$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    floorPlans<T extends Project$floorPlansArgs<ExtArgs> = {}>(args?: Subset<T, Project$floorPlansArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectFloorPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    faqs<T extends Project$faqsArgs<ExtArgs> = {}>(args?: Subset<T, Project$faqsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectFAQPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    landmarks<T extends Project$landmarksArgs<ExtArgs> = {}>(args?: Subset<T, Project$landmarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectLandmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    enquiries<T extends Project$enquiriesArgs<ExtArgs> = {}>(args?: Subset<T, Project$enquiriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EnquiryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8900,6 +9221,8 @@ export namespace Prisma {
     readonly possessionDate: FieldRef<"Project", 'DateTime'>
     readonly amenities: FieldRef<"Project", 'String'>
     readonly reraNumber: FieldRef<"Project", 'String'>
+    readonly highlights: FieldRef<"Project", 'String'>
+    readonly brochureUrl: FieldRef<"Project", 'String'>
     readonly metaTitle: FieldRef<"Project", 'String'>
     readonly metaDescription: FieldRef<"Project", 'String'>
     readonly createdAt: FieldRef<"Project", 'DateTime'>
@@ -9297,6 +9620,102 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ProjectImageScalarFieldEnum | ProjectImageScalarFieldEnum[]
+  }
+
+  /**
+   * Project.floorPlans
+   */
+  export type Project$floorPlansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFloorPlan
+     */
+    select?: ProjectFloorPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFloorPlan
+     */
+    omit?: ProjectFloorPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFloorPlanInclude<ExtArgs> | null
+    where?: ProjectFloorPlanWhereInput
+    orderBy?: ProjectFloorPlanOrderByWithRelationInput | ProjectFloorPlanOrderByWithRelationInput[]
+    cursor?: ProjectFloorPlanWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectFloorPlanScalarFieldEnum | ProjectFloorPlanScalarFieldEnum[]
+  }
+
+  /**
+   * Project.faqs
+   */
+  export type Project$faqsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFAQ
+     */
+    select?: ProjectFAQSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFAQ
+     */
+    omit?: ProjectFAQOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFAQInclude<ExtArgs> | null
+    where?: ProjectFAQWhereInput
+    orderBy?: ProjectFAQOrderByWithRelationInput | ProjectFAQOrderByWithRelationInput[]
+    cursor?: ProjectFAQWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectFAQScalarFieldEnum | ProjectFAQScalarFieldEnum[]
+  }
+
+  /**
+   * Project.landmarks
+   */
+  export type Project$landmarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLandmark
+     */
+    select?: ProjectLandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLandmark
+     */
+    omit?: ProjectLandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLandmarkInclude<ExtArgs> | null
+    where?: ProjectLandmarkWhereInput
+    orderBy?: ProjectLandmarkOrderByWithRelationInput | ProjectLandmarkOrderByWithRelationInput[]
+    cursor?: ProjectLandmarkWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectLandmarkScalarFieldEnum | ProjectLandmarkScalarFieldEnum[]
+  }
+
+  /**
+   * Project.enquiries
+   */
+  export type Project$enquiriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Enquiry
+     */
+    select?: EnquirySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Enquiry
+     */
+    omit?: EnquiryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EnquiryInclude<ExtArgs> | null
+    where?: EnquiryWhereInput
+    orderBy?: EnquiryOrderByWithRelationInput | EnquiryOrderByWithRelationInput[]
+    cursor?: EnquiryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EnquiryScalarFieldEnum | EnquiryScalarFieldEnum[]
   }
 
   /**
@@ -10272,6 +10691,2955 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ProjectImageInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProjectFloorPlan
+   */
+
+  export type AggregateProjectFloorPlan = {
+    _count: ProjectFloorPlanCountAggregateOutputType | null
+    _avg: ProjectFloorPlanAvgAggregateOutputType | null
+    _sum: ProjectFloorPlanSumAggregateOutputType | null
+    _min: ProjectFloorPlanMinAggregateOutputType | null
+    _max: ProjectFloorPlanMaxAggregateOutputType | null
+  }
+
+  export type ProjectFloorPlanAvgAggregateOutputType = {
+    areaSqft: number | null
+    price: number | null
+    order: number | null
+  }
+
+  export type ProjectFloorPlanSumAggregateOutputType = {
+    areaSqft: number | null
+    price: number | null
+    order: number | null
+  }
+
+  export type ProjectFloorPlanMinAggregateOutputType = {
+    id: string | null
+    projectId: string | null
+    configuration: string | null
+    areaSqft: number | null
+    price: number | null
+    imageUrl: string | null
+    order: number | null
+  }
+
+  export type ProjectFloorPlanMaxAggregateOutputType = {
+    id: string | null
+    projectId: string | null
+    configuration: string | null
+    areaSqft: number | null
+    price: number | null
+    imageUrl: string | null
+    order: number | null
+  }
+
+  export type ProjectFloorPlanCountAggregateOutputType = {
+    id: number
+    projectId: number
+    configuration: number
+    areaSqft: number
+    price: number
+    imageUrl: number
+    order: number
+    _all: number
+  }
+
+
+  export type ProjectFloorPlanAvgAggregateInputType = {
+    areaSqft?: true
+    price?: true
+    order?: true
+  }
+
+  export type ProjectFloorPlanSumAggregateInputType = {
+    areaSqft?: true
+    price?: true
+    order?: true
+  }
+
+  export type ProjectFloorPlanMinAggregateInputType = {
+    id?: true
+    projectId?: true
+    configuration?: true
+    areaSqft?: true
+    price?: true
+    imageUrl?: true
+    order?: true
+  }
+
+  export type ProjectFloorPlanMaxAggregateInputType = {
+    id?: true
+    projectId?: true
+    configuration?: true
+    areaSqft?: true
+    price?: true
+    imageUrl?: true
+    order?: true
+  }
+
+  export type ProjectFloorPlanCountAggregateInputType = {
+    id?: true
+    projectId?: true
+    configuration?: true
+    areaSqft?: true
+    price?: true
+    imageUrl?: true
+    order?: true
+    _all?: true
+  }
+
+  export type ProjectFloorPlanAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectFloorPlan to aggregate.
+     */
+    where?: ProjectFloorPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectFloorPlans to fetch.
+     */
+    orderBy?: ProjectFloorPlanOrderByWithRelationInput | ProjectFloorPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProjectFloorPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectFloorPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectFloorPlans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProjectFloorPlans
+    **/
+    _count?: true | ProjectFloorPlanCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProjectFloorPlanAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProjectFloorPlanSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProjectFloorPlanMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProjectFloorPlanMaxAggregateInputType
+  }
+
+  export type GetProjectFloorPlanAggregateType<T extends ProjectFloorPlanAggregateArgs> = {
+        [P in keyof T & keyof AggregateProjectFloorPlan]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProjectFloorPlan[P]>
+      : GetScalarType<T[P], AggregateProjectFloorPlan[P]>
+  }
+
+
+
+
+  export type ProjectFloorPlanGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectFloorPlanWhereInput
+    orderBy?: ProjectFloorPlanOrderByWithAggregationInput | ProjectFloorPlanOrderByWithAggregationInput[]
+    by: ProjectFloorPlanScalarFieldEnum[] | ProjectFloorPlanScalarFieldEnum
+    having?: ProjectFloorPlanScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProjectFloorPlanCountAggregateInputType | true
+    _avg?: ProjectFloorPlanAvgAggregateInputType
+    _sum?: ProjectFloorPlanSumAggregateInputType
+    _min?: ProjectFloorPlanMinAggregateInputType
+    _max?: ProjectFloorPlanMaxAggregateInputType
+  }
+
+  export type ProjectFloorPlanGroupByOutputType = {
+    id: string
+    projectId: string
+    configuration: string
+    areaSqft: number
+    price: number | null
+    imageUrl: string | null
+    order: number
+    _count: ProjectFloorPlanCountAggregateOutputType | null
+    _avg: ProjectFloorPlanAvgAggregateOutputType | null
+    _sum: ProjectFloorPlanSumAggregateOutputType | null
+    _min: ProjectFloorPlanMinAggregateOutputType | null
+    _max: ProjectFloorPlanMaxAggregateOutputType | null
+  }
+
+  type GetProjectFloorPlanGroupByPayload<T extends ProjectFloorPlanGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProjectFloorPlanGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProjectFloorPlanGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProjectFloorPlanGroupByOutputType[P]>
+            : GetScalarType<T[P], ProjectFloorPlanGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProjectFloorPlanSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectId?: boolean
+    configuration?: boolean
+    areaSqft?: boolean
+    price?: boolean
+    imageUrl?: boolean
+    order?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectFloorPlan"]>
+
+
+
+  export type ProjectFloorPlanSelectScalar = {
+    id?: boolean
+    projectId?: boolean
+    configuration?: boolean
+    areaSqft?: boolean
+    price?: boolean
+    imageUrl?: boolean
+    order?: boolean
+  }
+
+  export type ProjectFloorPlanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "projectId" | "configuration" | "areaSqft" | "price" | "imageUrl" | "order", ExtArgs["result"]["projectFloorPlan"]>
+  export type ProjectFloorPlanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+
+  export type $ProjectFloorPlanPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProjectFloorPlan"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      projectId: string
+      configuration: string
+      areaSqft: number
+      price: number | null
+      imageUrl: string | null
+      order: number
+    }, ExtArgs["result"]["projectFloorPlan"]>
+    composites: {}
+  }
+
+  type ProjectFloorPlanGetPayload<S extends boolean | null | undefined | ProjectFloorPlanDefaultArgs> = $Result.GetResult<Prisma.$ProjectFloorPlanPayload, S>
+
+  type ProjectFloorPlanCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProjectFloorPlanFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProjectFloorPlanCountAggregateInputType | true
+    }
+
+  export interface ProjectFloorPlanDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProjectFloorPlan'], meta: { name: 'ProjectFloorPlan' } }
+    /**
+     * Find zero or one ProjectFloorPlan that matches the filter.
+     * @param {ProjectFloorPlanFindUniqueArgs} args - Arguments to find a ProjectFloorPlan
+     * @example
+     * // Get one ProjectFloorPlan
+     * const projectFloorPlan = await prisma.projectFloorPlan.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProjectFloorPlanFindUniqueArgs>(args: SelectSubset<T, ProjectFloorPlanFindUniqueArgs<ExtArgs>>): Prisma__ProjectFloorPlanClient<$Result.GetResult<Prisma.$ProjectFloorPlanPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProjectFloorPlan that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProjectFloorPlanFindUniqueOrThrowArgs} args - Arguments to find a ProjectFloorPlan
+     * @example
+     * // Get one ProjectFloorPlan
+     * const projectFloorPlan = await prisma.projectFloorPlan.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProjectFloorPlanFindUniqueOrThrowArgs>(args: SelectSubset<T, ProjectFloorPlanFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProjectFloorPlanClient<$Result.GetResult<Prisma.$ProjectFloorPlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectFloorPlan that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFloorPlanFindFirstArgs} args - Arguments to find a ProjectFloorPlan
+     * @example
+     * // Get one ProjectFloorPlan
+     * const projectFloorPlan = await prisma.projectFloorPlan.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProjectFloorPlanFindFirstArgs>(args?: SelectSubset<T, ProjectFloorPlanFindFirstArgs<ExtArgs>>): Prisma__ProjectFloorPlanClient<$Result.GetResult<Prisma.$ProjectFloorPlanPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectFloorPlan that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFloorPlanFindFirstOrThrowArgs} args - Arguments to find a ProjectFloorPlan
+     * @example
+     * // Get one ProjectFloorPlan
+     * const projectFloorPlan = await prisma.projectFloorPlan.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProjectFloorPlanFindFirstOrThrowArgs>(args?: SelectSubset<T, ProjectFloorPlanFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProjectFloorPlanClient<$Result.GetResult<Prisma.$ProjectFloorPlanPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProjectFloorPlans that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFloorPlanFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProjectFloorPlans
+     * const projectFloorPlans = await prisma.projectFloorPlan.findMany()
+     * 
+     * // Get first 10 ProjectFloorPlans
+     * const projectFloorPlans = await prisma.projectFloorPlan.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const projectFloorPlanWithIdOnly = await prisma.projectFloorPlan.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProjectFloorPlanFindManyArgs>(args?: SelectSubset<T, ProjectFloorPlanFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectFloorPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProjectFloorPlan.
+     * @param {ProjectFloorPlanCreateArgs} args - Arguments to create a ProjectFloorPlan.
+     * @example
+     * // Create one ProjectFloorPlan
+     * const ProjectFloorPlan = await prisma.projectFloorPlan.create({
+     *   data: {
+     *     // ... data to create a ProjectFloorPlan
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProjectFloorPlanCreateArgs>(args: SelectSubset<T, ProjectFloorPlanCreateArgs<ExtArgs>>): Prisma__ProjectFloorPlanClient<$Result.GetResult<Prisma.$ProjectFloorPlanPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProjectFloorPlans.
+     * @param {ProjectFloorPlanCreateManyArgs} args - Arguments to create many ProjectFloorPlans.
+     * @example
+     * // Create many ProjectFloorPlans
+     * const projectFloorPlan = await prisma.projectFloorPlan.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProjectFloorPlanCreateManyArgs>(args?: SelectSubset<T, ProjectFloorPlanCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ProjectFloorPlan.
+     * @param {ProjectFloorPlanDeleteArgs} args - Arguments to delete one ProjectFloorPlan.
+     * @example
+     * // Delete one ProjectFloorPlan
+     * const ProjectFloorPlan = await prisma.projectFloorPlan.delete({
+     *   where: {
+     *     // ... filter to delete one ProjectFloorPlan
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProjectFloorPlanDeleteArgs>(args: SelectSubset<T, ProjectFloorPlanDeleteArgs<ExtArgs>>): Prisma__ProjectFloorPlanClient<$Result.GetResult<Prisma.$ProjectFloorPlanPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProjectFloorPlan.
+     * @param {ProjectFloorPlanUpdateArgs} args - Arguments to update one ProjectFloorPlan.
+     * @example
+     * // Update one ProjectFloorPlan
+     * const projectFloorPlan = await prisma.projectFloorPlan.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProjectFloorPlanUpdateArgs>(args: SelectSubset<T, ProjectFloorPlanUpdateArgs<ExtArgs>>): Prisma__ProjectFloorPlanClient<$Result.GetResult<Prisma.$ProjectFloorPlanPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProjectFloorPlans.
+     * @param {ProjectFloorPlanDeleteManyArgs} args - Arguments to filter ProjectFloorPlans to delete.
+     * @example
+     * // Delete a few ProjectFloorPlans
+     * const { count } = await prisma.projectFloorPlan.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProjectFloorPlanDeleteManyArgs>(args?: SelectSubset<T, ProjectFloorPlanDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectFloorPlans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFloorPlanUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProjectFloorPlans
+     * const projectFloorPlan = await prisma.projectFloorPlan.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProjectFloorPlanUpdateManyArgs>(args: SelectSubset<T, ProjectFloorPlanUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ProjectFloorPlan.
+     * @param {ProjectFloorPlanUpsertArgs} args - Arguments to update or create a ProjectFloorPlan.
+     * @example
+     * // Update or create a ProjectFloorPlan
+     * const projectFloorPlan = await prisma.projectFloorPlan.upsert({
+     *   create: {
+     *     // ... data to create a ProjectFloorPlan
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProjectFloorPlan we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProjectFloorPlanUpsertArgs>(args: SelectSubset<T, ProjectFloorPlanUpsertArgs<ExtArgs>>): Prisma__ProjectFloorPlanClient<$Result.GetResult<Prisma.$ProjectFloorPlanPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProjectFloorPlans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFloorPlanCountArgs} args - Arguments to filter ProjectFloorPlans to count.
+     * @example
+     * // Count the number of ProjectFloorPlans
+     * const count = await prisma.projectFloorPlan.count({
+     *   where: {
+     *     // ... the filter for the ProjectFloorPlans we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProjectFloorPlanCountArgs>(
+      args?: Subset<T, ProjectFloorPlanCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProjectFloorPlanCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProjectFloorPlan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFloorPlanAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProjectFloorPlanAggregateArgs>(args: Subset<T, ProjectFloorPlanAggregateArgs>): Prisma.PrismaPromise<GetProjectFloorPlanAggregateType<T>>
+
+    /**
+     * Group by ProjectFloorPlan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFloorPlanGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProjectFloorPlanGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProjectFloorPlanGroupByArgs['orderBy'] }
+        : { orderBy?: ProjectFloorPlanGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProjectFloorPlanGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProjectFloorPlanGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProjectFloorPlan model
+   */
+  readonly fields: ProjectFloorPlanFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProjectFloorPlan.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProjectFloorPlanClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProjectFloorPlan model
+   */
+  interface ProjectFloorPlanFieldRefs {
+    readonly id: FieldRef<"ProjectFloorPlan", 'String'>
+    readonly projectId: FieldRef<"ProjectFloorPlan", 'String'>
+    readonly configuration: FieldRef<"ProjectFloorPlan", 'String'>
+    readonly areaSqft: FieldRef<"ProjectFloorPlan", 'Int'>
+    readonly price: FieldRef<"ProjectFloorPlan", 'Int'>
+    readonly imageUrl: FieldRef<"ProjectFloorPlan", 'String'>
+    readonly order: FieldRef<"ProjectFloorPlan", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProjectFloorPlan findUnique
+   */
+  export type ProjectFloorPlanFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFloorPlan
+     */
+    select?: ProjectFloorPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFloorPlan
+     */
+    omit?: ProjectFloorPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFloorPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectFloorPlan to fetch.
+     */
+    where: ProjectFloorPlanWhereUniqueInput
+  }
+
+  /**
+   * ProjectFloorPlan findUniqueOrThrow
+   */
+  export type ProjectFloorPlanFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFloorPlan
+     */
+    select?: ProjectFloorPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFloorPlan
+     */
+    omit?: ProjectFloorPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFloorPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectFloorPlan to fetch.
+     */
+    where: ProjectFloorPlanWhereUniqueInput
+  }
+
+  /**
+   * ProjectFloorPlan findFirst
+   */
+  export type ProjectFloorPlanFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFloorPlan
+     */
+    select?: ProjectFloorPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFloorPlan
+     */
+    omit?: ProjectFloorPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFloorPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectFloorPlan to fetch.
+     */
+    where?: ProjectFloorPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectFloorPlans to fetch.
+     */
+    orderBy?: ProjectFloorPlanOrderByWithRelationInput | ProjectFloorPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectFloorPlans.
+     */
+    cursor?: ProjectFloorPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectFloorPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectFloorPlans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectFloorPlans.
+     */
+    distinct?: ProjectFloorPlanScalarFieldEnum | ProjectFloorPlanScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectFloorPlan findFirstOrThrow
+   */
+  export type ProjectFloorPlanFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFloorPlan
+     */
+    select?: ProjectFloorPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFloorPlan
+     */
+    omit?: ProjectFloorPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFloorPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectFloorPlan to fetch.
+     */
+    where?: ProjectFloorPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectFloorPlans to fetch.
+     */
+    orderBy?: ProjectFloorPlanOrderByWithRelationInput | ProjectFloorPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectFloorPlans.
+     */
+    cursor?: ProjectFloorPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectFloorPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectFloorPlans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectFloorPlans.
+     */
+    distinct?: ProjectFloorPlanScalarFieldEnum | ProjectFloorPlanScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectFloorPlan findMany
+   */
+  export type ProjectFloorPlanFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFloorPlan
+     */
+    select?: ProjectFloorPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFloorPlan
+     */
+    omit?: ProjectFloorPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFloorPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectFloorPlans to fetch.
+     */
+    where?: ProjectFloorPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectFloorPlans to fetch.
+     */
+    orderBy?: ProjectFloorPlanOrderByWithRelationInput | ProjectFloorPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProjectFloorPlans.
+     */
+    cursor?: ProjectFloorPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectFloorPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectFloorPlans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectFloorPlans.
+     */
+    distinct?: ProjectFloorPlanScalarFieldEnum | ProjectFloorPlanScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectFloorPlan create
+   */
+  export type ProjectFloorPlanCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFloorPlan
+     */
+    select?: ProjectFloorPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFloorPlan
+     */
+    omit?: ProjectFloorPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFloorPlanInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProjectFloorPlan.
+     */
+    data: XOR<ProjectFloorPlanCreateInput, ProjectFloorPlanUncheckedCreateInput>
+  }
+
+  /**
+   * ProjectFloorPlan createMany
+   */
+  export type ProjectFloorPlanCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProjectFloorPlans.
+     */
+    data: ProjectFloorPlanCreateManyInput | ProjectFloorPlanCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProjectFloorPlan update
+   */
+  export type ProjectFloorPlanUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFloorPlan
+     */
+    select?: ProjectFloorPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFloorPlan
+     */
+    omit?: ProjectFloorPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFloorPlanInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProjectFloorPlan.
+     */
+    data: XOR<ProjectFloorPlanUpdateInput, ProjectFloorPlanUncheckedUpdateInput>
+    /**
+     * Choose, which ProjectFloorPlan to update.
+     */
+    where: ProjectFloorPlanWhereUniqueInput
+  }
+
+  /**
+   * ProjectFloorPlan updateMany
+   */
+  export type ProjectFloorPlanUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProjectFloorPlans.
+     */
+    data: XOR<ProjectFloorPlanUpdateManyMutationInput, ProjectFloorPlanUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectFloorPlans to update
+     */
+    where?: ProjectFloorPlanWhereInput
+    /**
+     * Limit how many ProjectFloorPlans to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectFloorPlan upsert
+   */
+  export type ProjectFloorPlanUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFloorPlan
+     */
+    select?: ProjectFloorPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFloorPlan
+     */
+    omit?: ProjectFloorPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFloorPlanInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProjectFloorPlan to update in case it exists.
+     */
+    where: ProjectFloorPlanWhereUniqueInput
+    /**
+     * In case the ProjectFloorPlan found by the `where` argument doesn't exist, create a new ProjectFloorPlan with this data.
+     */
+    create: XOR<ProjectFloorPlanCreateInput, ProjectFloorPlanUncheckedCreateInput>
+    /**
+     * In case the ProjectFloorPlan was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProjectFloorPlanUpdateInput, ProjectFloorPlanUncheckedUpdateInput>
+  }
+
+  /**
+   * ProjectFloorPlan delete
+   */
+  export type ProjectFloorPlanDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFloorPlan
+     */
+    select?: ProjectFloorPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFloorPlan
+     */
+    omit?: ProjectFloorPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFloorPlanInclude<ExtArgs> | null
+    /**
+     * Filter which ProjectFloorPlan to delete.
+     */
+    where: ProjectFloorPlanWhereUniqueInput
+  }
+
+  /**
+   * ProjectFloorPlan deleteMany
+   */
+  export type ProjectFloorPlanDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectFloorPlans to delete
+     */
+    where?: ProjectFloorPlanWhereInput
+    /**
+     * Limit how many ProjectFloorPlans to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectFloorPlan without action
+   */
+  export type ProjectFloorPlanDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFloorPlan
+     */
+    select?: ProjectFloorPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFloorPlan
+     */
+    omit?: ProjectFloorPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFloorPlanInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProjectFAQ
+   */
+
+  export type AggregateProjectFAQ = {
+    _count: ProjectFAQCountAggregateOutputType | null
+    _avg: ProjectFAQAvgAggregateOutputType | null
+    _sum: ProjectFAQSumAggregateOutputType | null
+    _min: ProjectFAQMinAggregateOutputType | null
+    _max: ProjectFAQMaxAggregateOutputType | null
+  }
+
+  export type ProjectFAQAvgAggregateOutputType = {
+    order: number | null
+  }
+
+  export type ProjectFAQSumAggregateOutputType = {
+    order: number | null
+  }
+
+  export type ProjectFAQMinAggregateOutputType = {
+    id: string | null
+    projectId: string | null
+    question: string | null
+    answer: string | null
+    order: number | null
+  }
+
+  export type ProjectFAQMaxAggregateOutputType = {
+    id: string | null
+    projectId: string | null
+    question: string | null
+    answer: string | null
+    order: number | null
+  }
+
+  export type ProjectFAQCountAggregateOutputType = {
+    id: number
+    projectId: number
+    question: number
+    answer: number
+    order: number
+    _all: number
+  }
+
+
+  export type ProjectFAQAvgAggregateInputType = {
+    order?: true
+  }
+
+  export type ProjectFAQSumAggregateInputType = {
+    order?: true
+  }
+
+  export type ProjectFAQMinAggregateInputType = {
+    id?: true
+    projectId?: true
+    question?: true
+    answer?: true
+    order?: true
+  }
+
+  export type ProjectFAQMaxAggregateInputType = {
+    id?: true
+    projectId?: true
+    question?: true
+    answer?: true
+    order?: true
+  }
+
+  export type ProjectFAQCountAggregateInputType = {
+    id?: true
+    projectId?: true
+    question?: true
+    answer?: true
+    order?: true
+    _all?: true
+  }
+
+  export type ProjectFAQAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectFAQ to aggregate.
+     */
+    where?: ProjectFAQWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectFAQS to fetch.
+     */
+    orderBy?: ProjectFAQOrderByWithRelationInput | ProjectFAQOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProjectFAQWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectFAQS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectFAQS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProjectFAQS
+    **/
+    _count?: true | ProjectFAQCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProjectFAQAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProjectFAQSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProjectFAQMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProjectFAQMaxAggregateInputType
+  }
+
+  export type GetProjectFAQAggregateType<T extends ProjectFAQAggregateArgs> = {
+        [P in keyof T & keyof AggregateProjectFAQ]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProjectFAQ[P]>
+      : GetScalarType<T[P], AggregateProjectFAQ[P]>
+  }
+
+
+
+
+  export type ProjectFAQGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectFAQWhereInput
+    orderBy?: ProjectFAQOrderByWithAggregationInput | ProjectFAQOrderByWithAggregationInput[]
+    by: ProjectFAQScalarFieldEnum[] | ProjectFAQScalarFieldEnum
+    having?: ProjectFAQScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProjectFAQCountAggregateInputType | true
+    _avg?: ProjectFAQAvgAggregateInputType
+    _sum?: ProjectFAQSumAggregateInputType
+    _min?: ProjectFAQMinAggregateInputType
+    _max?: ProjectFAQMaxAggregateInputType
+  }
+
+  export type ProjectFAQGroupByOutputType = {
+    id: string
+    projectId: string
+    question: string
+    answer: string
+    order: number
+    _count: ProjectFAQCountAggregateOutputType | null
+    _avg: ProjectFAQAvgAggregateOutputType | null
+    _sum: ProjectFAQSumAggregateOutputType | null
+    _min: ProjectFAQMinAggregateOutputType | null
+    _max: ProjectFAQMaxAggregateOutputType | null
+  }
+
+  type GetProjectFAQGroupByPayload<T extends ProjectFAQGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProjectFAQGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProjectFAQGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProjectFAQGroupByOutputType[P]>
+            : GetScalarType<T[P], ProjectFAQGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProjectFAQSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectId?: boolean
+    question?: boolean
+    answer?: boolean
+    order?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectFAQ"]>
+
+
+
+  export type ProjectFAQSelectScalar = {
+    id?: boolean
+    projectId?: boolean
+    question?: boolean
+    answer?: boolean
+    order?: boolean
+  }
+
+  export type ProjectFAQOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "projectId" | "question" | "answer" | "order", ExtArgs["result"]["projectFAQ"]>
+  export type ProjectFAQInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+
+  export type $ProjectFAQPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProjectFAQ"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      projectId: string
+      question: string
+      answer: string
+      order: number
+    }, ExtArgs["result"]["projectFAQ"]>
+    composites: {}
+  }
+
+  type ProjectFAQGetPayload<S extends boolean | null | undefined | ProjectFAQDefaultArgs> = $Result.GetResult<Prisma.$ProjectFAQPayload, S>
+
+  type ProjectFAQCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProjectFAQFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProjectFAQCountAggregateInputType | true
+    }
+
+  export interface ProjectFAQDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProjectFAQ'], meta: { name: 'ProjectFAQ' } }
+    /**
+     * Find zero or one ProjectFAQ that matches the filter.
+     * @param {ProjectFAQFindUniqueArgs} args - Arguments to find a ProjectFAQ
+     * @example
+     * // Get one ProjectFAQ
+     * const projectFAQ = await prisma.projectFAQ.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProjectFAQFindUniqueArgs>(args: SelectSubset<T, ProjectFAQFindUniqueArgs<ExtArgs>>): Prisma__ProjectFAQClient<$Result.GetResult<Prisma.$ProjectFAQPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProjectFAQ that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProjectFAQFindUniqueOrThrowArgs} args - Arguments to find a ProjectFAQ
+     * @example
+     * // Get one ProjectFAQ
+     * const projectFAQ = await prisma.projectFAQ.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProjectFAQFindUniqueOrThrowArgs>(args: SelectSubset<T, ProjectFAQFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProjectFAQClient<$Result.GetResult<Prisma.$ProjectFAQPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectFAQ that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFAQFindFirstArgs} args - Arguments to find a ProjectFAQ
+     * @example
+     * // Get one ProjectFAQ
+     * const projectFAQ = await prisma.projectFAQ.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProjectFAQFindFirstArgs>(args?: SelectSubset<T, ProjectFAQFindFirstArgs<ExtArgs>>): Prisma__ProjectFAQClient<$Result.GetResult<Prisma.$ProjectFAQPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectFAQ that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFAQFindFirstOrThrowArgs} args - Arguments to find a ProjectFAQ
+     * @example
+     * // Get one ProjectFAQ
+     * const projectFAQ = await prisma.projectFAQ.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProjectFAQFindFirstOrThrowArgs>(args?: SelectSubset<T, ProjectFAQFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProjectFAQClient<$Result.GetResult<Prisma.$ProjectFAQPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProjectFAQS that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFAQFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProjectFAQS
+     * const projectFAQS = await prisma.projectFAQ.findMany()
+     * 
+     * // Get first 10 ProjectFAQS
+     * const projectFAQS = await prisma.projectFAQ.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const projectFAQWithIdOnly = await prisma.projectFAQ.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProjectFAQFindManyArgs>(args?: SelectSubset<T, ProjectFAQFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectFAQPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProjectFAQ.
+     * @param {ProjectFAQCreateArgs} args - Arguments to create a ProjectFAQ.
+     * @example
+     * // Create one ProjectFAQ
+     * const ProjectFAQ = await prisma.projectFAQ.create({
+     *   data: {
+     *     // ... data to create a ProjectFAQ
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProjectFAQCreateArgs>(args: SelectSubset<T, ProjectFAQCreateArgs<ExtArgs>>): Prisma__ProjectFAQClient<$Result.GetResult<Prisma.$ProjectFAQPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProjectFAQS.
+     * @param {ProjectFAQCreateManyArgs} args - Arguments to create many ProjectFAQS.
+     * @example
+     * // Create many ProjectFAQS
+     * const projectFAQ = await prisma.projectFAQ.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProjectFAQCreateManyArgs>(args?: SelectSubset<T, ProjectFAQCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ProjectFAQ.
+     * @param {ProjectFAQDeleteArgs} args - Arguments to delete one ProjectFAQ.
+     * @example
+     * // Delete one ProjectFAQ
+     * const ProjectFAQ = await prisma.projectFAQ.delete({
+     *   where: {
+     *     // ... filter to delete one ProjectFAQ
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProjectFAQDeleteArgs>(args: SelectSubset<T, ProjectFAQDeleteArgs<ExtArgs>>): Prisma__ProjectFAQClient<$Result.GetResult<Prisma.$ProjectFAQPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProjectFAQ.
+     * @param {ProjectFAQUpdateArgs} args - Arguments to update one ProjectFAQ.
+     * @example
+     * // Update one ProjectFAQ
+     * const projectFAQ = await prisma.projectFAQ.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProjectFAQUpdateArgs>(args: SelectSubset<T, ProjectFAQUpdateArgs<ExtArgs>>): Prisma__ProjectFAQClient<$Result.GetResult<Prisma.$ProjectFAQPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProjectFAQS.
+     * @param {ProjectFAQDeleteManyArgs} args - Arguments to filter ProjectFAQS to delete.
+     * @example
+     * // Delete a few ProjectFAQS
+     * const { count } = await prisma.projectFAQ.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProjectFAQDeleteManyArgs>(args?: SelectSubset<T, ProjectFAQDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectFAQS.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFAQUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProjectFAQS
+     * const projectFAQ = await prisma.projectFAQ.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProjectFAQUpdateManyArgs>(args: SelectSubset<T, ProjectFAQUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ProjectFAQ.
+     * @param {ProjectFAQUpsertArgs} args - Arguments to update or create a ProjectFAQ.
+     * @example
+     * // Update or create a ProjectFAQ
+     * const projectFAQ = await prisma.projectFAQ.upsert({
+     *   create: {
+     *     // ... data to create a ProjectFAQ
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProjectFAQ we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProjectFAQUpsertArgs>(args: SelectSubset<T, ProjectFAQUpsertArgs<ExtArgs>>): Prisma__ProjectFAQClient<$Result.GetResult<Prisma.$ProjectFAQPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProjectFAQS.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFAQCountArgs} args - Arguments to filter ProjectFAQS to count.
+     * @example
+     * // Count the number of ProjectFAQS
+     * const count = await prisma.projectFAQ.count({
+     *   where: {
+     *     // ... the filter for the ProjectFAQS we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProjectFAQCountArgs>(
+      args?: Subset<T, ProjectFAQCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProjectFAQCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProjectFAQ.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFAQAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProjectFAQAggregateArgs>(args: Subset<T, ProjectFAQAggregateArgs>): Prisma.PrismaPromise<GetProjectFAQAggregateType<T>>
+
+    /**
+     * Group by ProjectFAQ.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectFAQGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProjectFAQGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProjectFAQGroupByArgs['orderBy'] }
+        : { orderBy?: ProjectFAQGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProjectFAQGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProjectFAQGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProjectFAQ model
+   */
+  readonly fields: ProjectFAQFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProjectFAQ.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProjectFAQClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProjectFAQ model
+   */
+  interface ProjectFAQFieldRefs {
+    readonly id: FieldRef<"ProjectFAQ", 'String'>
+    readonly projectId: FieldRef<"ProjectFAQ", 'String'>
+    readonly question: FieldRef<"ProjectFAQ", 'String'>
+    readonly answer: FieldRef<"ProjectFAQ", 'String'>
+    readonly order: FieldRef<"ProjectFAQ", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProjectFAQ findUnique
+   */
+  export type ProjectFAQFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFAQ
+     */
+    select?: ProjectFAQSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFAQ
+     */
+    omit?: ProjectFAQOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFAQInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectFAQ to fetch.
+     */
+    where: ProjectFAQWhereUniqueInput
+  }
+
+  /**
+   * ProjectFAQ findUniqueOrThrow
+   */
+  export type ProjectFAQFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFAQ
+     */
+    select?: ProjectFAQSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFAQ
+     */
+    omit?: ProjectFAQOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFAQInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectFAQ to fetch.
+     */
+    where: ProjectFAQWhereUniqueInput
+  }
+
+  /**
+   * ProjectFAQ findFirst
+   */
+  export type ProjectFAQFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFAQ
+     */
+    select?: ProjectFAQSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFAQ
+     */
+    omit?: ProjectFAQOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFAQInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectFAQ to fetch.
+     */
+    where?: ProjectFAQWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectFAQS to fetch.
+     */
+    orderBy?: ProjectFAQOrderByWithRelationInput | ProjectFAQOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectFAQS.
+     */
+    cursor?: ProjectFAQWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectFAQS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectFAQS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectFAQS.
+     */
+    distinct?: ProjectFAQScalarFieldEnum | ProjectFAQScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectFAQ findFirstOrThrow
+   */
+  export type ProjectFAQFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFAQ
+     */
+    select?: ProjectFAQSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFAQ
+     */
+    omit?: ProjectFAQOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFAQInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectFAQ to fetch.
+     */
+    where?: ProjectFAQWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectFAQS to fetch.
+     */
+    orderBy?: ProjectFAQOrderByWithRelationInput | ProjectFAQOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectFAQS.
+     */
+    cursor?: ProjectFAQWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectFAQS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectFAQS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectFAQS.
+     */
+    distinct?: ProjectFAQScalarFieldEnum | ProjectFAQScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectFAQ findMany
+   */
+  export type ProjectFAQFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFAQ
+     */
+    select?: ProjectFAQSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFAQ
+     */
+    omit?: ProjectFAQOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFAQInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectFAQS to fetch.
+     */
+    where?: ProjectFAQWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectFAQS to fetch.
+     */
+    orderBy?: ProjectFAQOrderByWithRelationInput | ProjectFAQOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProjectFAQS.
+     */
+    cursor?: ProjectFAQWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectFAQS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectFAQS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectFAQS.
+     */
+    distinct?: ProjectFAQScalarFieldEnum | ProjectFAQScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectFAQ create
+   */
+  export type ProjectFAQCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFAQ
+     */
+    select?: ProjectFAQSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFAQ
+     */
+    omit?: ProjectFAQOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFAQInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProjectFAQ.
+     */
+    data: XOR<ProjectFAQCreateInput, ProjectFAQUncheckedCreateInput>
+  }
+
+  /**
+   * ProjectFAQ createMany
+   */
+  export type ProjectFAQCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProjectFAQS.
+     */
+    data: ProjectFAQCreateManyInput | ProjectFAQCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProjectFAQ update
+   */
+  export type ProjectFAQUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFAQ
+     */
+    select?: ProjectFAQSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFAQ
+     */
+    omit?: ProjectFAQOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFAQInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProjectFAQ.
+     */
+    data: XOR<ProjectFAQUpdateInput, ProjectFAQUncheckedUpdateInput>
+    /**
+     * Choose, which ProjectFAQ to update.
+     */
+    where: ProjectFAQWhereUniqueInput
+  }
+
+  /**
+   * ProjectFAQ updateMany
+   */
+  export type ProjectFAQUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProjectFAQS.
+     */
+    data: XOR<ProjectFAQUpdateManyMutationInput, ProjectFAQUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectFAQS to update
+     */
+    where?: ProjectFAQWhereInput
+    /**
+     * Limit how many ProjectFAQS to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectFAQ upsert
+   */
+  export type ProjectFAQUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFAQ
+     */
+    select?: ProjectFAQSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFAQ
+     */
+    omit?: ProjectFAQOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFAQInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProjectFAQ to update in case it exists.
+     */
+    where: ProjectFAQWhereUniqueInput
+    /**
+     * In case the ProjectFAQ found by the `where` argument doesn't exist, create a new ProjectFAQ with this data.
+     */
+    create: XOR<ProjectFAQCreateInput, ProjectFAQUncheckedCreateInput>
+    /**
+     * In case the ProjectFAQ was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProjectFAQUpdateInput, ProjectFAQUncheckedUpdateInput>
+  }
+
+  /**
+   * ProjectFAQ delete
+   */
+  export type ProjectFAQDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFAQ
+     */
+    select?: ProjectFAQSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFAQ
+     */
+    omit?: ProjectFAQOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFAQInclude<ExtArgs> | null
+    /**
+     * Filter which ProjectFAQ to delete.
+     */
+    where: ProjectFAQWhereUniqueInput
+  }
+
+  /**
+   * ProjectFAQ deleteMany
+   */
+  export type ProjectFAQDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectFAQS to delete
+     */
+    where?: ProjectFAQWhereInput
+    /**
+     * Limit how many ProjectFAQS to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectFAQ without action
+   */
+  export type ProjectFAQDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectFAQ
+     */
+    select?: ProjectFAQSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectFAQ
+     */
+    omit?: ProjectFAQOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectFAQInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProjectLandmark
+   */
+
+  export type AggregateProjectLandmark = {
+    _count: ProjectLandmarkCountAggregateOutputType | null
+    _avg: ProjectLandmarkAvgAggregateOutputType | null
+    _sum: ProjectLandmarkSumAggregateOutputType | null
+    _min: ProjectLandmarkMinAggregateOutputType | null
+    _max: ProjectLandmarkMaxAggregateOutputType | null
+  }
+
+  export type ProjectLandmarkAvgAggregateOutputType = {
+    distanceKm: number | null
+    order: number | null
+  }
+
+  export type ProjectLandmarkSumAggregateOutputType = {
+    distanceKm: number | null
+    order: number | null
+  }
+
+  export type ProjectLandmarkMinAggregateOutputType = {
+    id: string | null
+    projectId: string | null
+    category: string | null
+    name: string | null
+    distanceKm: number | null
+    order: number | null
+  }
+
+  export type ProjectLandmarkMaxAggregateOutputType = {
+    id: string | null
+    projectId: string | null
+    category: string | null
+    name: string | null
+    distanceKm: number | null
+    order: number | null
+  }
+
+  export type ProjectLandmarkCountAggregateOutputType = {
+    id: number
+    projectId: number
+    category: number
+    name: number
+    distanceKm: number
+    order: number
+    _all: number
+  }
+
+
+  export type ProjectLandmarkAvgAggregateInputType = {
+    distanceKm?: true
+    order?: true
+  }
+
+  export type ProjectLandmarkSumAggregateInputType = {
+    distanceKm?: true
+    order?: true
+  }
+
+  export type ProjectLandmarkMinAggregateInputType = {
+    id?: true
+    projectId?: true
+    category?: true
+    name?: true
+    distanceKm?: true
+    order?: true
+  }
+
+  export type ProjectLandmarkMaxAggregateInputType = {
+    id?: true
+    projectId?: true
+    category?: true
+    name?: true
+    distanceKm?: true
+    order?: true
+  }
+
+  export type ProjectLandmarkCountAggregateInputType = {
+    id?: true
+    projectId?: true
+    category?: true
+    name?: true
+    distanceKm?: true
+    order?: true
+    _all?: true
+  }
+
+  export type ProjectLandmarkAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectLandmark to aggregate.
+     */
+    where?: ProjectLandmarkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectLandmarks to fetch.
+     */
+    orderBy?: ProjectLandmarkOrderByWithRelationInput | ProjectLandmarkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProjectLandmarkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectLandmarks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectLandmarks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProjectLandmarks
+    **/
+    _count?: true | ProjectLandmarkCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProjectLandmarkAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProjectLandmarkSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProjectLandmarkMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProjectLandmarkMaxAggregateInputType
+  }
+
+  export type GetProjectLandmarkAggregateType<T extends ProjectLandmarkAggregateArgs> = {
+        [P in keyof T & keyof AggregateProjectLandmark]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProjectLandmark[P]>
+      : GetScalarType<T[P], AggregateProjectLandmark[P]>
+  }
+
+
+
+
+  export type ProjectLandmarkGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectLandmarkWhereInput
+    orderBy?: ProjectLandmarkOrderByWithAggregationInput | ProjectLandmarkOrderByWithAggregationInput[]
+    by: ProjectLandmarkScalarFieldEnum[] | ProjectLandmarkScalarFieldEnum
+    having?: ProjectLandmarkScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProjectLandmarkCountAggregateInputType | true
+    _avg?: ProjectLandmarkAvgAggregateInputType
+    _sum?: ProjectLandmarkSumAggregateInputType
+    _min?: ProjectLandmarkMinAggregateInputType
+    _max?: ProjectLandmarkMaxAggregateInputType
+  }
+
+  export type ProjectLandmarkGroupByOutputType = {
+    id: string
+    projectId: string
+    category: string
+    name: string
+    distanceKm: number
+    order: number
+    _count: ProjectLandmarkCountAggregateOutputType | null
+    _avg: ProjectLandmarkAvgAggregateOutputType | null
+    _sum: ProjectLandmarkSumAggregateOutputType | null
+    _min: ProjectLandmarkMinAggregateOutputType | null
+    _max: ProjectLandmarkMaxAggregateOutputType | null
+  }
+
+  type GetProjectLandmarkGroupByPayload<T extends ProjectLandmarkGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProjectLandmarkGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProjectLandmarkGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProjectLandmarkGroupByOutputType[P]>
+            : GetScalarType<T[P], ProjectLandmarkGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProjectLandmarkSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectId?: boolean
+    category?: boolean
+    name?: boolean
+    distanceKm?: boolean
+    order?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectLandmark"]>
+
+
+
+  export type ProjectLandmarkSelectScalar = {
+    id?: boolean
+    projectId?: boolean
+    category?: boolean
+    name?: boolean
+    distanceKm?: boolean
+    order?: boolean
+  }
+
+  export type ProjectLandmarkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "projectId" | "category" | "name" | "distanceKm" | "order", ExtArgs["result"]["projectLandmark"]>
+  export type ProjectLandmarkInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+
+  export type $ProjectLandmarkPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProjectLandmark"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      projectId: string
+      category: string
+      name: string
+      distanceKm: number
+      order: number
+    }, ExtArgs["result"]["projectLandmark"]>
+    composites: {}
+  }
+
+  type ProjectLandmarkGetPayload<S extends boolean | null | undefined | ProjectLandmarkDefaultArgs> = $Result.GetResult<Prisma.$ProjectLandmarkPayload, S>
+
+  type ProjectLandmarkCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProjectLandmarkFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProjectLandmarkCountAggregateInputType | true
+    }
+
+  export interface ProjectLandmarkDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProjectLandmark'], meta: { name: 'ProjectLandmark' } }
+    /**
+     * Find zero or one ProjectLandmark that matches the filter.
+     * @param {ProjectLandmarkFindUniqueArgs} args - Arguments to find a ProjectLandmark
+     * @example
+     * // Get one ProjectLandmark
+     * const projectLandmark = await prisma.projectLandmark.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProjectLandmarkFindUniqueArgs>(args: SelectSubset<T, ProjectLandmarkFindUniqueArgs<ExtArgs>>): Prisma__ProjectLandmarkClient<$Result.GetResult<Prisma.$ProjectLandmarkPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProjectLandmark that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProjectLandmarkFindUniqueOrThrowArgs} args - Arguments to find a ProjectLandmark
+     * @example
+     * // Get one ProjectLandmark
+     * const projectLandmark = await prisma.projectLandmark.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProjectLandmarkFindUniqueOrThrowArgs>(args: SelectSubset<T, ProjectLandmarkFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProjectLandmarkClient<$Result.GetResult<Prisma.$ProjectLandmarkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectLandmark that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectLandmarkFindFirstArgs} args - Arguments to find a ProjectLandmark
+     * @example
+     * // Get one ProjectLandmark
+     * const projectLandmark = await prisma.projectLandmark.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProjectLandmarkFindFirstArgs>(args?: SelectSubset<T, ProjectLandmarkFindFirstArgs<ExtArgs>>): Prisma__ProjectLandmarkClient<$Result.GetResult<Prisma.$ProjectLandmarkPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectLandmark that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectLandmarkFindFirstOrThrowArgs} args - Arguments to find a ProjectLandmark
+     * @example
+     * // Get one ProjectLandmark
+     * const projectLandmark = await prisma.projectLandmark.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProjectLandmarkFindFirstOrThrowArgs>(args?: SelectSubset<T, ProjectLandmarkFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProjectLandmarkClient<$Result.GetResult<Prisma.$ProjectLandmarkPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProjectLandmarks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectLandmarkFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProjectLandmarks
+     * const projectLandmarks = await prisma.projectLandmark.findMany()
+     * 
+     * // Get first 10 ProjectLandmarks
+     * const projectLandmarks = await prisma.projectLandmark.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const projectLandmarkWithIdOnly = await prisma.projectLandmark.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProjectLandmarkFindManyArgs>(args?: SelectSubset<T, ProjectLandmarkFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectLandmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProjectLandmark.
+     * @param {ProjectLandmarkCreateArgs} args - Arguments to create a ProjectLandmark.
+     * @example
+     * // Create one ProjectLandmark
+     * const ProjectLandmark = await prisma.projectLandmark.create({
+     *   data: {
+     *     // ... data to create a ProjectLandmark
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProjectLandmarkCreateArgs>(args: SelectSubset<T, ProjectLandmarkCreateArgs<ExtArgs>>): Prisma__ProjectLandmarkClient<$Result.GetResult<Prisma.$ProjectLandmarkPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProjectLandmarks.
+     * @param {ProjectLandmarkCreateManyArgs} args - Arguments to create many ProjectLandmarks.
+     * @example
+     * // Create many ProjectLandmarks
+     * const projectLandmark = await prisma.projectLandmark.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProjectLandmarkCreateManyArgs>(args?: SelectSubset<T, ProjectLandmarkCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ProjectLandmark.
+     * @param {ProjectLandmarkDeleteArgs} args - Arguments to delete one ProjectLandmark.
+     * @example
+     * // Delete one ProjectLandmark
+     * const ProjectLandmark = await prisma.projectLandmark.delete({
+     *   where: {
+     *     // ... filter to delete one ProjectLandmark
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProjectLandmarkDeleteArgs>(args: SelectSubset<T, ProjectLandmarkDeleteArgs<ExtArgs>>): Prisma__ProjectLandmarkClient<$Result.GetResult<Prisma.$ProjectLandmarkPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProjectLandmark.
+     * @param {ProjectLandmarkUpdateArgs} args - Arguments to update one ProjectLandmark.
+     * @example
+     * // Update one ProjectLandmark
+     * const projectLandmark = await prisma.projectLandmark.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProjectLandmarkUpdateArgs>(args: SelectSubset<T, ProjectLandmarkUpdateArgs<ExtArgs>>): Prisma__ProjectLandmarkClient<$Result.GetResult<Prisma.$ProjectLandmarkPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProjectLandmarks.
+     * @param {ProjectLandmarkDeleteManyArgs} args - Arguments to filter ProjectLandmarks to delete.
+     * @example
+     * // Delete a few ProjectLandmarks
+     * const { count } = await prisma.projectLandmark.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProjectLandmarkDeleteManyArgs>(args?: SelectSubset<T, ProjectLandmarkDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectLandmarks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectLandmarkUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProjectLandmarks
+     * const projectLandmark = await prisma.projectLandmark.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProjectLandmarkUpdateManyArgs>(args: SelectSubset<T, ProjectLandmarkUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ProjectLandmark.
+     * @param {ProjectLandmarkUpsertArgs} args - Arguments to update or create a ProjectLandmark.
+     * @example
+     * // Update or create a ProjectLandmark
+     * const projectLandmark = await prisma.projectLandmark.upsert({
+     *   create: {
+     *     // ... data to create a ProjectLandmark
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProjectLandmark we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProjectLandmarkUpsertArgs>(args: SelectSubset<T, ProjectLandmarkUpsertArgs<ExtArgs>>): Prisma__ProjectLandmarkClient<$Result.GetResult<Prisma.$ProjectLandmarkPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProjectLandmarks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectLandmarkCountArgs} args - Arguments to filter ProjectLandmarks to count.
+     * @example
+     * // Count the number of ProjectLandmarks
+     * const count = await prisma.projectLandmark.count({
+     *   where: {
+     *     // ... the filter for the ProjectLandmarks we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProjectLandmarkCountArgs>(
+      args?: Subset<T, ProjectLandmarkCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProjectLandmarkCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProjectLandmark.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectLandmarkAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProjectLandmarkAggregateArgs>(args: Subset<T, ProjectLandmarkAggregateArgs>): Prisma.PrismaPromise<GetProjectLandmarkAggregateType<T>>
+
+    /**
+     * Group by ProjectLandmark.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectLandmarkGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProjectLandmarkGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProjectLandmarkGroupByArgs['orderBy'] }
+        : { orderBy?: ProjectLandmarkGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProjectLandmarkGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProjectLandmarkGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProjectLandmark model
+   */
+  readonly fields: ProjectLandmarkFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProjectLandmark.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProjectLandmarkClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProjectLandmark model
+   */
+  interface ProjectLandmarkFieldRefs {
+    readonly id: FieldRef<"ProjectLandmark", 'String'>
+    readonly projectId: FieldRef<"ProjectLandmark", 'String'>
+    readonly category: FieldRef<"ProjectLandmark", 'String'>
+    readonly name: FieldRef<"ProjectLandmark", 'String'>
+    readonly distanceKm: FieldRef<"ProjectLandmark", 'Float'>
+    readonly order: FieldRef<"ProjectLandmark", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProjectLandmark findUnique
+   */
+  export type ProjectLandmarkFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLandmark
+     */
+    select?: ProjectLandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLandmark
+     */
+    omit?: ProjectLandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLandmarkInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectLandmark to fetch.
+     */
+    where: ProjectLandmarkWhereUniqueInput
+  }
+
+  /**
+   * ProjectLandmark findUniqueOrThrow
+   */
+  export type ProjectLandmarkFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLandmark
+     */
+    select?: ProjectLandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLandmark
+     */
+    omit?: ProjectLandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLandmarkInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectLandmark to fetch.
+     */
+    where: ProjectLandmarkWhereUniqueInput
+  }
+
+  /**
+   * ProjectLandmark findFirst
+   */
+  export type ProjectLandmarkFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLandmark
+     */
+    select?: ProjectLandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLandmark
+     */
+    omit?: ProjectLandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLandmarkInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectLandmark to fetch.
+     */
+    where?: ProjectLandmarkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectLandmarks to fetch.
+     */
+    orderBy?: ProjectLandmarkOrderByWithRelationInput | ProjectLandmarkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectLandmarks.
+     */
+    cursor?: ProjectLandmarkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectLandmarks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectLandmarks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectLandmarks.
+     */
+    distinct?: ProjectLandmarkScalarFieldEnum | ProjectLandmarkScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectLandmark findFirstOrThrow
+   */
+  export type ProjectLandmarkFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLandmark
+     */
+    select?: ProjectLandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLandmark
+     */
+    omit?: ProjectLandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLandmarkInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectLandmark to fetch.
+     */
+    where?: ProjectLandmarkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectLandmarks to fetch.
+     */
+    orderBy?: ProjectLandmarkOrderByWithRelationInput | ProjectLandmarkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectLandmarks.
+     */
+    cursor?: ProjectLandmarkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectLandmarks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectLandmarks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectLandmarks.
+     */
+    distinct?: ProjectLandmarkScalarFieldEnum | ProjectLandmarkScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectLandmark findMany
+   */
+  export type ProjectLandmarkFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLandmark
+     */
+    select?: ProjectLandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLandmark
+     */
+    omit?: ProjectLandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLandmarkInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectLandmarks to fetch.
+     */
+    where?: ProjectLandmarkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectLandmarks to fetch.
+     */
+    orderBy?: ProjectLandmarkOrderByWithRelationInput | ProjectLandmarkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProjectLandmarks.
+     */
+    cursor?: ProjectLandmarkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectLandmarks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectLandmarks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectLandmarks.
+     */
+    distinct?: ProjectLandmarkScalarFieldEnum | ProjectLandmarkScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectLandmark create
+   */
+  export type ProjectLandmarkCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLandmark
+     */
+    select?: ProjectLandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLandmark
+     */
+    omit?: ProjectLandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLandmarkInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProjectLandmark.
+     */
+    data: XOR<ProjectLandmarkCreateInput, ProjectLandmarkUncheckedCreateInput>
+  }
+
+  /**
+   * ProjectLandmark createMany
+   */
+  export type ProjectLandmarkCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProjectLandmarks.
+     */
+    data: ProjectLandmarkCreateManyInput | ProjectLandmarkCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProjectLandmark update
+   */
+  export type ProjectLandmarkUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLandmark
+     */
+    select?: ProjectLandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLandmark
+     */
+    omit?: ProjectLandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLandmarkInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProjectLandmark.
+     */
+    data: XOR<ProjectLandmarkUpdateInput, ProjectLandmarkUncheckedUpdateInput>
+    /**
+     * Choose, which ProjectLandmark to update.
+     */
+    where: ProjectLandmarkWhereUniqueInput
+  }
+
+  /**
+   * ProjectLandmark updateMany
+   */
+  export type ProjectLandmarkUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProjectLandmarks.
+     */
+    data: XOR<ProjectLandmarkUpdateManyMutationInput, ProjectLandmarkUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectLandmarks to update
+     */
+    where?: ProjectLandmarkWhereInput
+    /**
+     * Limit how many ProjectLandmarks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectLandmark upsert
+   */
+  export type ProjectLandmarkUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLandmark
+     */
+    select?: ProjectLandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLandmark
+     */
+    omit?: ProjectLandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLandmarkInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProjectLandmark to update in case it exists.
+     */
+    where: ProjectLandmarkWhereUniqueInput
+    /**
+     * In case the ProjectLandmark found by the `where` argument doesn't exist, create a new ProjectLandmark with this data.
+     */
+    create: XOR<ProjectLandmarkCreateInput, ProjectLandmarkUncheckedCreateInput>
+    /**
+     * In case the ProjectLandmark was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProjectLandmarkUpdateInput, ProjectLandmarkUncheckedUpdateInput>
+  }
+
+  /**
+   * ProjectLandmark delete
+   */
+  export type ProjectLandmarkDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLandmark
+     */
+    select?: ProjectLandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLandmark
+     */
+    omit?: ProjectLandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLandmarkInclude<ExtArgs> | null
+    /**
+     * Filter which ProjectLandmark to delete.
+     */
+    where: ProjectLandmarkWhereUniqueInput
+  }
+
+  /**
+   * ProjectLandmark deleteMany
+   */
+  export type ProjectLandmarkDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectLandmarks to delete
+     */
+    where?: ProjectLandmarkWhereInput
+    /**
+     * Limit how many ProjectLandmarks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectLandmark without action
+   */
+  export type ProjectLandmarkDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectLandmark
+     */
+    select?: ProjectLandmarkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectLandmark
+     */
+    omit?: ProjectLandmarkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectLandmarkInclude<ExtArgs> | null
   }
 
 
@@ -16698,6 +20066,7 @@ export namespace Prisma {
     email: string | null
     message: string | null
     propertyId: string | null
+    projectId: string | null
     buyerId: string | null
     createdAt: Date | null
   }
@@ -16709,6 +20078,7 @@ export namespace Prisma {
     email: string | null
     message: string | null
     propertyId: string | null
+    projectId: string | null
     buyerId: string | null
     createdAt: Date | null
   }
@@ -16720,6 +20090,7 @@ export namespace Prisma {
     email: number
     message: number
     propertyId: number
+    projectId: number
     buyerId: number
     createdAt: number
     _all: number
@@ -16733,6 +20104,7 @@ export namespace Prisma {
     email?: true
     message?: true
     propertyId?: true
+    projectId?: true
     buyerId?: true
     createdAt?: true
   }
@@ -16744,6 +20116,7 @@ export namespace Prisma {
     email?: true
     message?: true
     propertyId?: true
+    projectId?: true
     buyerId?: true
     createdAt?: true
   }
@@ -16755,6 +20128,7 @@ export namespace Prisma {
     email?: true
     message?: true
     propertyId?: true
+    projectId?: true
     buyerId?: true
     createdAt?: true
     _all?: true
@@ -16839,6 +20213,7 @@ export namespace Prisma {
     email: string | null
     message: string | null
     propertyId: string | null
+    projectId: string | null
     buyerId: string | null
     createdAt: Date
     _count: EnquiryCountAggregateOutputType | null
@@ -16867,9 +20242,11 @@ export namespace Prisma {
     email?: boolean
     message?: boolean
     propertyId?: boolean
+    projectId?: boolean
     buyerId?: boolean
     createdAt?: boolean
     property?: boolean | Enquiry$propertyArgs<ExtArgs>
+    project?: boolean | Enquiry$projectArgs<ExtArgs>
     buyer?: boolean | Enquiry$buyerArgs<ExtArgs>
     leadViews?: boolean | Enquiry$leadViewsArgs<ExtArgs>
     _count?: boolean | EnquiryCountOutputTypeDefaultArgs<ExtArgs>
@@ -16884,13 +20261,15 @@ export namespace Prisma {
     email?: boolean
     message?: boolean
     propertyId?: boolean
+    projectId?: boolean
     buyerId?: boolean
     createdAt?: boolean
   }
 
-  export type EnquiryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "phone" | "email" | "message" | "propertyId" | "buyerId" | "createdAt", ExtArgs["result"]["enquiry"]>
+  export type EnquiryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "phone" | "email" | "message" | "propertyId" | "projectId" | "buyerId" | "createdAt", ExtArgs["result"]["enquiry"]>
   export type EnquiryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     property?: boolean | Enquiry$propertyArgs<ExtArgs>
+    project?: boolean | Enquiry$projectArgs<ExtArgs>
     buyer?: boolean | Enquiry$buyerArgs<ExtArgs>
     leadViews?: boolean | Enquiry$leadViewsArgs<ExtArgs>
     _count?: boolean | EnquiryCountOutputTypeDefaultArgs<ExtArgs>
@@ -16900,6 +20279,7 @@ export namespace Prisma {
     name: "Enquiry"
     objects: {
       property: Prisma.$PropertyPayload<ExtArgs> | null
+      project: Prisma.$ProjectPayload<ExtArgs> | null
       buyer: Prisma.$UserPayload<ExtArgs> | null
       leadViews: Prisma.$LeadViewPayload<ExtArgs>[]
     }
@@ -16910,6 +20290,7 @@ export namespace Prisma {
       email: string | null
       message: string | null
       propertyId: string | null
+      projectId: string | null
       buyerId: string | null
       createdAt: Date
     }, ExtArgs["result"]["enquiry"]>
@@ -17253,6 +20634,7 @@ export namespace Prisma {
   export interface Prisma__EnquiryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     property<T extends Enquiry$propertyArgs<ExtArgs> = {}>(args?: Subset<T, Enquiry$propertyArgs<ExtArgs>>): Prisma__PropertyClient<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    project<T extends Enquiry$projectArgs<ExtArgs> = {}>(args?: Subset<T, Enquiry$projectArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     buyer<T extends Enquiry$buyerArgs<ExtArgs> = {}>(args?: Subset<T, Enquiry$buyerArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     leadViews<T extends Enquiry$leadViewsArgs<ExtArgs> = {}>(args?: Subset<T, Enquiry$leadViewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeadViewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -17290,6 +20672,7 @@ export namespace Prisma {
     readonly email: FieldRef<"Enquiry", 'String'>
     readonly message: FieldRef<"Enquiry", 'String'>
     readonly propertyId: FieldRef<"Enquiry", 'String'>
+    readonly projectId: FieldRef<"Enquiry", 'String'>
     readonly buyerId: FieldRef<"Enquiry", 'String'>
     readonly createdAt: FieldRef<"Enquiry", 'DateTime'>
   }
@@ -17656,6 +21039,25 @@ export namespace Prisma {
      */
     include?: PropertyInclude<ExtArgs> | null
     where?: PropertyWhereInput
+  }
+
+  /**
+   * Enquiry.project
+   */
+  export type Enquiry$projectArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Project
+     */
+    select?: ProjectSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Project
+     */
+    omit?: ProjectOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectInclude<ExtArgs> | null
+    where?: ProjectWhereInput
   }
 
   /**
@@ -22695,6 +26097,8 @@ export namespace Prisma {
     possessionDate: 'possessionDate',
     amenities: 'amenities',
     reraNumber: 'reraNumber',
+    highlights: 'highlights',
+    brochureUrl: 'brochureUrl',
     metaTitle: 'metaTitle',
     metaDescription: 'metaDescription',
     createdAt: 'createdAt',
@@ -22712,6 +26116,42 @@ export namespace Prisma {
   };
 
   export type ProjectImageScalarFieldEnum = (typeof ProjectImageScalarFieldEnum)[keyof typeof ProjectImageScalarFieldEnum]
+
+
+  export const ProjectFloorPlanScalarFieldEnum: {
+    id: 'id',
+    projectId: 'projectId',
+    configuration: 'configuration',
+    areaSqft: 'areaSqft',
+    price: 'price',
+    imageUrl: 'imageUrl',
+    order: 'order'
+  };
+
+  export type ProjectFloorPlanScalarFieldEnum = (typeof ProjectFloorPlanScalarFieldEnum)[keyof typeof ProjectFloorPlanScalarFieldEnum]
+
+
+  export const ProjectFAQScalarFieldEnum: {
+    id: 'id',
+    projectId: 'projectId',
+    question: 'question',
+    answer: 'answer',
+    order: 'order'
+  };
+
+  export type ProjectFAQScalarFieldEnum = (typeof ProjectFAQScalarFieldEnum)[keyof typeof ProjectFAQScalarFieldEnum]
+
+
+  export const ProjectLandmarkScalarFieldEnum: {
+    id: 'id',
+    projectId: 'projectId',
+    category: 'category',
+    name: 'name',
+    distanceKm: 'distanceKm',
+    order: 'order'
+  };
+
+  export type ProjectLandmarkScalarFieldEnum = (typeof ProjectLandmarkScalarFieldEnum)[keyof typeof ProjectLandmarkScalarFieldEnum]
 
 
   export const CountryScalarFieldEnum: {
@@ -22828,6 +26268,7 @@ export namespace Prisma {
     email: 'email',
     message: 'message',
     propertyId: 'propertyId',
+    projectId: 'projectId',
     buyerId: 'buyerId',
     createdAt: 'createdAt'
   };
@@ -23009,6 +26450,8 @@ export namespace Prisma {
     address: 'address',
     amenities: 'amenities',
     reraNumber: 'reraNumber',
+    highlights: 'highlights',
+    brochureUrl: 'brochureUrl',
     metaTitle: 'metaTitle',
     metaDescription: 'metaDescription'
   };
@@ -23023,6 +26466,36 @@ export namespace Prisma {
   };
 
   export type ProjectImageOrderByRelevanceFieldEnum = (typeof ProjectImageOrderByRelevanceFieldEnum)[keyof typeof ProjectImageOrderByRelevanceFieldEnum]
+
+
+  export const ProjectFloorPlanOrderByRelevanceFieldEnum: {
+    id: 'id',
+    projectId: 'projectId',
+    configuration: 'configuration',
+    imageUrl: 'imageUrl'
+  };
+
+  export type ProjectFloorPlanOrderByRelevanceFieldEnum = (typeof ProjectFloorPlanOrderByRelevanceFieldEnum)[keyof typeof ProjectFloorPlanOrderByRelevanceFieldEnum]
+
+
+  export const ProjectFAQOrderByRelevanceFieldEnum: {
+    id: 'id',
+    projectId: 'projectId',
+    question: 'question',
+    answer: 'answer'
+  };
+
+  export type ProjectFAQOrderByRelevanceFieldEnum = (typeof ProjectFAQOrderByRelevanceFieldEnum)[keyof typeof ProjectFAQOrderByRelevanceFieldEnum]
+
+
+  export const ProjectLandmarkOrderByRelevanceFieldEnum: {
+    id: 'id',
+    projectId: 'projectId',
+    category: 'category',
+    name: 'name'
+  };
+
+  export type ProjectLandmarkOrderByRelevanceFieldEnum = (typeof ProjectLandmarkOrderByRelevanceFieldEnum)[keyof typeof ProjectLandmarkOrderByRelevanceFieldEnum]
 
 
   export const CountryOrderByRelevanceFieldEnum: {
@@ -23111,6 +26584,7 @@ export namespace Prisma {
     email: 'email',
     message: 'message',
     propertyId: 'propertyId',
+    projectId: 'projectId',
     buyerId: 'buyerId'
   };
 
@@ -23774,6 +27248,8 @@ export namespace Prisma {
     possessionDate?: DateTimeNullableFilter<"Project"> | Date | string | null
     amenities?: StringNullableFilter<"Project"> | string | null
     reraNumber?: StringNullableFilter<"Project"> | string | null
+    highlights?: StringNullableFilter<"Project"> | string | null
+    brochureUrl?: StringNullableFilter<"Project"> | string | null
     metaTitle?: StringNullableFilter<"Project"> | string | null
     metaDescription?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
@@ -23781,6 +27257,10 @@ export namespace Prisma {
     developer?: XOR<DeveloperScalarRelationFilter, DeveloperWhereInput>
     units?: PropertyListRelationFilter
     images?: ProjectImageListRelationFilter
+    floorPlans?: ProjectFloorPlanListRelationFilter
+    faqs?: ProjectFAQListRelationFilter
+    landmarks?: ProjectLandmarkListRelationFilter
+    enquiries?: EnquiryListRelationFilter
   }
 
   export type ProjectOrderByWithRelationInput = {
@@ -23798,6 +27278,8 @@ export namespace Prisma {
     possessionDate?: SortOrderInput | SortOrder
     amenities?: SortOrderInput | SortOrder
     reraNumber?: SortOrderInput | SortOrder
+    highlights?: SortOrderInput | SortOrder
+    brochureUrl?: SortOrderInput | SortOrder
     metaTitle?: SortOrderInput | SortOrder
     metaDescription?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -23805,6 +27287,10 @@ export namespace Prisma {
     developer?: DeveloperOrderByWithRelationInput
     units?: PropertyOrderByRelationAggregateInput
     images?: ProjectImageOrderByRelationAggregateInput
+    floorPlans?: ProjectFloorPlanOrderByRelationAggregateInput
+    faqs?: ProjectFAQOrderByRelationAggregateInput
+    landmarks?: ProjectLandmarkOrderByRelationAggregateInput
+    enquiries?: EnquiryOrderByRelationAggregateInput
     _relevance?: ProjectOrderByRelevanceInput
   }
 
@@ -23826,6 +27312,8 @@ export namespace Prisma {
     possessionDate?: DateTimeNullableFilter<"Project"> | Date | string | null
     amenities?: StringNullableFilter<"Project"> | string | null
     reraNumber?: StringNullableFilter<"Project"> | string | null
+    highlights?: StringNullableFilter<"Project"> | string | null
+    brochureUrl?: StringNullableFilter<"Project"> | string | null
     metaTitle?: StringNullableFilter<"Project"> | string | null
     metaDescription?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
@@ -23833,6 +27321,10 @@ export namespace Prisma {
     developer?: XOR<DeveloperScalarRelationFilter, DeveloperWhereInput>
     units?: PropertyListRelationFilter
     images?: ProjectImageListRelationFilter
+    floorPlans?: ProjectFloorPlanListRelationFilter
+    faqs?: ProjectFAQListRelationFilter
+    landmarks?: ProjectLandmarkListRelationFilter
+    enquiries?: EnquiryListRelationFilter
   }, "id" | "slug">
 
   export type ProjectOrderByWithAggregationInput = {
@@ -23850,6 +27342,8 @@ export namespace Prisma {
     possessionDate?: SortOrderInput | SortOrder
     amenities?: SortOrderInput | SortOrder
     reraNumber?: SortOrderInput | SortOrder
+    highlights?: SortOrderInput | SortOrder
+    brochureUrl?: SortOrderInput | SortOrder
     metaTitle?: SortOrderInput | SortOrder
     metaDescription?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -23879,6 +27373,8 @@ export namespace Prisma {
     possessionDate?: DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
     amenities?: StringNullableWithAggregatesFilter<"Project"> | string | null
     reraNumber?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    highlights?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    brochureUrl?: StringNullableWithAggregatesFilter<"Project"> | string | null
     metaTitle?: StringNullableWithAggregatesFilter<"Project"> | string | null
     metaDescription?: StringNullableWithAggregatesFilter<"Project"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
@@ -23936,6 +27432,195 @@ export namespace Prisma {
     url?: StringWithAggregatesFilter<"ProjectImage"> | string
     projectId?: StringWithAggregatesFilter<"ProjectImage"> | string
     order?: IntWithAggregatesFilter<"ProjectImage"> | number
+  }
+
+  export type ProjectFloorPlanWhereInput = {
+    AND?: ProjectFloorPlanWhereInput | ProjectFloorPlanWhereInput[]
+    OR?: ProjectFloorPlanWhereInput[]
+    NOT?: ProjectFloorPlanWhereInput | ProjectFloorPlanWhereInput[]
+    id?: StringFilter<"ProjectFloorPlan"> | string
+    projectId?: StringFilter<"ProjectFloorPlan"> | string
+    configuration?: StringFilter<"ProjectFloorPlan"> | string
+    areaSqft?: IntFilter<"ProjectFloorPlan"> | number
+    price?: IntNullableFilter<"ProjectFloorPlan"> | number | null
+    imageUrl?: StringNullableFilter<"ProjectFloorPlan"> | string | null
+    order?: IntFilter<"ProjectFloorPlan"> | number
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }
+
+  export type ProjectFloorPlanOrderByWithRelationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    configuration?: SortOrder
+    areaSqft?: SortOrder
+    price?: SortOrderInput | SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    order?: SortOrder
+    project?: ProjectOrderByWithRelationInput
+    _relevance?: ProjectFloorPlanOrderByRelevanceInput
+  }
+
+  export type ProjectFloorPlanWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ProjectFloorPlanWhereInput | ProjectFloorPlanWhereInput[]
+    OR?: ProjectFloorPlanWhereInput[]
+    NOT?: ProjectFloorPlanWhereInput | ProjectFloorPlanWhereInput[]
+    projectId?: StringFilter<"ProjectFloorPlan"> | string
+    configuration?: StringFilter<"ProjectFloorPlan"> | string
+    areaSqft?: IntFilter<"ProjectFloorPlan"> | number
+    price?: IntNullableFilter<"ProjectFloorPlan"> | number | null
+    imageUrl?: StringNullableFilter<"ProjectFloorPlan"> | string | null
+    order?: IntFilter<"ProjectFloorPlan"> | number
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }, "id">
+
+  export type ProjectFloorPlanOrderByWithAggregationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    configuration?: SortOrder
+    areaSqft?: SortOrder
+    price?: SortOrderInput | SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    order?: SortOrder
+    _count?: ProjectFloorPlanCountOrderByAggregateInput
+    _avg?: ProjectFloorPlanAvgOrderByAggregateInput
+    _max?: ProjectFloorPlanMaxOrderByAggregateInput
+    _min?: ProjectFloorPlanMinOrderByAggregateInput
+    _sum?: ProjectFloorPlanSumOrderByAggregateInput
+  }
+
+  export type ProjectFloorPlanScalarWhereWithAggregatesInput = {
+    AND?: ProjectFloorPlanScalarWhereWithAggregatesInput | ProjectFloorPlanScalarWhereWithAggregatesInput[]
+    OR?: ProjectFloorPlanScalarWhereWithAggregatesInput[]
+    NOT?: ProjectFloorPlanScalarWhereWithAggregatesInput | ProjectFloorPlanScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ProjectFloorPlan"> | string
+    projectId?: StringWithAggregatesFilter<"ProjectFloorPlan"> | string
+    configuration?: StringWithAggregatesFilter<"ProjectFloorPlan"> | string
+    areaSqft?: IntWithAggregatesFilter<"ProjectFloorPlan"> | number
+    price?: IntNullableWithAggregatesFilter<"ProjectFloorPlan"> | number | null
+    imageUrl?: StringNullableWithAggregatesFilter<"ProjectFloorPlan"> | string | null
+    order?: IntWithAggregatesFilter<"ProjectFloorPlan"> | number
+  }
+
+  export type ProjectFAQWhereInput = {
+    AND?: ProjectFAQWhereInput | ProjectFAQWhereInput[]
+    OR?: ProjectFAQWhereInput[]
+    NOT?: ProjectFAQWhereInput | ProjectFAQWhereInput[]
+    id?: StringFilter<"ProjectFAQ"> | string
+    projectId?: StringFilter<"ProjectFAQ"> | string
+    question?: StringFilter<"ProjectFAQ"> | string
+    answer?: StringFilter<"ProjectFAQ"> | string
+    order?: IntFilter<"ProjectFAQ"> | number
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }
+
+  export type ProjectFAQOrderByWithRelationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    question?: SortOrder
+    answer?: SortOrder
+    order?: SortOrder
+    project?: ProjectOrderByWithRelationInput
+    _relevance?: ProjectFAQOrderByRelevanceInput
+  }
+
+  export type ProjectFAQWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ProjectFAQWhereInput | ProjectFAQWhereInput[]
+    OR?: ProjectFAQWhereInput[]
+    NOT?: ProjectFAQWhereInput | ProjectFAQWhereInput[]
+    projectId?: StringFilter<"ProjectFAQ"> | string
+    question?: StringFilter<"ProjectFAQ"> | string
+    answer?: StringFilter<"ProjectFAQ"> | string
+    order?: IntFilter<"ProjectFAQ"> | number
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }, "id">
+
+  export type ProjectFAQOrderByWithAggregationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    question?: SortOrder
+    answer?: SortOrder
+    order?: SortOrder
+    _count?: ProjectFAQCountOrderByAggregateInput
+    _avg?: ProjectFAQAvgOrderByAggregateInput
+    _max?: ProjectFAQMaxOrderByAggregateInput
+    _min?: ProjectFAQMinOrderByAggregateInput
+    _sum?: ProjectFAQSumOrderByAggregateInput
+  }
+
+  export type ProjectFAQScalarWhereWithAggregatesInput = {
+    AND?: ProjectFAQScalarWhereWithAggregatesInput | ProjectFAQScalarWhereWithAggregatesInput[]
+    OR?: ProjectFAQScalarWhereWithAggregatesInput[]
+    NOT?: ProjectFAQScalarWhereWithAggregatesInput | ProjectFAQScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ProjectFAQ"> | string
+    projectId?: StringWithAggregatesFilter<"ProjectFAQ"> | string
+    question?: StringWithAggregatesFilter<"ProjectFAQ"> | string
+    answer?: StringWithAggregatesFilter<"ProjectFAQ"> | string
+    order?: IntWithAggregatesFilter<"ProjectFAQ"> | number
+  }
+
+  export type ProjectLandmarkWhereInput = {
+    AND?: ProjectLandmarkWhereInput | ProjectLandmarkWhereInput[]
+    OR?: ProjectLandmarkWhereInput[]
+    NOT?: ProjectLandmarkWhereInput | ProjectLandmarkWhereInput[]
+    id?: StringFilter<"ProjectLandmark"> | string
+    projectId?: StringFilter<"ProjectLandmark"> | string
+    category?: StringFilter<"ProjectLandmark"> | string
+    name?: StringFilter<"ProjectLandmark"> | string
+    distanceKm?: FloatFilter<"ProjectLandmark"> | number
+    order?: IntFilter<"ProjectLandmark"> | number
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }
+
+  export type ProjectLandmarkOrderByWithRelationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    category?: SortOrder
+    name?: SortOrder
+    distanceKm?: SortOrder
+    order?: SortOrder
+    project?: ProjectOrderByWithRelationInput
+    _relevance?: ProjectLandmarkOrderByRelevanceInput
+  }
+
+  export type ProjectLandmarkWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ProjectLandmarkWhereInput | ProjectLandmarkWhereInput[]
+    OR?: ProjectLandmarkWhereInput[]
+    NOT?: ProjectLandmarkWhereInput | ProjectLandmarkWhereInput[]
+    projectId?: StringFilter<"ProjectLandmark"> | string
+    category?: StringFilter<"ProjectLandmark"> | string
+    name?: StringFilter<"ProjectLandmark"> | string
+    distanceKm?: FloatFilter<"ProjectLandmark"> | number
+    order?: IntFilter<"ProjectLandmark"> | number
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }, "id">
+
+  export type ProjectLandmarkOrderByWithAggregationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    category?: SortOrder
+    name?: SortOrder
+    distanceKm?: SortOrder
+    order?: SortOrder
+    _count?: ProjectLandmarkCountOrderByAggregateInput
+    _avg?: ProjectLandmarkAvgOrderByAggregateInput
+    _max?: ProjectLandmarkMaxOrderByAggregateInput
+    _min?: ProjectLandmarkMinOrderByAggregateInput
+    _sum?: ProjectLandmarkSumOrderByAggregateInput
+  }
+
+  export type ProjectLandmarkScalarWhereWithAggregatesInput = {
+    AND?: ProjectLandmarkScalarWhereWithAggregatesInput | ProjectLandmarkScalarWhereWithAggregatesInput[]
+    OR?: ProjectLandmarkScalarWhereWithAggregatesInput[]
+    NOT?: ProjectLandmarkScalarWhereWithAggregatesInput | ProjectLandmarkScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ProjectLandmark"> | string
+    projectId?: StringWithAggregatesFilter<"ProjectLandmark"> | string
+    category?: StringWithAggregatesFilter<"ProjectLandmark"> | string
+    name?: StringWithAggregatesFilter<"ProjectLandmark"> | string
+    distanceKm?: FloatWithAggregatesFilter<"ProjectLandmark"> | number
+    order?: IntWithAggregatesFilter<"ProjectLandmark"> | number
   }
 
   export type CountryWhereInput = {
@@ -24517,9 +28202,11 @@ export namespace Prisma {
     email?: StringNullableFilter<"Enquiry"> | string | null
     message?: StringNullableFilter<"Enquiry"> | string | null
     propertyId?: StringNullableFilter<"Enquiry"> | string | null
+    projectId?: StringNullableFilter<"Enquiry"> | string | null
     buyerId?: StringNullableFilter<"Enquiry"> | string | null
     createdAt?: DateTimeFilter<"Enquiry"> | Date | string
     property?: XOR<PropertyNullableScalarRelationFilter, PropertyWhereInput> | null
+    project?: XOR<ProjectNullableScalarRelationFilter, ProjectWhereInput> | null
     buyer?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     leadViews?: LeadViewListRelationFilter
   }
@@ -24531,9 +28218,11 @@ export namespace Prisma {
     email?: SortOrderInput | SortOrder
     message?: SortOrderInput | SortOrder
     propertyId?: SortOrderInput | SortOrder
+    projectId?: SortOrderInput | SortOrder
     buyerId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     property?: PropertyOrderByWithRelationInput
+    project?: ProjectOrderByWithRelationInput
     buyer?: UserOrderByWithRelationInput
     leadViews?: LeadViewOrderByRelationAggregateInput
     _relevance?: EnquiryOrderByRelevanceInput
@@ -24549,9 +28238,11 @@ export namespace Prisma {
     email?: StringNullableFilter<"Enquiry"> | string | null
     message?: StringNullableFilter<"Enquiry"> | string | null
     propertyId?: StringNullableFilter<"Enquiry"> | string | null
+    projectId?: StringNullableFilter<"Enquiry"> | string | null
     buyerId?: StringNullableFilter<"Enquiry"> | string | null
     createdAt?: DateTimeFilter<"Enquiry"> | Date | string
     property?: XOR<PropertyNullableScalarRelationFilter, PropertyWhereInput> | null
+    project?: XOR<ProjectNullableScalarRelationFilter, ProjectWhereInput> | null
     buyer?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     leadViews?: LeadViewListRelationFilter
   }, "id">
@@ -24563,6 +28254,7 @@ export namespace Prisma {
     email?: SortOrderInput | SortOrder
     message?: SortOrderInput | SortOrder
     propertyId?: SortOrderInput | SortOrder
+    projectId?: SortOrderInput | SortOrder
     buyerId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: EnquiryCountOrderByAggregateInput
@@ -24580,6 +28272,7 @@ export namespace Prisma {
     email?: StringNullableWithAggregatesFilter<"Enquiry"> | string | null
     message?: StringNullableWithAggregatesFilter<"Enquiry"> | string | null
     propertyId?: StringNullableWithAggregatesFilter<"Enquiry"> | string | null
+    projectId?: StringNullableWithAggregatesFilter<"Enquiry"> | string | null
     buyerId?: StringNullableWithAggregatesFilter<"Enquiry"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Enquiry"> | Date | string
   }
@@ -25521,6 +29214,8 @@ export namespace Prisma {
     possessionDate?: Date | string | null
     amenities?: string | null
     reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -25528,6 +29223,10 @@ export namespace Prisma {
     developer: DeveloperCreateNestedOneWithoutProjectsInput
     units?: PropertyCreateNestedManyWithoutProjectInput
     images?: ProjectImageCreateNestedManyWithoutProjectInput
+    floorPlans?: ProjectFloorPlanCreateNestedManyWithoutProjectInput
+    faqs?: ProjectFAQCreateNestedManyWithoutProjectInput
+    landmarks?: ProjectLandmarkCreateNestedManyWithoutProjectInput
+    enquiries?: EnquiryCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateInput = {
@@ -25545,12 +29244,18 @@ export namespace Prisma {
     possessionDate?: Date | string | null
     amenities?: string | null
     reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     units?: PropertyUncheckedCreateNestedManyWithoutProjectInput
     images?: ProjectImageUncheckedCreateNestedManyWithoutProjectInput
+    floorPlans?: ProjectFloorPlanUncheckedCreateNestedManyWithoutProjectInput
+    faqs?: ProjectFAQUncheckedCreateNestedManyWithoutProjectInput
+    landmarks?: ProjectLandmarkUncheckedCreateNestedManyWithoutProjectInput
+    enquiries?: EnquiryUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUpdateInput = {
@@ -25567,6 +29272,8 @@ export namespace Prisma {
     possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     amenities?: NullableStringFieldUpdateOperationsInput | string | null
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25574,6 +29281,10 @@ export namespace Prisma {
     developer?: DeveloperUpdateOneRequiredWithoutProjectsNestedInput
     units?: PropertyUpdateManyWithoutProjectNestedInput
     images?: ProjectImageUpdateManyWithoutProjectNestedInput
+    floorPlans?: ProjectFloorPlanUpdateManyWithoutProjectNestedInput
+    faqs?: ProjectFAQUpdateManyWithoutProjectNestedInput
+    landmarks?: ProjectLandmarkUpdateManyWithoutProjectNestedInput
+    enquiries?: EnquiryUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateInput = {
@@ -25591,12 +29302,18 @@ export namespace Prisma {
     possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     amenities?: NullableStringFieldUpdateOperationsInput | string | null
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     units?: PropertyUncheckedUpdateManyWithoutProjectNestedInput
     images?: ProjectImageUncheckedUpdateManyWithoutProjectNestedInput
+    floorPlans?: ProjectFloorPlanUncheckedUpdateManyWithoutProjectNestedInput
+    faqs?: ProjectFAQUncheckedUpdateManyWithoutProjectNestedInput
+    landmarks?: ProjectLandmarkUncheckedUpdateManyWithoutProjectNestedInput
+    enquiries?: EnquiryUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectCreateManyInput = {
@@ -25614,6 +29331,8 @@ export namespace Prisma {
     possessionDate?: Date | string | null
     amenities?: string | null
     reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -25634,6 +29353,8 @@ export namespace Prisma {
     possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     amenities?: NullableStringFieldUpdateOperationsInput | string | null
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25655,6 +29376,8 @@ export namespace Prisma {
     possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     amenities?: NullableStringFieldUpdateOperationsInput | string | null
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25706,6 +29429,192 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     projectId?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectFloorPlanCreateInput = {
+    id?: string
+    configuration: string
+    areaSqft: number
+    price?: number | null
+    imageUrl?: string | null
+    order?: number
+    project: ProjectCreateNestedOneWithoutFloorPlansInput
+  }
+
+  export type ProjectFloorPlanUncheckedCreateInput = {
+    id?: string
+    projectId: string
+    configuration: string
+    areaSqft: number
+    price?: number | null
+    imageUrl?: string | null
+    order?: number
+  }
+
+  export type ProjectFloorPlanUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    configuration?: StringFieldUpdateOperationsInput | string
+    areaSqft?: IntFieldUpdateOperationsInput | number
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    project?: ProjectUpdateOneRequiredWithoutFloorPlansNestedInput
+  }
+
+  export type ProjectFloorPlanUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    configuration?: StringFieldUpdateOperationsInput | string
+    areaSqft?: IntFieldUpdateOperationsInput | number
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectFloorPlanCreateManyInput = {
+    id?: string
+    projectId: string
+    configuration: string
+    areaSqft: number
+    price?: number | null
+    imageUrl?: string | null
+    order?: number
+  }
+
+  export type ProjectFloorPlanUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    configuration?: StringFieldUpdateOperationsInput | string
+    areaSqft?: IntFieldUpdateOperationsInput | number
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectFloorPlanUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    configuration?: StringFieldUpdateOperationsInput | string
+    areaSqft?: IntFieldUpdateOperationsInput | number
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectFAQCreateInput = {
+    id?: string
+    question: string
+    answer: string
+    order?: number
+    project: ProjectCreateNestedOneWithoutFaqsInput
+  }
+
+  export type ProjectFAQUncheckedCreateInput = {
+    id?: string
+    projectId: string
+    question: string
+    answer: string
+    order?: number
+  }
+
+  export type ProjectFAQUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: StringFieldUpdateOperationsInput | string
+    answer?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    project?: ProjectUpdateOneRequiredWithoutFaqsNestedInput
+  }
+
+  export type ProjectFAQUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    question?: StringFieldUpdateOperationsInput | string
+    answer?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectFAQCreateManyInput = {
+    id?: string
+    projectId: string
+    question: string
+    answer: string
+    order?: number
+  }
+
+  export type ProjectFAQUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: StringFieldUpdateOperationsInput | string
+    answer?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectFAQUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    question?: StringFieldUpdateOperationsInput | string
+    answer?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectLandmarkCreateInput = {
+    id?: string
+    category: string
+    name: string
+    distanceKm: number
+    order?: number
+    project: ProjectCreateNestedOneWithoutLandmarksInput
+  }
+
+  export type ProjectLandmarkUncheckedCreateInput = {
+    id?: string
+    projectId: string
+    category: string
+    name: string
+    distanceKm: number
+    order?: number
+  }
+
+  export type ProjectLandmarkUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    distanceKm?: FloatFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
+    project?: ProjectUpdateOneRequiredWithoutLandmarksNestedInput
+  }
+
+  export type ProjectLandmarkUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    distanceKm?: FloatFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectLandmarkCreateManyInput = {
+    id?: string
+    projectId: string
+    category: string
+    name: string
+    distanceKm: number
+    order?: number
+  }
+
+  export type ProjectLandmarkUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    distanceKm?: FloatFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectLandmarkUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    distanceKm?: FloatFieldUpdateOperationsInput | number
     order?: IntFieldUpdateOperationsInput | number
   }
 
@@ -26358,6 +30267,7 @@ export namespace Prisma {
     message?: string | null
     createdAt?: Date | string
     property?: PropertyCreateNestedOneWithoutEnquiriesInput
+    project?: ProjectCreateNestedOneWithoutEnquiriesInput
     buyer?: UserCreateNestedOneWithoutEnquiriesInput
     leadViews?: LeadViewCreateNestedManyWithoutEnquiryInput
   }
@@ -26369,6 +30279,7 @@ export namespace Prisma {
     email?: string | null
     message?: string | null
     propertyId?: string | null
+    projectId?: string | null
     buyerId?: string | null
     createdAt?: Date | string
     leadViews?: LeadViewUncheckedCreateNestedManyWithoutEnquiryInput
@@ -26382,6 +30293,7 @@ export namespace Prisma {
     message?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     property?: PropertyUpdateOneWithoutEnquiriesNestedInput
+    project?: ProjectUpdateOneWithoutEnquiriesNestedInput
     buyer?: UserUpdateOneWithoutEnquiriesNestedInput
     leadViews?: LeadViewUpdateManyWithoutEnquiryNestedInput
   }
@@ -26393,6 +30305,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     message?: NullableStringFieldUpdateOperationsInput | string | null
     propertyId?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
     buyerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     leadViews?: LeadViewUncheckedUpdateManyWithoutEnquiryNestedInput
@@ -26405,6 +30318,7 @@ export namespace Prisma {
     email?: string | null
     message?: string | null
     propertyId?: string | null
+    projectId?: string | null
     buyerId?: string | null
     createdAt?: Date | string
   }
@@ -26425,6 +30339,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     message?: NullableStringFieldUpdateOperationsInput | string | null
     propertyId?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
     buyerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -27499,7 +31414,37 @@ export namespace Prisma {
     none?: ProjectImageWhereInput
   }
 
+  export type ProjectFloorPlanListRelationFilter = {
+    every?: ProjectFloorPlanWhereInput
+    some?: ProjectFloorPlanWhereInput
+    none?: ProjectFloorPlanWhereInput
+  }
+
+  export type ProjectFAQListRelationFilter = {
+    every?: ProjectFAQWhereInput
+    some?: ProjectFAQWhereInput
+    none?: ProjectFAQWhereInput
+  }
+
+  export type ProjectLandmarkListRelationFilter = {
+    every?: ProjectLandmarkWhereInput
+    some?: ProjectLandmarkWhereInput
+    none?: ProjectLandmarkWhereInput
+  }
+
   export type ProjectImageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProjectFloorPlanOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProjectFAQOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProjectLandmarkOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -27524,6 +31469,8 @@ export namespace Prisma {
     possessionDate?: SortOrder
     amenities?: SortOrder
     reraNumber?: SortOrder
+    highlights?: SortOrder
+    brochureUrl?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     createdAt?: SortOrder
@@ -27550,6 +31497,8 @@ export namespace Prisma {
     possessionDate?: SortOrder
     amenities?: SortOrder
     reraNumber?: SortOrder
+    highlights?: SortOrder
+    brochureUrl?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     createdAt?: SortOrder
@@ -27571,6 +31520,8 @@ export namespace Prisma {
     possessionDate?: SortOrder
     amenities?: SortOrder
     reraNumber?: SortOrder
+    highlights?: SortOrder
+    brochureUrl?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     createdAt?: SortOrder
@@ -27630,6 +31581,162 @@ export namespace Prisma {
 
   export type ProjectImageSumOrderByAggregateInput = {
     order?: SortOrder
+  }
+
+  export type ProjectFloorPlanOrderByRelevanceInput = {
+    fields: ProjectFloorPlanOrderByRelevanceFieldEnum | ProjectFloorPlanOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ProjectFloorPlanCountOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    configuration?: SortOrder
+    areaSqft?: SortOrder
+    price?: SortOrder
+    imageUrl?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ProjectFloorPlanAvgOrderByAggregateInput = {
+    areaSqft?: SortOrder
+    price?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ProjectFloorPlanMaxOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    configuration?: SortOrder
+    areaSqft?: SortOrder
+    price?: SortOrder
+    imageUrl?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ProjectFloorPlanMinOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    configuration?: SortOrder
+    areaSqft?: SortOrder
+    price?: SortOrder
+    imageUrl?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ProjectFloorPlanSumOrderByAggregateInput = {
+    areaSqft?: SortOrder
+    price?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ProjectFAQOrderByRelevanceInput = {
+    fields: ProjectFAQOrderByRelevanceFieldEnum | ProjectFAQOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ProjectFAQCountOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    question?: SortOrder
+    answer?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ProjectFAQAvgOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type ProjectFAQMaxOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    question?: SortOrder
+    answer?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ProjectFAQMinOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    question?: SortOrder
+    answer?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ProjectFAQSumOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type ProjectLandmarkOrderByRelevanceInput = {
+    fields: ProjectLandmarkOrderByRelevanceFieldEnum | ProjectLandmarkOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ProjectLandmarkCountOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    category?: SortOrder
+    name?: SortOrder
+    distanceKm?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ProjectLandmarkAvgOrderByAggregateInput = {
+    distanceKm?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ProjectLandmarkMaxOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    category?: SortOrder
+    name?: SortOrder
+    distanceKm?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ProjectLandmarkMinOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    category?: SortOrder
+    name?: SortOrder
+    distanceKm?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ProjectLandmarkSumOrderByAggregateInput = {
+    distanceKm?: SortOrder
+    order?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type StateListRelationFilter = {
@@ -28204,6 +32311,7 @@ export namespace Prisma {
     email?: SortOrder
     message?: SortOrder
     propertyId?: SortOrder
+    projectId?: SortOrder
     buyerId?: SortOrder
     createdAt?: SortOrder
   }
@@ -28215,6 +32323,7 @@ export namespace Prisma {
     email?: SortOrder
     message?: SortOrder
     propertyId?: SortOrder
+    projectId?: SortOrder
     buyerId?: SortOrder
     createdAt?: SortOrder
   }
@@ -28226,6 +32335,7 @@ export namespace Prisma {
     email?: SortOrder
     message?: SortOrder
     propertyId?: SortOrder
+    projectId?: SortOrder
     buyerId?: SortOrder
     createdAt?: SortOrder
   }
@@ -28920,6 +33030,34 @@ export namespace Prisma {
     connect?: ProjectImageWhereUniqueInput | ProjectImageWhereUniqueInput[]
   }
 
+  export type ProjectFloorPlanCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectFloorPlanCreateWithoutProjectInput, ProjectFloorPlanUncheckedCreateWithoutProjectInput> | ProjectFloorPlanCreateWithoutProjectInput[] | ProjectFloorPlanUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectFloorPlanCreateOrConnectWithoutProjectInput | ProjectFloorPlanCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectFloorPlanCreateManyProjectInputEnvelope
+    connect?: ProjectFloorPlanWhereUniqueInput | ProjectFloorPlanWhereUniqueInput[]
+  }
+
+  export type ProjectFAQCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectFAQCreateWithoutProjectInput, ProjectFAQUncheckedCreateWithoutProjectInput> | ProjectFAQCreateWithoutProjectInput[] | ProjectFAQUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectFAQCreateOrConnectWithoutProjectInput | ProjectFAQCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectFAQCreateManyProjectInputEnvelope
+    connect?: ProjectFAQWhereUniqueInput | ProjectFAQWhereUniqueInput[]
+  }
+
+  export type ProjectLandmarkCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectLandmarkCreateWithoutProjectInput, ProjectLandmarkUncheckedCreateWithoutProjectInput> | ProjectLandmarkCreateWithoutProjectInput[] | ProjectLandmarkUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectLandmarkCreateOrConnectWithoutProjectInput | ProjectLandmarkCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectLandmarkCreateManyProjectInputEnvelope
+    connect?: ProjectLandmarkWhereUniqueInput | ProjectLandmarkWhereUniqueInput[]
+  }
+
+  export type EnquiryCreateNestedManyWithoutProjectInput = {
+    create?: XOR<EnquiryCreateWithoutProjectInput, EnquiryUncheckedCreateWithoutProjectInput> | EnquiryCreateWithoutProjectInput[] | EnquiryUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: EnquiryCreateOrConnectWithoutProjectInput | EnquiryCreateOrConnectWithoutProjectInput[]
+    createMany?: EnquiryCreateManyProjectInputEnvelope
+    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+  }
+
   export type PropertyUncheckedCreateNestedManyWithoutProjectInput = {
     create?: XOR<PropertyCreateWithoutProjectInput, PropertyUncheckedCreateWithoutProjectInput> | PropertyCreateWithoutProjectInput[] | PropertyUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: PropertyCreateOrConnectWithoutProjectInput | PropertyCreateOrConnectWithoutProjectInput[]
@@ -28932,6 +33070,34 @@ export namespace Prisma {
     connectOrCreate?: ProjectImageCreateOrConnectWithoutProjectInput | ProjectImageCreateOrConnectWithoutProjectInput[]
     createMany?: ProjectImageCreateManyProjectInputEnvelope
     connect?: ProjectImageWhereUniqueInput | ProjectImageWhereUniqueInput[]
+  }
+
+  export type ProjectFloorPlanUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectFloorPlanCreateWithoutProjectInput, ProjectFloorPlanUncheckedCreateWithoutProjectInput> | ProjectFloorPlanCreateWithoutProjectInput[] | ProjectFloorPlanUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectFloorPlanCreateOrConnectWithoutProjectInput | ProjectFloorPlanCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectFloorPlanCreateManyProjectInputEnvelope
+    connect?: ProjectFloorPlanWhereUniqueInput | ProjectFloorPlanWhereUniqueInput[]
+  }
+
+  export type ProjectFAQUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectFAQCreateWithoutProjectInput, ProjectFAQUncheckedCreateWithoutProjectInput> | ProjectFAQCreateWithoutProjectInput[] | ProjectFAQUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectFAQCreateOrConnectWithoutProjectInput | ProjectFAQCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectFAQCreateManyProjectInputEnvelope
+    connect?: ProjectFAQWhereUniqueInput | ProjectFAQWhereUniqueInput[]
+  }
+
+  export type ProjectLandmarkUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectLandmarkCreateWithoutProjectInput, ProjectLandmarkUncheckedCreateWithoutProjectInput> | ProjectLandmarkCreateWithoutProjectInput[] | ProjectLandmarkUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectLandmarkCreateOrConnectWithoutProjectInput | ProjectLandmarkCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectLandmarkCreateManyProjectInputEnvelope
+    connect?: ProjectLandmarkWhereUniqueInput | ProjectLandmarkWhereUniqueInput[]
+  }
+
+  export type EnquiryUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<EnquiryCreateWithoutProjectInput, EnquiryUncheckedCreateWithoutProjectInput> | EnquiryCreateWithoutProjectInput[] | EnquiryUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: EnquiryCreateOrConnectWithoutProjectInput | EnquiryCreateOrConnectWithoutProjectInput[]
+    createMany?: EnquiryCreateManyProjectInputEnvelope
+    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
   }
 
   export type EnumProjectStatusFieldUpdateOperationsInput = {
@@ -28974,6 +33140,62 @@ export namespace Prisma {
     deleteMany?: ProjectImageScalarWhereInput | ProjectImageScalarWhereInput[]
   }
 
+  export type ProjectFloorPlanUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectFloorPlanCreateWithoutProjectInput, ProjectFloorPlanUncheckedCreateWithoutProjectInput> | ProjectFloorPlanCreateWithoutProjectInput[] | ProjectFloorPlanUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectFloorPlanCreateOrConnectWithoutProjectInput | ProjectFloorPlanCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectFloorPlanUpsertWithWhereUniqueWithoutProjectInput | ProjectFloorPlanUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectFloorPlanCreateManyProjectInputEnvelope
+    set?: ProjectFloorPlanWhereUniqueInput | ProjectFloorPlanWhereUniqueInput[]
+    disconnect?: ProjectFloorPlanWhereUniqueInput | ProjectFloorPlanWhereUniqueInput[]
+    delete?: ProjectFloorPlanWhereUniqueInput | ProjectFloorPlanWhereUniqueInput[]
+    connect?: ProjectFloorPlanWhereUniqueInput | ProjectFloorPlanWhereUniqueInput[]
+    update?: ProjectFloorPlanUpdateWithWhereUniqueWithoutProjectInput | ProjectFloorPlanUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectFloorPlanUpdateManyWithWhereWithoutProjectInput | ProjectFloorPlanUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectFloorPlanScalarWhereInput | ProjectFloorPlanScalarWhereInput[]
+  }
+
+  export type ProjectFAQUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectFAQCreateWithoutProjectInput, ProjectFAQUncheckedCreateWithoutProjectInput> | ProjectFAQCreateWithoutProjectInput[] | ProjectFAQUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectFAQCreateOrConnectWithoutProjectInput | ProjectFAQCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectFAQUpsertWithWhereUniqueWithoutProjectInput | ProjectFAQUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectFAQCreateManyProjectInputEnvelope
+    set?: ProjectFAQWhereUniqueInput | ProjectFAQWhereUniqueInput[]
+    disconnect?: ProjectFAQWhereUniqueInput | ProjectFAQWhereUniqueInput[]
+    delete?: ProjectFAQWhereUniqueInput | ProjectFAQWhereUniqueInput[]
+    connect?: ProjectFAQWhereUniqueInput | ProjectFAQWhereUniqueInput[]
+    update?: ProjectFAQUpdateWithWhereUniqueWithoutProjectInput | ProjectFAQUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectFAQUpdateManyWithWhereWithoutProjectInput | ProjectFAQUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectFAQScalarWhereInput | ProjectFAQScalarWhereInput[]
+  }
+
+  export type ProjectLandmarkUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectLandmarkCreateWithoutProjectInput, ProjectLandmarkUncheckedCreateWithoutProjectInput> | ProjectLandmarkCreateWithoutProjectInput[] | ProjectLandmarkUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectLandmarkCreateOrConnectWithoutProjectInput | ProjectLandmarkCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectLandmarkUpsertWithWhereUniqueWithoutProjectInput | ProjectLandmarkUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectLandmarkCreateManyProjectInputEnvelope
+    set?: ProjectLandmarkWhereUniqueInput | ProjectLandmarkWhereUniqueInput[]
+    disconnect?: ProjectLandmarkWhereUniqueInput | ProjectLandmarkWhereUniqueInput[]
+    delete?: ProjectLandmarkWhereUniqueInput | ProjectLandmarkWhereUniqueInput[]
+    connect?: ProjectLandmarkWhereUniqueInput | ProjectLandmarkWhereUniqueInput[]
+    update?: ProjectLandmarkUpdateWithWhereUniqueWithoutProjectInput | ProjectLandmarkUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectLandmarkUpdateManyWithWhereWithoutProjectInput | ProjectLandmarkUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectLandmarkScalarWhereInput | ProjectLandmarkScalarWhereInput[]
+  }
+
+  export type EnquiryUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<EnquiryCreateWithoutProjectInput, EnquiryUncheckedCreateWithoutProjectInput> | EnquiryCreateWithoutProjectInput[] | EnquiryUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: EnquiryCreateOrConnectWithoutProjectInput | EnquiryCreateOrConnectWithoutProjectInput[]
+    upsert?: EnquiryUpsertWithWhereUniqueWithoutProjectInput | EnquiryUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: EnquiryCreateManyProjectInputEnvelope
+    set?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    disconnect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    delete?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    update?: EnquiryUpdateWithWhereUniqueWithoutProjectInput | EnquiryUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: EnquiryUpdateManyWithWhereWithoutProjectInput | EnquiryUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: EnquiryScalarWhereInput | EnquiryScalarWhereInput[]
+  }
+
   export type PropertyUncheckedUpdateManyWithoutProjectNestedInput = {
     create?: XOR<PropertyCreateWithoutProjectInput, PropertyUncheckedCreateWithoutProjectInput> | PropertyCreateWithoutProjectInput[] | PropertyUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: PropertyCreateOrConnectWithoutProjectInput | PropertyCreateOrConnectWithoutProjectInput[]
@@ -29002,6 +33224,62 @@ export namespace Prisma {
     deleteMany?: ProjectImageScalarWhereInput | ProjectImageScalarWhereInput[]
   }
 
+  export type ProjectFloorPlanUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectFloorPlanCreateWithoutProjectInput, ProjectFloorPlanUncheckedCreateWithoutProjectInput> | ProjectFloorPlanCreateWithoutProjectInput[] | ProjectFloorPlanUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectFloorPlanCreateOrConnectWithoutProjectInput | ProjectFloorPlanCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectFloorPlanUpsertWithWhereUniqueWithoutProjectInput | ProjectFloorPlanUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectFloorPlanCreateManyProjectInputEnvelope
+    set?: ProjectFloorPlanWhereUniqueInput | ProjectFloorPlanWhereUniqueInput[]
+    disconnect?: ProjectFloorPlanWhereUniqueInput | ProjectFloorPlanWhereUniqueInput[]
+    delete?: ProjectFloorPlanWhereUniqueInput | ProjectFloorPlanWhereUniqueInput[]
+    connect?: ProjectFloorPlanWhereUniqueInput | ProjectFloorPlanWhereUniqueInput[]
+    update?: ProjectFloorPlanUpdateWithWhereUniqueWithoutProjectInput | ProjectFloorPlanUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectFloorPlanUpdateManyWithWhereWithoutProjectInput | ProjectFloorPlanUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectFloorPlanScalarWhereInput | ProjectFloorPlanScalarWhereInput[]
+  }
+
+  export type ProjectFAQUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectFAQCreateWithoutProjectInput, ProjectFAQUncheckedCreateWithoutProjectInput> | ProjectFAQCreateWithoutProjectInput[] | ProjectFAQUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectFAQCreateOrConnectWithoutProjectInput | ProjectFAQCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectFAQUpsertWithWhereUniqueWithoutProjectInput | ProjectFAQUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectFAQCreateManyProjectInputEnvelope
+    set?: ProjectFAQWhereUniqueInput | ProjectFAQWhereUniqueInput[]
+    disconnect?: ProjectFAQWhereUniqueInput | ProjectFAQWhereUniqueInput[]
+    delete?: ProjectFAQWhereUniqueInput | ProjectFAQWhereUniqueInput[]
+    connect?: ProjectFAQWhereUniqueInput | ProjectFAQWhereUniqueInput[]
+    update?: ProjectFAQUpdateWithWhereUniqueWithoutProjectInput | ProjectFAQUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectFAQUpdateManyWithWhereWithoutProjectInput | ProjectFAQUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectFAQScalarWhereInput | ProjectFAQScalarWhereInput[]
+  }
+
+  export type ProjectLandmarkUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectLandmarkCreateWithoutProjectInput, ProjectLandmarkUncheckedCreateWithoutProjectInput> | ProjectLandmarkCreateWithoutProjectInput[] | ProjectLandmarkUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectLandmarkCreateOrConnectWithoutProjectInput | ProjectLandmarkCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectLandmarkUpsertWithWhereUniqueWithoutProjectInput | ProjectLandmarkUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectLandmarkCreateManyProjectInputEnvelope
+    set?: ProjectLandmarkWhereUniqueInput | ProjectLandmarkWhereUniqueInput[]
+    disconnect?: ProjectLandmarkWhereUniqueInput | ProjectLandmarkWhereUniqueInput[]
+    delete?: ProjectLandmarkWhereUniqueInput | ProjectLandmarkWhereUniqueInput[]
+    connect?: ProjectLandmarkWhereUniqueInput | ProjectLandmarkWhereUniqueInput[]
+    update?: ProjectLandmarkUpdateWithWhereUniqueWithoutProjectInput | ProjectLandmarkUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectLandmarkUpdateManyWithWhereWithoutProjectInput | ProjectLandmarkUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectLandmarkScalarWhereInput | ProjectLandmarkScalarWhereInput[]
+  }
+
+  export type EnquiryUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<EnquiryCreateWithoutProjectInput, EnquiryUncheckedCreateWithoutProjectInput> | EnquiryCreateWithoutProjectInput[] | EnquiryUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: EnquiryCreateOrConnectWithoutProjectInput | EnquiryCreateOrConnectWithoutProjectInput[]
+    upsert?: EnquiryUpsertWithWhereUniqueWithoutProjectInput | EnquiryUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: EnquiryCreateManyProjectInputEnvelope
+    set?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    disconnect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    delete?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    connect?: EnquiryWhereUniqueInput | EnquiryWhereUniqueInput[]
+    update?: EnquiryUpdateWithWhereUniqueWithoutProjectInput | EnquiryUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: EnquiryUpdateManyWithWhereWithoutProjectInput | EnquiryUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: EnquiryScalarWhereInput | EnquiryScalarWhereInput[]
+  }
+
   export type ProjectCreateNestedOneWithoutImagesInput = {
     create?: XOR<ProjectCreateWithoutImagesInput, ProjectUncheckedCreateWithoutImagesInput>
     connectOrCreate?: ProjectCreateOrConnectWithoutImagesInput
@@ -29014,6 +33292,56 @@ export namespace Prisma {
     upsert?: ProjectUpsertWithoutImagesInput
     connect?: ProjectWhereUniqueInput
     update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutImagesInput, ProjectUpdateWithoutImagesInput>, ProjectUncheckedUpdateWithoutImagesInput>
+  }
+
+  export type ProjectCreateNestedOneWithoutFloorPlansInput = {
+    create?: XOR<ProjectCreateWithoutFloorPlansInput, ProjectUncheckedCreateWithoutFloorPlansInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutFloorPlansInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type ProjectUpdateOneRequiredWithoutFloorPlansNestedInput = {
+    create?: XOR<ProjectCreateWithoutFloorPlansInput, ProjectUncheckedCreateWithoutFloorPlansInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutFloorPlansInput
+    upsert?: ProjectUpsertWithoutFloorPlansInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutFloorPlansInput, ProjectUpdateWithoutFloorPlansInput>, ProjectUncheckedUpdateWithoutFloorPlansInput>
+  }
+
+  export type ProjectCreateNestedOneWithoutFaqsInput = {
+    create?: XOR<ProjectCreateWithoutFaqsInput, ProjectUncheckedCreateWithoutFaqsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutFaqsInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type ProjectUpdateOneRequiredWithoutFaqsNestedInput = {
+    create?: XOR<ProjectCreateWithoutFaqsInput, ProjectUncheckedCreateWithoutFaqsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutFaqsInput
+    upsert?: ProjectUpsertWithoutFaqsInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutFaqsInput, ProjectUpdateWithoutFaqsInput>, ProjectUncheckedUpdateWithoutFaqsInput>
+  }
+
+  export type ProjectCreateNestedOneWithoutLandmarksInput = {
+    create?: XOR<ProjectCreateWithoutLandmarksInput, ProjectUncheckedCreateWithoutLandmarksInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutLandmarksInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type ProjectUpdateOneRequiredWithoutLandmarksNestedInput = {
+    create?: XOR<ProjectCreateWithoutLandmarksInput, ProjectUncheckedCreateWithoutLandmarksInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutLandmarksInput
+    upsert?: ProjectUpsertWithoutLandmarksInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutLandmarksInput, ProjectUpdateWithoutLandmarksInput>, ProjectUncheckedUpdateWithoutLandmarksInput>
   }
 
   export type StateCreateNestedManyWithoutCountryInput = {
@@ -29392,6 +33720,12 @@ export namespace Prisma {
     connect?: PropertyWhereUniqueInput
   }
 
+  export type ProjectCreateNestedOneWithoutEnquiriesInput = {
+    create?: XOR<ProjectCreateWithoutEnquiriesInput, ProjectUncheckedCreateWithoutEnquiriesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutEnquiriesInput
+    connect?: ProjectWhereUniqueInput
+  }
+
   export type UserCreateNestedOneWithoutEnquiriesInput = {
     create?: XOR<UserCreateWithoutEnquiriesInput, UserUncheckedCreateWithoutEnquiriesInput>
     connectOrCreate?: UserCreateOrConnectWithoutEnquiriesInput
@@ -29420,6 +33754,16 @@ export namespace Prisma {
     delete?: PropertyWhereInput | boolean
     connect?: PropertyWhereUniqueInput
     update?: XOR<XOR<PropertyUpdateToOneWithWhereWithoutEnquiriesInput, PropertyUpdateWithoutEnquiriesInput>, PropertyUncheckedUpdateWithoutEnquiriesInput>
+  }
+
+  export type ProjectUpdateOneWithoutEnquiriesNestedInput = {
+    create?: XOR<ProjectCreateWithoutEnquiriesInput, ProjectUncheckedCreateWithoutEnquiriesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutEnquiriesInput
+    upsert?: ProjectUpsertWithoutEnquiriesInput
+    disconnect?: ProjectWhereInput | boolean
+    delete?: ProjectWhereInput | boolean
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutEnquiriesInput, ProjectUpdateWithoutEnquiriesInput>, ProjectUncheckedUpdateWithoutEnquiriesInput>
   }
 
   export type UserUpdateOneWithoutEnquiriesNestedInput = {
@@ -29765,6 +34109,22 @@ export namespace Prisma {
     _max?: NestedEnumProjectStatusFilter<$PrismaModel>
   }
 
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
   export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | null
@@ -30064,6 +34424,7 @@ export namespace Prisma {
     message?: string | null
     createdAt?: Date | string
     property?: PropertyCreateNestedOneWithoutEnquiriesInput
+    project?: ProjectCreateNestedOneWithoutEnquiriesInput
     leadViews?: LeadViewCreateNestedManyWithoutEnquiryInput
   }
 
@@ -30074,6 +34435,7 @@ export namespace Prisma {
     email?: string | null
     message?: string | null
     propertyId?: string | null
+    projectId?: string | null
     createdAt?: Date | string
     leadViews?: LeadViewUncheckedCreateNestedManyWithoutEnquiryInput
   }
@@ -30249,6 +34611,7 @@ export namespace Prisma {
     email?: StringNullableFilter<"Enquiry"> | string | null
     message?: StringNullableFilter<"Enquiry"> | string | null
     propertyId?: StringNullableFilter<"Enquiry"> | string | null
+    projectId?: StringNullableFilter<"Enquiry"> | string | null
     buyerId?: StringNullableFilter<"Enquiry"> | string | null
     createdAt?: DateTimeFilter<"Enquiry"> | Date | string
   }
@@ -30540,6 +34903,7 @@ export namespace Prisma {
     message?: string | null
     createdAt?: Date | string
     property?: PropertyCreateNestedOneWithoutEnquiriesInput
+    project?: ProjectCreateNestedOneWithoutEnquiriesInput
     buyer?: UserCreateNestedOneWithoutEnquiriesInput
   }
 
@@ -30550,6 +34914,7 @@ export namespace Prisma {
     email?: string | null
     message?: string | null
     propertyId?: string | null
+    projectId?: string | null
     buyerId?: string | null
     createdAt?: Date | string
   }
@@ -30637,6 +35002,7 @@ export namespace Prisma {
     message?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     property?: PropertyUpdateOneWithoutEnquiriesNestedInput
+    project?: ProjectUpdateOneWithoutEnquiriesNestedInput
     buyer?: UserUpdateOneWithoutEnquiriesNestedInput
   }
 
@@ -30647,6 +35013,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     message?: NullableStringFieldUpdateOperationsInput | string | null
     propertyId?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
     buyerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -30665,12 +35032,18 @@ export namespace Prisma {
     possessionDate?: Date | string | null
     amenities?: string | null
     reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     units?: PropertyCreateNestedManyWithoutProjectInput
     images?: ProjectImageCreateNestedManyWithoutProjectInput
+    floorPlans?: ProjectFloorPlanCreateNestedManyWithoutProjectInput
+    faqs?: ProjectFAQCreateNestedManyWithoutProjectInput
+    landmarks?: ProjectLandmarkCreateNestedManyWithoutProjectInput
+    enquiries?: EnquiryCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutDeveloperInput = {
@@ -30687,12 +35060,18 @@ export namespace Prisma {
     possessionDate?: Date | string | null
     amenities?: string | null
     reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     units?: PropertyUncheckedCreateNestedManyWithoutProjectInput
     images?: ProjectImageUncheckedCreateNestedManyWithoutProjectInput
+    floorPlans?: ProjectFloorPlanUncheckedCreateNestedManyWithoutProjectInput
+    faqs?: ProjectFAQUncheckedCreateNestedManyWithoutProjectInput
+    landmarks?: ProjectLandmarkUncheckedCreateNestedManyWithoutProjectInput
+    enquiries?: EnquiryUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutDeveloperInput = {
@@ -30739,6 +35118,8 @@ export namespace Prisma {
     possessionDate?: DateTimeNullableFilter<"Project"> | Date | string | null
     amenities?: StringNullableFilter<"Project"> | string | null
     reraNumber?: StringNullableFilter<"Project"> | string | null
+    highlights?: StringNullableFilter<"Project"> | string | null
+    brochureUrl?: StringNullableFilter<"Project"> | string | null
     metaTitle?: StringNullableFilter<"Project"> | string | null
     metaDescription?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
@@ -30890,6 +35271,118 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ProjectFloorPlanCreateWithoutProjectInput = {
+    id?: string
+    configuration: string
+    areaSqft: number
+    price?: number | null
+    imageUrl?: string | null
+    order?: number
+  }
+
+  export type ProjectFloorPlanUncheckedCreateWithoutProjectInput = {
+    id?: string
+    configuration: string
+    areaSqft: number
+    price?: number | null
+    imageUrl?: string | null
+    order?: number
+  }
+
+  export type ProjectFloorPlanCreateOrConnectWithoutProjectInput = {
+    where: ProjectFloorPlanWhereUniqueInput
+    create: XOR<ProjectFloorPlanCreateWithoutProjectInput, ProjectFloorPlanUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectFloorPlanCreateManyProjectInputEnvelope = {
+    data: ProjectFloorPlanCreateManyProjectInput | ProjectFloorPlanCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectFAQCreateWithoutProjectInput = {
+    id?: string
+    question: string
+    answer: string
+    order?: number
+  }
+
+  export type ProjectFAQUncheckedCreateWithoutProjectInput = {
+    id?: string
+    question: string
+    answer: string
+    order?: number
+  }
+
+  export type ProjectFAQCreateOrConnectWithoutProjectInput = {
+    where: ProjectFAQWhereUniqueInput
+    create: XOR<ProjectFAQCreateWithoutProjectInput, ProjectFAQUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectFAQCreateManyProjectInputEnvelope = {
+    data: ProjectFAQCreateManyProjectInput | ProjectFAQCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProjectLandmarkCreateWithoutProjectInput = {
+    id?: string
+    category: string
+    name: string
+    distanceKm: number
+    order?: number
+  }
+
+  export type ProjectLandmarkUncheckedCreateWithoutProjectInput = {
+    id?: string
+    category: string
+    name: string
+    distanceKm: number
+    order?: number
+  }
+
+  export type ProjectLandmarkCreateOrConnectWithoutProjectInput = {
+    where: ProjectLandmarkWhereUniqueInput
+    create: XOR<ProjectLandmarkCreateWithoutProjectInput, ProjectLandmarkUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectLandmarkCreateManyProjectInputEnvelope = {
+    data: ProjectLandmarkCreateManyProjectInput | ProjectLandmarkCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EnquiryCreateWithoutProjectInput = {
+    id?: string
+    name: string
+    phone: string
+    email?: string | null
+    message?: string | null
+    createdAt?: Date | string
+    property?: PropertyCreateNestedOneWithoutEnquiriesInput
+    buyer?: UserCreateNestedOneWithoutEnquiriesInput
+    leadViews?: LeadViewCreateNestedManyWithoutEnquiryInput
+  }
+
+  export type EnquiryUncheckedCreateWithoutProjectInput = {
+    id?: string
+    name: string
+    phone: string
+    email?: string | null
+    message?: string | null
+    propertyId?: string | null
+    buyerId?: string | null
+    createdAt?: Date | string
+    leadViews?: LeadViewUncheckedCreateNestedManyWithoutEnquiryInput
+  }
+
+  export type EnquiryCreateOrConnectWithoutProjectInput = {
+    where: EnquiryWhereUniqueInput
+    create: XOR<EnquiryCreateWithoutProjectInput, EnquiryUncheckedCreateWithoutProjectInput>
+  }
+
+  export type EnquiryCreateManyProjectInputEnvelope = {
+    data: EnquiryCreateManyProjectInput | EnquiryCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
   export type DeveloperUpsertWithoutProjectsInput = {
     update: XOR<DeveloperUpdateWithoutProjectsInput, DeveloperUncheckedUpdateWithoutProjectsInput>
     create: XOR<DeveloperCreateWithoutProjectsInput, DeveloperUncheckedCreateWithoutProjectsInput>
@@ -30979,6 +35472,106 @@ export namespace Prisma {
     order?: IntFilter<"ProjectImage"> | number
   }
 
+  export type ProjectFloorPlanUpsertWithWhereUniqueWithoutProjectInput = {
+    where: ProjectFloorPlanWhereUniqueInput
+    update: XOR<ProjectFloorPlanUpdateWithoutProjectInput, ProjectFloorPlanUncheckedUpdateWithoutProjectInput>
+    create: XOR<ProjectFloorPlanCreateWithoutProjectInput, ProjectFloorPlanUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectFloorPlanUpdateWithWhereUniqueWithoutProjectInput = {
+    where: ProjectFloorPlanWhereUniqueInput
+    data: XOR<ProjectFloorPlanUpdateWithoutProjectInput, ProjectFloorPlanUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type ProjectFloorPlanUpdateManyWithWhereWithoutProjectInput = {
+    where: ProjectFloorPlanScalarWhereInput
+    data: XOR<ProjectFloorPlanUpdateManyMutationInput, ProjectFloorPlanUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type ProjectFloorPlanScalarWhereInput = {
+    AND?: ProjectFloorPlanScalarWhereInput | ProjectFloorPlanScalarWhereInput[]
+    OR?: ProjectFloorPlanScalarWhereInput[]
+    NOT?: ProjectFloorPlanScalarWhereInput | ProjectFloorPlanScalarWhereInput[]
+    id?: StringFilter<"ProjectFloorPlan"> | string
+    projectId?: StringFilter<"ProjectFloorPlan"> | string
+    configuration?: StringFilter<"ProjectFloorPlan"> | string
+    areaSqft?: IntFilter<"ProjectFloorPlan"> | number
+    price?: IntNullableFilter<"ProjectFloorPlan"> | number | null
+    imageUrl?: StringNullableFilter<"ProjectFloorPlan"> | string | null
+    order?: IntFilter<"ProjectFloorPlan"> | number
+  }
+
+  export type ProjectFAQUpsertWithWhereUniqueWithoutProjectInput = {
+    where: ProjectFAQWhereUniqueInput
+    update: XOR<ProjectFAQUpdateWithoutProjectInput, ProjectFAQUncheckedUpdateWithoutProjectInput>
+    create: XOR<ProjectFAQCreateWithoutProjectInput, ProjectFAQUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectFAQUpdateWithWhereUniqueWithoutProjectInput = {
+    where: ProjectFAQWhereUniqueInput
+    data: XOR<ProjectFAQUpdateWithoutProjectInput, ProjectFAQUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type ProjectFAQUpdateManyWithWhereWithoutProjectInput = {
+    where: ProjectFAQScalarWhereInput
+    data: XOR<ProjectFAQUpdateManyMutationInput, ProjectFAQUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type ProjectFAQScalarWhereInput = {
+    AND?: ProjectFAQScalarWhereInput | ProjectFAQScalarWhereInput[]
+    OR?: ProjectFAQScalarWhereInput[]
+    NOT?: ProjectFAQScalarWhereInput | ProjectFAQScalarWhereInput[]
+    id?: StringFilter<"ProjectFAQ"> | string
+    projectId?: StringFilter<"ProjectFAQ"> | string
+    question?: StringFilter<"ProjectFAQ"> | string
+    answer?: StringFilter<"ProjectFAQ"> | string
+    order?: IntFilter<"ProjectFAQ"> | number
+  }
+
+  export type ProjectLandmarkUpsertWithWhereUniqueWithoutProjectInput = {
+    where: ProjectLandmarkWhereUniqueInput
+    update: XOR<ProjectLandmarkUpdateWithoutProjectInput, ProjectLandmarkUncheckedUpdateWithoutProjectInput>
+    create: XOR<ProjectLandmarkCreateWithoutProjectInput, ProjectLandmarkUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectLandmarkUpdateWithWhereUniqueWithoutProjectInput = {
+    where: ProjectLandmarkWhereUniqueInput
+    data: XOR<ProjectLandmarkUpdateWithoutProjectInput, ProjectLandmarkUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type ProjectLandmarkUpdateManyWithWhereWithoutProjectInput = {
+    where: ProjectLandmarkScalarWhereInput
+    data: XOR<ProjectLandmarkUpdateManyMutationInput, ProjectLandmarkUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type ProjectLandmarkScalarWhereInput = {
+    AND?: ProjectLandmarkScalarWhereInput | ProjectLandmarkScalarWhereInput[]
+    OR?: ProjectLandmarkScalarWhereInput[]
+    NOT?: ProjectLandmarkScalarWhereInput | ProjectLandmarkScalarWhereInput[]
+    id?: StringFilter<"ProjectLandmark"> | string
+    projectId?: StringFilter<"ProjectLandmark"> | string
+    category?: StringFilter<"ProjectLandmark"> | string
+    name?: StringFilter<"ProjectLandmark"> | string
+    distanceKm?: FloatFilter<"ProjectLandmark"> | number
+    order?: IntFilter<"ProjectLandmark"> | number
+  }
+
+  export type EnquiryUpsertWithWhereUniqueWithoutProjectInput = {
+    where: EnquiryWhereUniqueInput
+    update: XOR<EnquiryUpdateWithoutProjectInput, EnquiryUncheckedUpdateWithoutProjectInput>
+    create: XOR<EnquiryCreateWithoutProjectInput, EnquiryUncheckedCreateWithoutProjectInput>
+  }
+
+  export type EnquiryUpdateWithWhereUniqueWithoutProjectInput = {
+    where: EnquiryWhereUniqueInput
+    data: XOR<EnquiryUpdateWithoutProjectInput, EnquiryUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type EnquiryUpdateManyWithWhereWithoutProjectInput = {
+    where: EnquiryScalarWhereInput
+    data: XOR<EnquiryUpdateManyMutationInput, EnquiryUncheckedUpdateManyWithoutProjectInput>
+  }
+
   export type ProjectCreateWithoutImagesInput = {
     id?: string
     slug: string
@@ -30993,12 +35586,18 @@ export namespace Prisma {
     possessionDate?: Date | string | null
     amenities?: string | null
     reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     developer: DeveloperCreateNestedOneWithoutProjectsInput
     units?: PropertyCreateNestedManyWithoutProjectInput
+    floorPlans?: ProjectFloorPlanCreateNestedManyWithoutProjectInput
+    faqs?: ProjectFAQCreateNestedManyWithoutProjectInput
+    landmarks?: ProjectLandmarkCreateNestedManyWithoutProjectInput
+    enquiries?: EnquiryCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutImagesInput = {
@@ -31016,11 +35615,17 @@ export namespace Prisma {
     possessionDate?: Date | string | null
     amenities?: string | null
     reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     units?: PropertyUncheckedCreateNestedManyWithoutProjectInput
+    floorPlans?: ProjectFloorPlanUncheckedCreateNestedManyWithoutProjectInput
+    faqs?: ProjectFAQUncheckedCreateNestedManyWithoutProjectInput
+    landmarks?: ProjectLandmarkUncheckedCreateNestedManyWithoutProjectInput
+    enquiries?: EnquiryUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutImagesInput = {
@@ -31053,12 +35658,18 @@ export namespace Prisma {
     possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     amenities?: NullableStringFieldUpdateOperationsInput | string | null
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     developer?: DeveloperUpdateOneRequiredWithoutProjectsNestedInput
     units?: PropertyUpdateManyWithoutProjectNestedInput
+    floorPlans?: ProjectFloorPlanUpdateManyWithoutProjectNestedInput
+    faqs?: ProjectFAQUpdateManyWithoutProjectNestedInput
+    landmarks?: ProjectLandmarkUpdateManyWithoutProjectNestedInput
+    enquiries?: EnquiryUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutImagesInput = {
@@ -31076,11 +35687,401 @@ export namespace Prisma {
     possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     amenities?: NullableStringFieldUpdateOperationsInput | string | null
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     units?: PropertyUncheckedUpdateManyWithoutProjectNestedInput
+    floorPlans?: ProjectFloorPlanUncheckedUpdateManyWithoutProjectNestedInput
+    faqs?: ProjectFAQUncheckedUpdateManyWithoutProjectNestedInput
+    landmarks?: ProjectLandmarkUncheckedUpdateManyWithoutProjectNestedInput
+    enquiries?: EnquiryUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectCreateWithoutFloorPlansInput = {
+    id?: string
+    slug: string
+    name: string
+    description: string
+    status?: $Enums.ProjectStatus
+    city: string
+    locality?: string | null
+    address?: string | null
+    priceMin?: number | null
+    priceMax?: number | null
+    possessionDate?: Date | string | null
+    amenities?: string | null
+    reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    developer: DeveloperCreateNestedOneWithoutProjectsInput
+    units?: PropertyCreateNestedManyWithoutProjectInput
+    images?: ProjectImageCreateNestedManyWithoutProjectInput
+    faqs?: ProjectFAQCreateNestedManyWithoutProjectInput
+    landmarks?: ProjectLandmarkCreateNestedManyWithoutProjectInput
+    enquiries?: EnquiryCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutFloorPlansInput = {
+    id?: string
+    slug: string
+    name: string
+    description: string
+    status?: $Enums.ProjectStatus
+    developerId: string
+    city: string
+    locality?: string | null
+    address?: string | null
+    priceMin?: number | null
+    priceMax?: number | null
+    possessionDate?: Date | string | null
+    amenities?: string | null
+    reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    units?: PropertyUncheckedCreateNestedManyWithoutProjectInput
+    images?: ProjectImageUncheckedCreateNestedManyWithoutProjectInput
+    faqs?: ProjectFAQUncheckedCreateNestedManyWithoutProjectInput
+    landmarks?: ProjectLandmarkUncheckedCreateNestedManyWithoutProjectInput
+    enquiries?: EnquiryUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutFloorPlansInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutFloorPlansInput, ProjectUncheckedCreateWithoutFloorPlansInput>
+  }
+
+  export type ProjectUpsertWithoutFloorPlansInput = {
+    update: XOR<ProjectUpdateWithoutFloorPlansInput, ProjectUncheckedUpdateWithoutFloorPlansInput>
+    create: XOR<ProjectCreateWithoutFloorPlansInput, ProjectUncheckedCreateWithoutFloorPlansInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutFloorPlansInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutFloorPlansInput, ProjectUncheckedUpdateWithoutFloorPlansInput>
+  }
+
+  export type ProjectUpdateWithoutFloorPlansInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    city?: StringFieldUpdateOperationsInput | string
+    locality?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    priceMin?: NullableIntFieldUpdateOperationsInput | number | null
+    priceMax?: NullableIntFieldUpdateOperationsInput | number | null
+    possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    amenities?: NullableStringFieldUpdateOperationsInput | string | null
+    reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    developer?: DeveloperUpdateOneRequiredWithoutProjectsNestedInput
+    units?: PropertyUpdateManyWithoutProjectNestedInput
+    images?: ProjectImageUpdateManyWithoutProjectNestedInput
+    faqs?: ProjectFAQUpdateManyWithoutProjectNestedInput
+    landmarks?: ProjectLandmarkUpdateManyWithoutProjectNestedInput
+    enquiries?: EnquiryUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutFloorPlansInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    developerId?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    locality?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    priceMin?: NullableIntFieldUpdateOperationsInput | number | null
+    priceMax?: NullableIntFieldUpdateOperationsInput | number | null
+    possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    amenities?: NullableStringFieldUpdateOperationsInput | string | null
+    reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    units?: PropertyUncheckedUpdateManyWithoutProjectNestedInput
+    images?: ProjectImageUncheckedUpdateManyWithoutProjectNestedInput
+    faqs?: ProjectFAQUncheckedUpdateManyWithoutProjectNestedInput
+    landmarks?: ProjectLandmarkUncheckedUpdateManyWithoutProjectNestedInput
+    enquiries?: EnquiryUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectCreateWithoutFaqsInput = {
+    id?: string
+    slug: string
+    name: string
+    description: string
+    status?: $Enums.ProjectStatus
+    city: string
+    locality?: string | null
+    address?: string | null
+    priceMin?: number | null
+    priceMax?: number | null
+    possessionDate?: Date | string | null
+    amenities?: string | null
+    reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    developer: DeveloperCreateNestedOneWithoutProjectsInput
+    units?: PropertyCreateNestedManyWithoutProjectInput
+    images?: ProjectImageCreateNestedManyWithoutProjectInput
+    floorPlans?: ProjectFloorPlanCreateNestedManyWithoutProjectInput
+    landmarks?: ProjectLandmarkCreateNestedManyWithoutProjectInput
+    enquiries?: EnquiryCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutFaqsInput = {
+    id?: string
+    slug: string
+    name: string
+    description: string
+    status?: $Enums.ProjectStatus
+    developerId: string
+    city: string
+    locality?: string | null
+    address?: string | null
+    priceMin?: number | null
+    priceMax?: number | null
+    possessionDate?: Date | string | null
+    amenities?: string | null
+    reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    units?: PropertyUncheckedCreateNestedManyWithoutProjectInput
+    images?: ProjectImageUncheckedCreateNestedManyWithoutProjectInput
+    floorPlans?: ProjectFloorPlanUncheckedCreateNestedManyWithoutProjectInput
+    landmarks?: ProjectLandmarkUncheckedCreateNestedManyWithoutProjectInput
+    enquiries?: EnquiryUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutFaqsInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutFaqsInput, ProjectUncheckedCreateWithoutFaqsInput>
+  }
+
+  export type ProjectUpsertWithoutFaqsInput = {
+    update: XOR<ProjectUpdateWithoutFaqsInput, ProjectUncheckedUpdateWithoutFaqsInput>
+    create: XOR<ProjectCreateWithoutFaqsInput, ProjectUncheckedCreateWithoutFaqsInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutFaqsInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutFaqsInput, ProjectUncheckedUpdateWithoutFaqsInput>
+  }
+
+  export type ProjectUpdateWithoutFaqsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    city?: StringFieldUpdateOperationsInput | string
+    locality?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    priceMin?: NullableIntFieldUpdateOperationsInput | number | null
+    priceMax?: NullableIntFieldUpdateOperationsInput | number | null
+    possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    amenities?: NullableStringFieldUpdateOperationsInput | string | null
+    reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    developer?: DeveloperUpdateOneRequiredWithoutProjectsNestedInput
+    units?: PropertyUpdateManyWithoutProjectNestedInput
+    images?: ProjectImageUpdateManyWithoutProjectNestedInput
+    floorPlans?: ProjectFloorPlanUpdateManyWithoutProjectNestedInput
+    landmarks?: ProjectLandmarkUpdateManyWithoutProjectNestedInput
+    enquiries?: EnquiryUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutFaqsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    developerId?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    locality?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    priceMin?: NullableIntFieldUpdateOperationsInput | number | null
+    priceMax?: NullableIntFieldUpdateOperationsInput | number | null
+    possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    amenities?: NullableStringFieldUpdateOperationsInput | string | null
+    reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    units?: PropertyUncheckedUpdateManyWithoutProjectNestedInput
+    images?: ProjectImageUncheckedUpdateManyWithoutProjectNestedInput
+    floorPlans?: ProjectFloorPlanUncheckedUpdateManyWithoutProjectNestedInput
+    landmarks?: ProjectLandmarkUncheckedUpdateManyWithoutProjectNestedInput
+    enquiries?: EnquiryUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectCreateWithoutLandmarksInput = {
+    id?: string
+    slug: string
+    name: string
+    description: string
+    status?: $Enums.ProjectStatus
+    city: string
+    locality?: string | null
+    address?: string | null
+    priceMin?: number | null
+    priceMax?: number | null
+    possessionDate?: Date | string | null
+    amenities?: string | null
+    reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    developer: DeveloperCreateNestedOneWithoutProjectsInput
+    units?: PropertyCreateNestedManyWithoutProjectInput
+    images?: ProjectImageCreateNestedManyWithoutProjectInput
+    floorPlans?: ProjectFloorPlanCreateNestedManyWithoutProjectInput
+    faqs?: ProjectFAQCreateNestedManyWithoutProjectInput
+    enquiries?: EnquiryCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutLandmarksInput = {
+    id?: string
+    slug: string
+    name: string
+    description: string
+    status?: $Enums.ProjectStatus
+    developerId: string
+    city: string
+    locality?: string | null
+    address?: string | null
+    priceMin?: number | null
+    priceMax?: number | null
+    possessionDate?: Date | string | null
+    amenities?: string | null
+    reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    units?: PropertyUncheckedCreateNestedManyWithoutProjectInput
+    images?: ProjectImageUncheckedCreateNestedManyWithoutProjectInput
+    floorPlans?: ProjectFloorPlanUncheckedCreateNestedManyWithoutProjectInput
+    faqs?: ProjectFAQUncheckedCreateNestedManyWithoutProjectInput
+    enquiries?: EnquiryUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutLandmarksInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutLandmarksInput, ProjectUncheckedCreateWithoutLandmarksInput>
+  }
+
+  export type ProjectUpsertWithoutLandmarksInput = {
+    update: XOR<ProjectUpdateWithoutLandmarksInput, ProjectUncheckedUpdateWithoutLandmarksInput>
+    create: XOR<ProjectCreateWithoutLandmarksInput, ProjectUncheckedCreateWithoutLandmarksInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutLandmarksInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutLandmarksInput, ProjectUncheckedUpdateWithoutLandmarksInput>
+  }
+
+  export type ProjectUpdateWithoutLandmarksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    city?: StringFieldUpdateOperationsInput | string
+    locality?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    priceMin?: NullableIntFieldUpdateOperationsInput | number | null
+    priceMax?: NullableIntFieldUpdateOperationsInput | number | null
+    possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    amenities?: NullableStringFieldUpdateOperationsInput | string | null
+    reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    developer?: DeveloperUpdateOneRequiredWithoutProjectsNestedInput
+    units?: PropertyUpdateManyWithoutProjectNestedInput
+    images?: ProjectImageUpdateManyWithoutProjectNestedInput
+    floorPlans?: ProjectFloorPlanUpdateManyWithoutProjectNestedInput
+    faqs?: ProjectFAQUpdateManyWithoutProjectNestedInput
+    enquiries?: EnquiryUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutLandmarksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    developerId?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    locality?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    priceMin?: NullableIntFieldUpdateOperationsInput | number | null
+    priceMax?: NullableIntFieldUpdateOperationsInput | number | null
+    possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    amenities?: NullableStringFieldUpdateOperationsInput | string | null
+    reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    units?: PropertyUncheckedUpdateManyWithoutProjectNestedInput
+    images?: ProjectImageUncheckedUpdateManyWithoutProjectNestedInput
+    floorPlans?: ProjectFloorPlanUncheckedUpdateManyWithoutProjectNestedInput
+    faqs?: ProjectFAQUncheckedUpdateManyWithoutProjectNestedInput
+    enquiries?: EnquiryUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type StateCreateWithoutCountryInput = {
@@ -31527,12 +36528,18 @@ export namespace Prisma {
     possessionDate?: Date | string | null
     amenities?: string | null
     reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     developer: DeveloperCreateNestedOneWithoutProjectsInput
     images?: ProjectImageCreateNestedManyWithoutProjectInput
+    floorPlans?: ProjectFloorPlanCreateNestedManyWithoutProjectInput
+    faqs?: ProjectFAQCreateNestedManyWithoutProjectInput
+    landmarks?: ProjectLandmarkCreateNestedManyWithoutProjectInput
+    enquiries?: EnquiryCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutUnitsInput = {
@@ -31550,11 +36557,17 @@ export namespace Prisma {
     possessionDate?: Date | string | null
     amenities?: string | null
     reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     images?: ProjectImageUncheckedCreateNestedManyWithoutProjectInput
+    floorPlans?: ProjectFloorPlanUncheckedCreateNestedManyWithoutProjectInput
+    faqs?: ProjectFAQUncheckedCreateNestedManyWithoutProjectInput
+    landmarks?: ProjectLandmarkUncheckedCreateNestedManyWithoutProjectInput
+    enquiries?: EnquiryUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutUnitsInput = {
@@ -31593,6 +36606,7 @@ export namespace Prisma {
     email?: string | null
     message?: string | null
     createdAt?: Date | string
+    project?: ProjectCreateNestedOneWithoutEnquiriesInput
     buyer?: UserCreateNestedOneWithoutEnquiriesInput
     leadViews?: LeadViewCreateNestedManyWithoutEnquiryInput
   }
@@ -31603,6 +36617,7 @@ export namespace Prisma {
     phone: string
     email?: string | null
     message?: string | null
+    projectId?: string | null
     buyerId?: string | null
     createdAt?: Date | string
     leadViews?: LeadViewUncheckedCreateNestedManyWithoutEnquiryInput
@@ -31724,12 +36739,18 @@ export namespace Prisma {
     possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     amenities?: NullableStringFieldUpdateOperationsInput | string | null
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     developer?: DeveloperUpdateOneRequiredWithoutProjectsNestedInput
     images?: ProjectImageUpdateManyWithoutProjectNestedInput
+    floorPlans?: ProjectFloorPlanUpdateManyWithoutProjectNestedInput
+    faqs?: ProjectFAQUpdateManyWithoutProjectNestedInput
+    landmarks?: ProjectLandmarkUpdateManyWithoutProjectNestedInput
+    enquiries?: EnquiryUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutUnitsInput = {
@@ -31747,11 +36768,17 @@ export namespace Prisma {
     possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     amenities?: NullableStringFieldUpdateOperationsInput | string | null
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     images?: ProjectImageUncheckedUpdateManyWithoutProjectNestedInput
+    floorPlans?: ProjectFloorPlanUncheckedUpdateManyWithoutProjectNestedInput
+    faqs?: ProjectFAQUncheckedUpdateManyWithoutProjectNestedInput
+    landmarks?: ProjectLandmarkUncheckedUpdateManyWithoutProjectNestedInput
+    enquiries?: EnquiryUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type PropertyImageUpsertWithWhereUniqueWithoutPropertyInput = {
@@ -32050,6 +37077,67 @@ export namespace Prisma {
     create: XOR<PropertyCreateWithoutEnquiriesInput, PropertyUncheckedCreateWithoutEnquiriesInput>
   }
 
+  export type ProjectCreateWithoutEnquiriesInput = {
+    id?: string
+    slug: string
+    name: string
+    description: string
+    status?: $Enums.ProjectStatus
+    city: string
+    locality?: string | null
+    address?: string | null
+    priceMin?: number | null
+    priceMax?: number | null
+    possessionDate?: Date | string | null
+    amenities?: string | null
+    reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    developer: DeveloperCreateNestedOneWithoutProjectsInput
+    units?: PropertyCreateNestedManyWithoutProjectInput
+    images?: ProjectImageCreateNestedManyWithoutProjectInput
+    floorPlans?: ProjectFloorPlanCreateNestedManyWithoutProjectInput
+    faqs?: ProjectFAQCreateNestedManyWithoutProjectInput
+    landmarks?: ProjectLandmarkCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutEnquiriesInput = {
+    id?: string
+    slug: string
+    name: string
+    description: string
+    status?: $Enums.ProjectStatus
+    developerId: string
+    city: string
+    locality?: string | null
+    address?: string | null
+    priceMin?: number | null
+    priceMax?: number | null
+    possessionDate?: Date | string | null
+    amenities?: string | null
+    reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    units?: PropertyUncheckedCreateNestedManyWithoutProjectInput
+    images?: ProjectImageUncheckedCreateNestedManyWithoutProjectInput
+    floorPlans?: ProjectFloorPlanUncheckedCreateNestedManyWithoutProjectInput
+    faqs?: ProjectFAQUncheckedCreateNestedManyWithoutProjectInput
+    landmarks?: ProjectLandmarkUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutEnquiriesInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutEnquiriesInput, ProjectUncheckedCreateWithoutEnquiriesInput>
+  }
+
   export type UserCreateWithoutEnquiriesInput = {
     id?: string
     name: string
@@ -32206,6 +37294,73 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     images?: PropertyImageUncheckedUpdateManyWithoutPropertyNestedInput
     savedBy?: SavedPropertyUncheckedUpdateManyWithoutPropertyNestedInput
+  }
+
+  export type ProjectUpsertWithoutEnquiriesInput = {
+    update: XOR<ProjectUpdateWithoutEnquiriesInput, ProjectUncheckedUpdateWithoutEnquiriesInput>
+    create: XOR<ProjectCreateWithoutEnquiriesInput, ProjectUncheckedCreateWithoutEnquiriesInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutEnquiriesInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutEnquiriesInput, ProjectUncheckedUpdateWithoutEnquiriesInput>
+  }
+
+  export type ProjectUpdateWithoutEnquiriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    city?: StringFieldUpdateOperationsInput | string
+    locality?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    priceMin?: NullableIntFieldUpdateOperationsInput | number | null
+    priceMax?: NullableIntFieldUpdateOperationsInput | number | null
+    possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    amenities?: NullableStringFieldUpdateOperationsInput | string | null
+    reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    developer?: DeveloperUpdateOneRequiredWithoutProjectsNestedInput
+    units?: PropertyUpdateManyWithoutProjectNestedInput
+    images?: ProjectImageUpdateManyWithoutProjectNestedInput
+    floorPlans?: ProjectFloorPlanUpdateManyWithoutProjectNestedInput
+    faqs?: ProjectFAQUpdateManyWithoutProjectNestedInput
+    landmarks?: ProjectLandmarkUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutEnquiriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    developerId?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    locality?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    priceMin?: NullableIntFieldUpdateOperationsInput | number | null
+    priceMax?: NullableIntFieldUpdateOperationsInput | number | null
+    possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    amenities?: NullableStringFieldUpdateOperationsInput | string | null
+    reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    units?: PropertyUncheckedUpdateManyWithoutProjectNestedInput
+    images?: ProjectImageUncheckedUpdateManyWithoutProjectNestedInput
+    floorPlans?: ProjectFloorPlanUncheckedUpdateManyWithoutProjectNestedInput
+    faqs?: ProjectFAQUncheckedUpdateManyWithoutProjectNestedInput
+    landmarks?: ProjectLandmarkUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type UserUpsertWithoutEnquiriesInput = {
@@ -32617,6 +37772,7 @@ export namespace Prisma {
     email?: string | null
     message?: string | null
     propertyId?: string | null
+    projectId?: string | null
     createdAt?: Date | string
   }
 
@@ -32799,6 +37955,7 @@ export namespace Prisma {
     message?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     property?: PropertyUpdateOneWithoutEnquiriesNestedInput
+    project?: ProjectUpdateOneWithoutEnquiriesNestedInput
     leadViews?: LeadViewUpdateManyWithoutEnquiryNestedInput
   }
 
@@ -32809,6 +37966,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     message?: NullableStringFieldUpdateOperationsInput | string | null
     propertyId?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     leadViews?: LeadViewUncheckedUpdateManyWithoutEnquiryNestedInput
   }
@@ -32820,6 +37978,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     message?: NullableStringFieldUpdateOperationsInput | string | null
     propertyId?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -32877,6 +38036,8 @@ export namespace Prisma {
     possessionDate?: Date | string | null
     amenities?: string | null
     reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -32897,12 +38058,18 @@ export namespace Prisma {
     possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     amenities?: NullableStringFieldUpdateOperationsInput | string | null
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     units?: PropertyUpdateManyWithoutProjectNestedInput
     images?: ProjectImageUpdateManyWithoutProjectNestedInput
+    floorPlans?: ProjectFloorPlanUpdateManyWithoutProjectNestedInput
+    faqs?: ProjectFAQUpdateManyWithoutProjectNestedInput
+    landmarks?: ProjectLandmarkUpdateManyWithoutProjectNestedInput
+    enquiries?: EnquiryUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutDeveloperInput = {
@@ -32919,12 +38086,18 @@ export namespace Prisma {
     possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     amenities?: NullableStringFieldUpdateOperationsInput | string | null
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     units?: PropertyUncheckedUpdateManyWithoutProjectNestedInput
     images?: ProjectImageUncheckedUpdateManyWithoutProjectNestedInput
+    floorPlans?: ProjectFloorPlanUncheckedUpdateManyWithoutProjectNestedInput
+    faqs?: ProjectFAQUncheckedUpdateManyWithoutProjectNestedInput
+    landmarks?: ProjectLandmarkUncheckedUpdateManyWithoutProjectNestedInput
+    enquiries?: EnquiryUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateManyWithoutDeveloperInput = {
@@ -32941,6 +38114,8 @@ export namespace Prisma {
     possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     amenities?: NullableStringFieldUpdateOperationsInput | string | null
     reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32984,6 +38159,41 @@ export namespace Prisma {
     id?: string
     url: string
     order?: number
+  }
+
+  export type ProjectFloorPlanCreateManyProjectInput = {
+    id?: string
+    configuration: string
+    areaSqft: number
+    price?: number | null
+    imageUrl?: string | null
+    order?: number
+  }
+
+  export type ProjectFAQCreateManyProjectInput = {
+    id?: string
+    question: string
+    answer: string
+    order?: number
+  }
+
+  export type ProjectLandmarkCreateManyProjectInput = {
+    id?: string
+    category: string
+    name: string
+    distanceKm: number
+    order?: number
+  }
+
+  export type EnquiryCreateManyProjectInput = {
+    id?: string
+    name: string
+    phone: string
+    email?: string | null
+    message?: string | null
+    propertyId?: string | null
+    buyerId?: string | null
+    createdAt?: Date | string
   }
 
   export type PropertyUpdateWithoutProjectInput = {
@@ -33107,6 +38317,113 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectFloorPlanUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    configuration?: StringFieldUpdateOperationsInput | string
+    areaSqft?: IntFieldUpdateOperationsInput | number
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectFloorPlanUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    configuration?: StringFieldUpdateOperationsInput | string
+    areaSqft?: IntFieldUpdateOperationsInput | number
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectFloorPlanUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    configuration?: StringFieldUpdateOperationsInput | string
+    areaSqft?: IntFieldUpdateOperationsInput | number
+    price?: NullableIntFieldUpdateOperationsInput | number | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectFAQUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: StringFieldUpdateOperationsInput | string
+    answer?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectFAQUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: StringFieldUpdateOperationsInput | string
+    answer?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectFAQUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: StringFieldUpdateOperationsInput | string
+    answer?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectLandmarkUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    distanceKm?: FloatFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectLandmarkUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    distanceKm?: FloatFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectLandmarkUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    distanceKm?: FloatFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type EnquiryUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    property?: PropertyUpdateOneWithoutEnquiriesNestedInput
+    buyer?: UserUpdateOneWithoutEnquiriesNestedInput
+    leadViews?: LeadViewUpdateManyWithoutEnquiryNestedInput
+  }
+
+  export type EnquiryUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    propertyId?: NullableStringFieldUpdateOperationsInput | string | null
+    buyerId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leadViews?: LeadViewUncheckedUpdateManyWithoutEnquiryNestedInput
+  }
+
+  export type EnquiryUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    propertyId?: NullableStringFieldUpdateOperationsInput | string | null
+    buyerId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StateCreateManyCountryInput = {
@@ -33274,6 +38591,7 @@ export namespace Prisma {
     phone: string
     email?: string | null
     message?: string | null
+    projectId?: string | null
     buyerId?: string | null
     createdAt?: Date | string
   }
@@ -33312,6 +38630,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     message?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneWithoutEnquiriesNestedInput
     buyer?: UserUpdateOneWithoutEnquiriesNestedInput
     leadViews?: LeadViewUpdateManyWithoutEnquiryNestedInput
   }
@@ -33322,6 +38641,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     message?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
     buyerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     leadViews?: LeadViewUncheckedUpdateManyWithoutEnquiryNestedInput
@@ -33333,6 +38653,7 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     message?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: NullableStringFieldUpdateOperationsInput | string | null
     buyerId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

@@ -6,10 +6,14 @@ import { prisma } from "@/lib/prisma";
 import { PropertyCard } from "@/components/PropertyCard";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
+import { FaqAccordion } from "@/components/FaqAccordion";
+import { EmiCalculator } from "@/components/EmiCalculator";
 import { absoluteUrl } from "@/lib/seo";
 import { PUBLIC_LISTER_FILTER, notExpiredFilter } from "@/lib/propertyVisibility";
+import { submitProjectEnquiry } from "./actions";
 
 type Params = Promise<{ slug: string }>;
+type SearchParams = Promise<{ enquiry?: string }>;
 
 const PROJECT_STATUS_LABELS: Record<string, string> = {
   UPCOMING: "Upcoming",
@@ -23,12 +27,23 @@ const inr = new Intl.NumberFormat("en-IN", {
   maximumFractionDigits: 0,
 });
 
+function parseLines(value: string | null) {
+  if (!value) return [];
+  return value
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+}
+
 async function getProject(slug: string) {
   return prisma.project.findUnique({
     where: { slug },
     include: {
       images: { orderBy: { order: "asc" } },
       developer: true,
+      floorPlans: { orderBy: { order: "asc" } },
+      faqs: { orderBy: { order: "asc" } },
+      landmarks: { orderBy: { order: "asc" } },
       units: {
         where: { approvalStatus: "APPROVED", owner: PUBLIC_LISTER_FILTER, ...notExpiredFilter() },
         include: { images: { orderBy: { order: "asc" }, take: 1 } },
@@ -58,10 +73,35 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   };
 }
 
-export default async function ProjectDetailPage({ params }: { params: Params }) {
+export default async function ProjectDetailPage({
+  params,
+  searchParams,
+}: {
+  params: Params;
+  searchParams: SearchParams;
+}) {
   const { slug } = await params;
+  const { enquiry } = await searchParams;
   const project = await getProject(slug);
   if (!project) notFound();
+
+  const [ongoingProjectsCount, suggestedProjects] = await Promise.all([
+    prisma.project.count({
+      where: { developerId: project.developerId, status: { not: "READY_TO_MOVE" } },
+    }),
+    prisma.project.findMany({
+      where: { city: project.city, id: { not: project.id } },
+      include: { images: { orderBy: { order: "asc" }, take: 1 }, developer: { select: { name: true } } },
+      orderBy: { createdAt: "desc" },
+      take: 3,
+    }),
+  ]);
+
+  const highlights = parseLines(project.highlights);
+  const landmarksByCategory = project.landmarks.reduce<Record<string, typeof project.landmarks>>((acc, landmark) => {
+    (acc[landmark.category] ??= []).push(landmark);
+    return acc;
+  }, {});
 
   const projectJsonLd = {
     "@context": "https://schema.org",
@@ -83,6 +123,19 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
     },
   };
 
+  const faqJsonLd =
+    project.faqs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: project.faqs.map((faq) => ({
+            "@type": "Question",
+            name: faq.question,
+            acceptedAnswer: { "@type": "Answer", text: faq.answer },
+          })),
+        }
+      : null;
+
   return (
     <div>
       <Breadcrumbs
@@ -94,6 +147,7 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
         ]}
       />
       <JsonLd data={projectJsonLd} />
+      {faqJsonLd && <JsonLd data={faqJsonLd} />}
 
       <div className="mx-auto max-w-6xl px-4 pb-10 pt-4 sm:px-6">
         {project.images.length > 0 ? (
@@ -166,10 +220,70 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
               </p>
             )}
 
+            {project.brochureUrl && (
+              <a
+                href={project.brochureUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 py-2.5 text-sm font-semibold text-blue-700 hover:bg-blue-100"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+                </svg>
+                Download Brochure (PDF)
+              </a>
+            )}
+
+            {highlights.length > 0 && (
+              <div className="mt-8">
+                <h2 className="text-lg font-semibold text-slate-900">{project.name} Highlights</h2>
+                <ul className="mt-2 space-y-1.5">
+                  {highlights.map((line) => (
+                    <li key={line} className="flex items-start gap-2 text-sm text-slate-600">
+                      <svg viewBox="0 0 24 24" fill="none" className="mt-0.5 h-4 w-4 shrink-0 text-green-600">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      {line}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             <div className="mt-8">
-              <h2 className="text-lg font-semibold text-slate-900">About this project</h2>
+              <h2 className="text-lg font-semibold text-slate-900">About {project.name}</h2>
               <p className="mt-2 whitespace-pre-line text-slate-600">{project.description}</p>
             </div>
+
+            {project.floorPlans.length > 0 && (
+              <div className="mt-8">
+                <h2 className="text-lg font-semibold text-slate-900">
+                  {project.name} Floor Plans & Pricing
+                </h2>
+                <div className="mt-3 overflow-x-auto rounded-2xl border border-slate-200">
+                  <table className="w-full min-w-[480px] text-left text-sm">
+                    <thead className="bg-slate-50 text-xs font-semibold uppercase text-slate-500">
+                      <tr>
+                        <th className="px-4 py-2.5">Configuration</th>
+                        <th className="px-4 py-2.5">Area</th>
+                        <th className="px-4 py-2.5">Price</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {project.floorPlans.map((plan) => (
+                        <tr key={plan.id}>
+                          <td className="px-4 py-3 font-medium text-slate-800">{plan.configuration}</td>
+                          <td className="px-4 py-3 text-slate-600">{plan.areaSqft.toLocaleString("en-IN")} sqft</td>
+                          <td className="px-4 py-3 text-slate-600">
+                            {plan.price ? inr.format(plan.price) : "Price on request"}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
 
             {project.amenities && (
               <div className="mt-8">
@@ -184,29 +298,121 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
                 <p className="mt-2 text-slate-600">{project.address}</p>
               </div>
             )}
-          </div>
 
-          <div>
-            <div className="rounded-2xl border border-slate-200 p-5">
-              <h2 className="font-semibold text-slate-900">Developer</h2>
-              <p className="mt-2 text-sm font-medium text-slate-800">{project.developer.name}</p>
-              {project.developer.contactPhone && (
-                <p className="text-sm text-slate-600">{project.developer.contactPhone}</p>
+            {Object.keys(landmarksByCategory).length > 0 && (
+              <div className="mt-8">
+                <h2 className="text-lg font-semibold text-slate-900">Around {project.name}</h2>
+                <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  {Object.entries(landmarksByCategory).map(([category, items]) => (
+                    <div key={category} className="rounded-xl border border-slate-200 p-4">
+                      <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">{category}</p>
+                      <ul className="mt-2 space-y-1.5">
+                        {items.map((item) => (
+                          <li key={item.id} className="flex items-center justify-between text-sm text-slate-600">
+                            <span>{item.name}</span>
+                            <span className="font-medium text-slate-800">{item.distanceKm} km</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="mt-8 rounded-2xl border border-slate-200 p-5">
+              <h2 className="font-semibold text-slate-900">About {project.developer.name}</h2>
+              {project.developer.about && (
+                <p className="mt-2 text-sm text-slate-600">{project.developer.about}</p>
               )}
-              {project.developer.contactEmail && (
-                <p className="text-sm text-slate-600">{project.developer.contactEmail}</p>
-              )}
+              <div className="mt-3 flex flex-wrap gap-6 text-sm">
+                <div>
+                  <p className="font-bold text-slate-900">{ongoingProjectsCount}</p>
+                  <p className="text-xs text-slate-500">Ongoing project{ongoingProjectsCount === 1 ? "" : "s"}</p>
+                </div>
+                {project.developer.verified && (
+                  <div>
+                    <p className="font-bold text-slate-900">✓</p>
+                    <p className="text-xs text-slate-500">Verified developer</p>
+                  </div>
+                )}
+              </div>
               <Link
                 href={`/developers/${project.developer.slug}`}
-                className="mt-3 block text-sm font-medium text-blue-600 hover:underline"
+                className="mt-3 inline-block text-sm font-medium text-blue-600 hover:underline"
               >
-                View all projects
+                View developer profile
               </Link>
-              {project.reraNumber && (
-                <p className="mt-4 border-t border-slate-100 pt-3 text-xs text-slate-500">
-                  RERA No. <span className="font-medium text-slate-700">{project.reraNumber}</span>
+            </div>
+
+            {project.faqs.length > 0 && (
+              <div className="mt-8">
+                <h2 className="text-lg font-semibold text-slate-900">Frequently Asked Questions</h2>
+                <div className="mt-3">
+                  <FaqAccordion items={project.faqs} />
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="space-y-6">
+            <div className="sticky top-20 space-y-6">
+              <div className="rounded-2xl border border-slate-200 p-5">
+                <h2 className="font-semibold text-slate-900">Interested in this project?</h2>
+                <p className="mt-1 text-sm text-slate-500">
+                  Send an enquiry and {project.developer.name} will get in touch.
                 </p>
-              )}
+
+                {enquiry === "sent" && (
+                  <p className="mt-3 rounded-lg bg-green-50 px-3 py-2 text-sm text-green-700">
+                    Thanks! Your enquiry has been sent.
+                  </p>
+                )}
+                {enquiry === "error" && (
+                  <p className="mt-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
+                    Please fill in your name and phone number.
+                  </p>
+                )}
+
+                <form action={submitProjectEnquiry} className="mt-3 space-y-3">
+                  <input type="hidden" name="projectId" value={project.id} />
+                  <input type="hidden" name="slug" value={project.slug} />
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    placeholder="Your name"
+                    className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                  />
+                  <input
+                    type="tel"
+                    name="phone"
+                    required
+                    placeholder="Phone number"
+                    className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email (optional)"
+                    className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                  />
+                  <textarea
+                    name="message"
+                    rows={3}
+                    placeholder="Message (optional)"
+                    className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+                  />
+                  <button
+                    type="submit"
+                    className="w-full rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700"
+                  >
+                    Send enquiry
+                  </button>
+                </form>
+              </div>
+
+              <EmiCalculator defaultPrice={project.priceMin ?? project.priceMax} />
             </div>
           </div>
         </div>
@@ -217,6 +423,42 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
             <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {project.units.map((unit) => (
                 <PropertyCard key={unit.slug} property={unit} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {suggestedProjects.length > 0 && (
+          <div className="mt-12">
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg font-semibold text-slate-900">More projects in {project.city}</h2>
+              <Link href={`/projects?city=${encodeURIComponent(project.city)}`} className="text-sm font-medium text-blue-600 hover:underline">
+                View all
+              </Link>
+            </div>
+            <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {suggestedProjects.map((suggested) => (
+                <Link
+                  key={suggested.id}
+                  href={`/projects/${suggested.slug}`}
+                  className="overflow-hidden rounded-2xl border border-slate-200 transition hover:-translate-y-0.5 hover:shadow-md"
+                >
+                  <div className="relative aspect-[4/3] w-full bg-slate-100">
+                    {suggested.images[0]?.url ? (
+                      <Image
+                        src={suggested.images[0].url}
+                        alt={suggested.name}
+                        fill
+                        className="object-cover"
+                        sizes="(min-width: 1024px) 320px, (min-width: 640px) 45vw, 90vw"
+                      />
+                    ) : null}
+                  </div>
+                  <div className="p-4">
+                    <h3 className="truncate font-semibold text-slate-900">{suggested.name}</h3>
+                    <p className="text-sm text-slate-500">by {suggested.developer.name}</p>
+                  </div>
+                </Link>
               ))}
             </div>
           </div>

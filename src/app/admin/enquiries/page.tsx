@@ -8,7 +8,10 @@ export default async function AdminEnquiriesPage() {
   if (!session || session.user.role !== "ADMIN") redirect("/login");
 
   const enquiries = await prisma.enquiry.findMany({
-    include: { property: { select: { title: true, slug: true } } },
+    include: {
+      property: { select: { title: true, slug: true } },
+      project: { select: { name: true, slug: true } },
+    },
     orderBy: { createdAt: "desc" },
   });
 
@@ -50,6 +53,13 @@ export default async function AdminEnquiriesPage() {
                         className="text-blue-600 hover:underline"
                       >
                         {enquiry.property.title}
+                      </Link>
+                    ) : enquiry.project ? (
+                      <Link
+                        href={`/projects/${enquiry.project.slug}`}
+                        className="text-blue-600 hover:underline"
+                      >
+                        {enquiry.project.name} (project)
                       </Link>
                     ) : (
                       "General"

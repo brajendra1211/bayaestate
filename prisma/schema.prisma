@@ -180,10 +180,16 @@ model Project {
   possessionDate  DateTime?
   amenities       String?        @db.Text
   reraNumber      String?
+  highlights      String?        @db.Text
+  brochureUrl     String?
   metaTitle       String?
   metaDescription String?        @db.Text
   units           Property[]
   images          ProjectImage[]
+  floorPlans      ProjectFloorPlan[]
+  faqs            ProjectFAQ[]
+  landmarks       ProjectLandmark[]
+  enquiries       Enquiry[]
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
 
@@ -196,6 +202,42 @@ model ProjectImage {
   projectId String
   project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
   order     Int     @default(0)
+}
+
+model ProjectFloorPlan {
+  id            String   @id @default(cuid())
+  projectId     String
+  project       Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  configuration String
+  areaSqft      Int
+  price         Int?
+  imageUrl      String?
+  order         Int      @default(0)
+
+  @@index([projectId])
+}
+
+model ProjectFAQ {
+  id        String   @id @default(cuid())
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  question  String
+  answer    String   @db.Text
+  order     Int      @default(0)
+
+  @@index([projectId])
+}
+
+model ProjectLandmark {
+  id         String   @id @default(cuid())
+  projectId  String
+  project    Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  category   String
+  name       String
+  distanceKm Float
+  order      Int      @default(0)
+
+  @@index([projectId])
 }
 
 model Country {
@@ -319,6 +361,8 @@ model Enquiry {
   message    String?    @db.Text
   propertyId String?
   property   Property?  @relation(fields: [propertyId], references: [id], onDelete: SetNull)
+  projectId  String?
+  project    Project?   @relation(fields: [projectId], references: [id], onDelete: SetNull)
   buyerId    String?
   buyer      User?      @relation("EnquiryBuyer", fields: [buyerId], references: [id], onDelete: SetNull)
   leadViews  LeadView[]
