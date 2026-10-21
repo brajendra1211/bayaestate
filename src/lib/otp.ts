@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { sendWhatsAppOtp, isWhatsAppConfigured } from "@/lib/whatsapp";
 import { sendEmail, isMailerConfigured } from "@/lib/mailer";
+import { getSiteSettings } from "@/lib/site-settings";
 
 const OTP_EXPIRY_MINUTES = 10;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -36,9 +37,10 @@ export async function requestOtp(rawIdentifier: string) {
   const expiresAt = new Date(Date.now() + OTP_EXPIRY_MINUTES * 60 * 1000);
 
   await prisma.otpCode.create({ data: { identifier, channel, code, expiresAt } });
+  const settings = await getSiteSettings();
 
   if (channel === "WHATSAPP") {
-    const sent = await sendWhatsAppOtp(identifier, code);
+    const sent = await sendWhatsAppOtp(identifier, code, settings.siteName);
     if (sent) return { sent: true, channel, identifier };
     // WhatsApp delivery failed (e.g. no approved template + outside the 24h
     // window) — fall back to email only if this identifier looks like one,
@@ -49,7 +51,7 @@ export async function requestOtp(rawIdentifier: string) {
   if (!isMailerConfigured()) return { sent: false, channel, identifier };
   const sent = await sendEmail(
     identifier,
-    "Your BayaEstate login code",
+    `Your ${settings.siteName} login code`,
     `<p>Your login code is <strong>${code}</strong>. It expires in ${OTP_EXPIRY_MINUTES} minutes.</p>`
   );
   return { sent, channel, identifier };

@@ -48,9 +48,9 @@ export async function sendWhatsAppText(to: string, message: string) {
 // Business-initiated messages (like OTPs to someone who hasn't messaged you in
 // the last 24h) require an approved template — free-form text silently fails
 // outside that window. Falls back to plain text if no template is configured.
-export async function sendWhatsAppOtp(to: string, code: string) {
+export async function sendWhatsAppOtp(to: string, code: string, siteName = "BayaEstate") {
   if (!OTP_TEMPLATE_NAME) {
-    return sendWhatsAppText(to, `Your BayaEstate login code is ${code}. It expires in 10 minutes.`);
+    return sendWhatsAppText(to, `Your ${siteName} login code is ${code}. It expires in 10 minutes.`);
   }
 
   return callWhatsAppApi({

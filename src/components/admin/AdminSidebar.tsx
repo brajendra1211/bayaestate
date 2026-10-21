@@ -154,15 +154,17 @@ const NAV_ITEMS: PanelNavItem[] = [
 
 export function AdminSidebar({
   adminName,
+  siteName,
   logoutButton,
 }: {
   adminName: string;
+  siteName: string;
   logoutButton: ReactNode;
 }) {
   return (
     <PanelSidebar
       homeHref="/admin"
-      brandLabel="BayaEstate"
+      brandLabel={siteName}
       subLabel="Admin Panel"
       navItems={NAV_ITEMS}
       personName={adminName}

@@ -3,13 +3,15 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { formatPrice } from "@/lib/format";
+import { getSiteSettings } from "@/lib/site-settings";
 import { approveProperty, rejectProperty, verifyUser } from "./actions";
 
 export default async function AdminPage() {
   const session = await auth();
   if (!session || session.user.role !== "ADMIN") redirect("/login");
 
-  const [pendingProperties, pendingUsers, stats, recentEnquiries] = await Promise.all([
+  const [settings, pendingProperties, pendingUsers, stats, recentEnquiries] = await Promise.all([
+    getSiteSettings(),
     prisma.property.findMany({
       where: { approvalStatus: "PENDING" },
       include: { owner: { select: { name: true, email: true } } },
@@ -43,7 +45,7 @@ export default async function AdminPage() {
       <div>
         <h1 className="text-2xl font-bold text-slate-900">Overview</h1>
         <p className="mt-1 text-sm text-slate-500">
-          A snapshot of listings, people, and activity on BayaEstate.
+          A snapshot of listings, people, and activity on {settings.siteName}.
         </p>
       </div>
 

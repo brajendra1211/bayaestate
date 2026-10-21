@@ -58,18 +58,20 @@ export const DASHBOARD_NAV_ITEMS: PanelNavItem[] = [
 export function DashboardSidebar({
   userName,
   roleLabel,
+  siteName,
   logoutButton,
   navItems = DASHBOARD_NAV_ITEMS,
 }: {
   userName: string;
   roleLabel: string;
+  siteName: string;
   logoutButton: ReactNode;
   navItems?: PanelNavItem[];
 }) {
   return (
     <PanelSidebar
       homeHref="/dashboard"
-      brandLabel="BayaEstate"
+      brandLabel={siteName}
       subLabel={roleLabel}
       navItems={navItems}
       personName={userName}

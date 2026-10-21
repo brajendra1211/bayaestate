@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { DashboardSidebar, DASHBOARD_NAV_ITEMS } from "@/components/DashboardSidebar";
 import { LogoutButton } from "@/components/LogoutButton";
+import { getSiteSettings } from "@/lib/site-settings";
 
 const ROLE_LABELS: Record<string, string> = {
   OWNER: "Owner",
@@ -17,6 +18,8 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const session = await auth();
   if (!session) redirect("/login");
 
+  const settings = await getSiteSettings();
+
   const isLister =
     session.user.role === "OWNER" || session.user.role === "DEALER" || session.user.role === "SUBADMIN";
   const isPlanHolder = session.user.role === "OWNER" || session.user.role === "DEALER";
@@ -31,6 +34,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
       <DashboardSidebar
         userName={session.user.name ?? "Account"}
         roleLabel={ROLE_LABELS[session.user.role] ?? session.user.role}
+        siteName={settings.siteName}
         logoutButton={<LogoutButton className="text-xs font-medium text-slate-500 hover:text-slate-800" />}
         navItems={navItems}
       />

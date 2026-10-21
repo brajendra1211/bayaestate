@@ -8,6 +8,7 @@ import { geocodeLocation } from "@/lib/geocode";
 import { readAmenitiesFromForm } from "@/lib/amenities";
 import { uniqueLocalitySlug } from "@/lib/locality";
 import { notifyUser } from "@/lib/notify";
+import { getSiteSettings } from "@/lib/site-settings";
 import { hashPassword } from "@/lib/password";
 import { addListingDuration } from "@/lib/propertyVisibility";
 
@@ -461,14 +462,17 @@ export async function deleteLocality(formData: FormData) {
 export async function approveProperty(formData: FormData) {
   await requireAdmin();
   const id = String(formData.get("id") ?? "");
-  const property = await prisma.property.update({
-    where: { id },
-    data: { approvalStatus: "APPROVED" },
-    include: { owner: { select: { phone: true, email: true } } },
-  });
+  const [property, settings] = await Promise.all([
+    prisma.property.update({
+      where: { id },
+      data: { approvalStatus: "APPROVED" },
+      include: { owner: { select: { phone: true, email: true } } },
+    }),
+    getSiteSettings(),
+  ]);
   await notifyUser(
     property.owner,
-    `Your listing "${property.title}" has been approved and is now live on BayaEstate.`,
+    `Your listing "${property.title}" has been approved and is now live on ${settings.siteName}.`,
     "Listing approved"
   );
   redirect("/admin");
@@ -532,10 +536,13 @@ export async function deleteAmenity(formData: FormData) {
 export async function verifyUser(formData: FormData) {
   await requireAdmin();
   const id = String(formData.get("id") ?? "");
-  const user = await prisma.user.update({ where: { id }, data: { verified: true } });
+  const [user, settings] = await Promise.all([
+    prisma.user.update({ where: { id }, data: { verified: true } }),
+    getSiteSettings(),
+  ]);
   await notifyUser(
     user,
-    "Your BayaEstate profile is verified — it and your listings are now live on the public site.",
+    `Your ${settings.siteName} profile is verified — it and your listings are now live on the public site.`,
     "Profile verified"
   );
   redirect("/admin/users");
@@ -750,9 +757,10 @@ export async function approveSubscriptionRequest(formData: FormData) {
     }),
   ]);
 
+  const settings = await getSiteSettings();
   await notifyUser(
     subscription.user,
-    `Your ${subscription.plan.name} plan is now active on BayaEstate.`,
+    `Your ${subscription.plan.name} plan is now active on ${settings.siteName}.`,
     "Plan activated"
   );
 
