@@ -24,7 +24,7 @@ export function Theme1({
           {/* The slider already carries the hero message, so this is just a
               clean search strip underneath it — not a second full hero,
               which looked like a stacked, non-sliding duplicate banner. */}
-          <section className="border-b border-slate-200 bg-white px-4 py-6 sm:px-6">
+          <section className="border-b border-slate-200 bg-slate-50 px-4 py-6 sm:px-6">
             <div className="mx-auto max-w-2xl text-center">
               <SearchBar />
               <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
