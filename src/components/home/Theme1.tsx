@@ -18,36 +18,58 @@ export function Theme1({
 }: HomeThemeProps) {
   return (
     <div>
-      {slides.length > 0 && <HeroSlider slides={slides} />}
-      <section
-        className={`relative overflow-hidden bg-cover bg-center px-4 py-20 text-center text-white sm:px-6 ${
-          settings.heroImage ? "" : "bg-gradient-to-b from-slate-900 to-slate-800"
-        }`}
-        style={settings.heroImage ? { backgroundImage: `url(${settings.heroImage})` } : undefined}
-      >
-        {settings.heroImage && <div className="absolute inset-0 bg-slate-900/55" />}
-        <div className="relative">
-          <h1 className="mx-auto max-w-2xl text-4xl font-bold tracking-tight sm:text-5xl">
-            {settings.heroTitle ?? "Find the right property, faster"}
-          </h1>
-          <p className="mx-auto mt-4 max-w-xl text-slate-300">
-            {settings.heroSubtitle ??
-              "Buy, sell, and rent homes with verified agents across the city."}
-          </p>
-          <div className="mt-8">
-            <SearchBar />
+      {slides.length > 0 ? (
+        <>
+          <HeroSlider slides={slides} />
+          {/* The slider already carries the hero message, so this is just a
+              clean search strip underneath it — not a second full hero,
+              which looked like a stacked, non-sliding duplicate banner. */}
+          <section className="border-b border-slate-200 bg-white px-4 py-6 sm:px-6">
+            <div className="mx-auto max-w-2xl text-center">
+              <SearchBar />
+              <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
+                <NearMeButton />
+                <Link
+                  href="/properties-in"
+                  className="text-sm font-medium text-slate-500 underline-offset-2 hover:text-slate-900 hover:underline"
+                >
+                  Or browse by location
+                </Link>
+              </div>
+            </div>
+          </section>
+        </>
+      ) : (
+        <section
+          className={`relative overflow-hidden bg-cover bg-center px-4 py-20 text-center text-white sm:px-6 ${
+            settings.heroImage ? "" : "bg-gradient-to-b from-slate-900 to-slate-800"
+          }`}
+          style={settings.heroImage ? { backgroundImage: `url(${settings.heroImage})` } : undefined}
+        >
+          {settings.heroImage && <div className="absolute inset-0 bg-slate-900/55" />}
+          <div className="relative">
+            <h1 className="mx-auto max-w-2xl text-4xl font-bold tracking-tight sm:text-5xl">
+              {settings.heroTitle ?? "Find the right property, faster"}
+            </h1>
+            <p className="mx-auto mt-4 max-w-xl text-slate-300">
+              {settings.heroSubtitle ??
+                "Buy, sell, and rent homes with verified agents across the city."}
+            </p>
+            <div className="mt-8">
+              <SearchBar />
+            </div>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+              <NearMeButton />
+              <Link
+                href="/properties-in"
+                className="text-sm font-medium text-slate-300 underline-offset-2 hover:text-white hover:underline"
+              >
+                Or browse by location
+              </Link>
+            </div>
           </div>
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-            <NearMeButton />
-            <Link
-              href="/properties-in"
-              className="text-sm font-medium text-slate-300 underline-offset-2 hover:text-white hover:underline"
-            >
-              Or browse by location
-            </Link>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <div className="mb-6 flex items-center justify-between">

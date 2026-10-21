@@ -82,68 +82,100 @@ export function Theme2({
 
   return (
     <div>
-      {slides.length > 0 && <HeroSlider slides={slides} />}
-      <section className="bg-slate-900 pb-20 sm:pb-24">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 pt-16 sm:px-6 lg:grid-cols-2 lg:pt-24">
-          <div className="text-white">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-amber-300">
-              {settings.siteName}
-            </span>
-            <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
-              {settings.heroTitle ?? "Find the right property, faster"}
-            </h1>
-            <p className="mt-4 max-w-lg text-slate-300">
-              {settings.heroSubtitle ??
-                "Buy, sell, and rent homes with verified agents across the city."}
-            </p>
-            <div className="mt-8">
+      {slides.length > 0 ? (
+        <>
+          <HeroSlider slides={slides} />
+          {/* The slider already carries the hero message, so this is just a
+              compact search bar underneath it — not a second full hero,
+              which looked like a stacked, non-sliding duplicate banner. */}
+          <section className="bg-slate-900 px-4 pb-20 pt-6 sm:px-6 sm:pb-24">
+            <div className="mx-auto max-w-2xl text-center">
               <SearchBar />
-            </div>
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              <NearMeButton />
-              <Link
-                href="/properties-in"
-                className="text-sm font-medium text-slate-300 underline-offset-2 hover:text-white hover:underline"
-              >
-                Or browse by location
-              </Link>
-            </div>
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/10 pt-6">
-              {TRUST_BADGES.map((badge) => (
-                <span key={badge.label} className="flex items-center gap-2 text-sm text-slate-300">
-                  <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4 shrink-0 text-amber-400">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={badge.icon} />
-                  </svg>
-                  {badge.label}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div
-            className={`relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-cover bg-center shadow-2xl ${
-              settings.heroImage ? "" : "bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900"
-            }`}
-            style={settings.heroImage ? { backgroundImage: `url(${settings.heroImage})` } : undefined}
-          >
-            {!settings.heroImage && (
-              <div className="flex h-full items-center justify-center">
-                <svg viewBox="0 0 24 24" fill="none" className="h-20 w-20 text-white/10">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.25} d="M4 21V8l8-5 8 5v13M9 21v-6h6v6M4 21h16" />
-                </svg>
+              <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
+                <NearMeButton />
+                <Link
+                  href="/properties-in"
+                  className="text-sm font-medium text-slate-300 underline-offset-2 hover:text-white hover:underline"
+                >
+                  Or browse by location
+                </Link>
               </div>
-            )}
-            <div className="absolute inset-x-4 bottom-4 rounded-xl bg-white/95 p-4 shadow-lg backdrop-blur">
-              <p className="text-xs font-medium text-slate-500">
-                {usingLatestFallback ? "Latest listing" : "Featured listing"}
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 border-t border-white/10 pt-5">
+                {TRUST_BADGES.map((badge) => (
+                  <span key={badge.label} className="flex items-center gap-2 text-sm text-slate-300">
+                    <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4 shrink-0 text-amber-400">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={badge.icon} />
+                    </svg>
+                    {badge.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
+      ) : (
+        <section className="bg-slate-900 pb-20 sm:pb-24">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 pt-16 sm:px-6 lg:grid-cols-2 lg:pt-24">
+            <div className="text-white">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-amber-300">
+                {settings.siteName}
+              </span>
+              <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+                {settings.heroTitle ?? "Find the right property, faster"}
+              </h1>
+              <p className="mt-4 max-w-lg text-slate-300">
+                {settings.heroSubtitle ??
+                  "Buy, sell, and rent homes with verified agents across the city."}
               </p>
-              <p className="mt-0.5 truncate font-semibold text-slate-900">
-                {featuredProperties[0]?.title ?? "New listings added every day"}
-              </p>
+              <div className="mt-8">
+                <SearchBar />
+              </div>
+              <div className="mt-4 flex flex-wrap items-center gap-3">
+                <NearMeButton />
+                <Link
+                  href="/properties-in"
+                  className="text-sm font-medium text-slate-300 underline-offset-2 hover:text-white hover:underline"
+                >
+                  Or browse by location
+                </Link>
+              </div>
+              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/10 pt-6">
+                {TRUST_BADGES.map((badge) => (
+                  <span key={badge.label} className="flex items-center gap-2 text-sm text-slate-300">
+                    <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4 shrink-0 text-amber-400">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={badge.icon} />
+                    </svg>
+                    {badge.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div
+              className={`relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-cover bg-center shadow-2xl ${
+                settings.heroImage ? "" : "bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900"
+              }`}
+              style={settings.heroImage ? { backgroundImage: `url(${settings.heroImage})` } : undefined}
+            >
+              {!settings.heroImage && (
+                <div className="flex h-full items-center justify-center">
+                  <svg viewBox="0 0 24 24" fill="none" className="h-20 w-20 text-white/10">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.25} d="M4 21V8l8-5 8 5v13M9 21v-6h6v6M4 21h16" />
+                  </svg>
+                </div>
+              )}
+              <div className="absolute inset-x-4 bottom-4 rounded-xl bg-white/95 p-4 shadow-lg backdrop-blur">
+                <p className="text-xs font-medium text-slate-500">
+                  {usingLatestFallback ? "Latest listing" : "Featured listing"}
+                </p>
+                <p className="mt-0.5 truncate font-semibold text-slate-900">
+                  {featuredProperties[0]?.title ?? "New listings added every day"}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Stat cards, pulled up to overlap the hero's bottom edge */}
       <div className="mx-auto -mt-14 max-w-6xl px-4 sm:-mt-16 sm:px-6">
