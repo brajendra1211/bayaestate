@@ -28,7 +28,7 @@ export function Theme1({
           {/* Floats the search card over the slider on larger screens, like a
               typical hero search widget — on mobile the hero is too short for
               that, so a plain strip below it (rendered separately) takes over. */}
-          <div className="pointer-events-none absolute inset-0 z-20 hidden items-center justify-end px-6 sm:flex sm:pr-16 lg:pr-24">
+          <div className="pointer-events-none absolute inset-0 z-20 hidden items-start justify-end px-6 pt-10 sm:flex sm:pr-16 sm:pt-14 lg:pr-24">
             <div className="pointer-events-auto w-full max-w-sm rounded-2xl bg-white p-5 shadow-2xl">
               <SearchBar />
               <div className="mt-3 flex flex-wrap items-center justify-center gap-3 text-xs">
