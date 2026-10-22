@@ -114,6 +114,7 @@ export default async function RootLayout({
           facebookUrl={settings.facebookUrl}
           youtubeUrl={settings.youtubeUrl}
           linkedinUrl={settings.linkedinUrl}
+          cities={cities}
         />
         <WhatsAppButton phoneNumber={settings.whatsappNumber} />
         <MobileBottomNav />

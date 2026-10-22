@@ -61,6 +61,7 @@ export function Footer({
   facebookUrl,
   youtubeUrl,
   linkedinUrl,
+  cities,
 }: {
   siteName: string;
   tagline?: string | null;
@@ -71,6 +72,7 @@ export function Footer({
   facebookUrl?: string | null;
   youtubeUrl?: string | null;
   linkedinUrl?: string | null;
+  cities?: { slug: string; name: string }[];
 }) {
   const socialLinks: { kind: keyof typeof SOCIAL_ICONS; href: string }[] = [];
   if (instagramUrl) socialLinks.push({ kind: "instagram", href: instagramUrl });
@@ -140,7 +142,20 @@ export function Footer({
           </div>
         </div>
 
-        <div className="mt-10 border-t border-slate-200 pt-6 text-xs text-slate-400">
+        {cities && cities.length > 0 && (
+          <div className="mt-10 border-t border-slate-200 pt-6">
+            <p className="text-sm font-semibold text-slate-900">Properties by Location</p>
+            <nav className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-xs text-slate-500">
+              {cities.map((city) => (
+                <Link key={city.slug} href={`/properties-in/${city.slug}`} className="hover:text-slate-800">
+                  Properties in {city.name}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        )}
+
+        <div className="mt-6 border-t border-slate-200 pt-6 text-xs text-slate-400">
           © {new Date().getFullYear()} {siteName}. All rights reserved.
         </div>
       </div>

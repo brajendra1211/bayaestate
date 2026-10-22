@@ -3,6 +3,8 @@ import { PropertyCard } from "@/components/PropertyCard";
 import { SearchBar } from "@/components/SearchBar";
 import { NearMeButton } from "@/components/NearMeButton";
 import { HeroSlider } from "@/components/HeroSlider";
+import { FeaturedProjectsSection } from "./FeaturedProjectsSection";
+import { FeaturedDealersSection } from "./FeaturedDealersSection";
 import type { HomeThemeProps } from "./types";
 
 // The original/default homepage design — kept exactly as it was before themes
@@ -15,6 +17,8 @@ export function Theme1({
   usingLatestFallback,
   isCityScoped,
   slides,
+  featuredProjects,
+  featuredDealers,
 }: HomeThemeProps) {
   return (
     <div>
@@ -97,6 +101,9 @@ export function Theme1({
           </div>
         )}
       </section>
+
+      <FeaturedProjectsSection projects={featuredProjects} />
+      <FeaturedDealersSection dealers={featuredDealers} />
 
       <section className="border-t border-slate-200 bg-slate-50 px-4 py-14 text-center sm:px-6">
         <h2 className="text-2xl font-bold text-slate-900">Are you an agent or owner?</h2>

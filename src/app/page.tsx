@@ -55,6 +55,36 @@ export default async function Home() {
     featuredProperties = await findHomepageProperties(baseFilter);
   }
 
+  const findHomepageProjects = (where: Prisma.ProjectWhereInput) =>
+    prisma.project.findMany({
+      where,
+      include: { images: { orderBy: { order: "asc" }, take: 1 }, developer: { select: { name: true } } },
+      orderBy: { createdAt: "desc" },
+      take: 6,
+    });
+
+  let featuredProjects = location
+    ? await findHomepageProjects({ city: { contains: location.cityName } })
+    : [];
+  if (featuredProjects.length === 0) {
+    featuredProjects = await findHomepageProjects({});
+  }
+
+  const featuredDealers = await prisma.user.findMany({
+    where: { role: "DEALER", slug: { not: null }, verified: true },
+    select: {
+      id: true,
+      name: true,
+      company: true,
+      slug: true,
+      logoUrl: true,
+      address: true,
+      _count: { select: { properties: { where: { approvalStatus: "APPROVED", ...notExpiredFilter() } } } },
+    },
+    orderBy: { createdAt: "desc" },
+    take: 8,
+  });
+
   const [totalListings, verifiedListers, distinctCities, cityGroups, slides] = await Promise.all([
     prisma.property.count({ where: baseFilter }),
     prisma.user.count({ where: { role: { in: ["DEALER", "OWNER"] }, verified: true } }),
@@ -122,6 +152,8 @@ export default async function Home() {
         stats={stats}
         topCities={topCities}
         slides={slides}
+        featuredProjects={featuredProjects}
+        featuredDealers={featuredDealers}
       />
     </div>
   );

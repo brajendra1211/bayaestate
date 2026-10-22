@@ -4,6 +4,8 @@ import { NearMeButton } from "@/components/NearMeButton";
 import { HeroSlider } from "@/components/HeroSlider";
 import { PROPERTY_TYPE_LABELS } from "@/lib/format";
 import { PremiumPropertyCard } from "./PremiumPropertyCard";
+import { FeaturedProjectsSection } from "./FeaturedProjectsSection";
+import { FeaturedDealersSection } from "./FeaturedDealersSection";
 import type { HomeThemeProps } from "./types";
 
 const TRUST_BADGES = [
@@ -61,6 +63,8 @@ export function Theme2({
   stats,
   topCities,
   slides,
+  featuredProjects,
+  featuredDealers,
 }: HomeThemeProps) {
   const statCards = [
     {
@@ -297,6 +301,9 @@ export function Theme2({
           </div>
         </section>
       )}
+
+      <FeaturedProjectsSection projects={featuredProjects} />
+      <FeaturedDealersSection dealers={featuredDealers} />
 
       <section className="px-4 py-14 sm:px-6">
         <div className="mx-auto max-w-6xl overflow-hidden rounded-2xl bg-slate-900 px-6 py-12 text-center text-white sm:px-12">
