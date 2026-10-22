@@ -88,41 +88,27 @@ export function Theme2({
     <div>
       {slides.length > 0 ? (
         <>
-          <div className="relative">
-            <HeroSlider slides={slides} />
-            {/* Floats the search card over the slider on larger screens, like
-                a typical hero search widget — on mobile the hero is too
-                short for that, so a plain strip below it takes over. */}
-            <div className="pointer-events-none absolute inset-0 z-20 hidden items-start justify-end px-6 pt-10 sm:flex sm:pr-16 sm:pt-14 lg:pr-24">
-              <div className="pointer-events-auto w-full max-w-sm rounded-2xl bg-white p-5 shadow-2xl">
-                <SearchBar />
-                <div className="mt-3 flex flex-wrap items-center justify-center gap-3 text-xs">
-                  <NearMeButton />
-                  <Link
-                    href="/properties-in"
-                    className="font-medium text-slate-500 underline-offset-2 hover:text-slate-900 hover:underline"
-                  >
-                    Or browse by location
-                  </Link>
-                </div>
+          <HeroSlider slides={slides} />
+          {/* A clean, non-overlapping card right under the slider — pulled up
+              just enough to visually "dock" onto the image without ever
+              risking covering the slide's own bottom-anchored title/CTA. */}
+          <div className="relative z-10 mx-auto -mt-6 max-w-xl px-4 sm:-mt-8 sm:px-6">
+            <div className="rounded-2xl bg-white p-4 shadow-xl ring-1 ring-slate-900/5 sm:p-5">
+              <SearchBar />
+              <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
+                <NearMeButton />
+                <Link
+                  href="/properties-in"
+                  className="text-sm font-medium text-slate-500 underline-offset-2 hover:text-slate-900 hover:underline"
+                >
+                  Or browse by location
+                </Link>
               </div>
             </div>
           </div>
-          <section className="bg-slate-900 px-4 pb-20 pt-6 sm:px-6 sm:pb-24">
+          <section className="bg-slate-900 px-4 pb-20 pt-8 sm:px-6 sm:pb-24">
             <div className="mx-auto max-w-2xl text-center">
-              <div className="sm:hidden">
-                <SearchBar />
-                <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
-                  <NearMeButton />
-                  <Link
-                    href="/properties-in"
-                    className="text-sm font-medium text-slate-300 underline-offset-2 hover:text-white hover:underline"
-                  >
-                    Or browse by location
-                  </Link>
-                </div>
-              </div>
-              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 border-t border-white/10 pt-5 sm:mt-0 sm:border-t-0 sm:pt-0">
+              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
                 {TRUST_BADGES.map((badge) => (
                   <span key={badge.label} className="flex items-center gap-2 text-sm text-slate-300">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-4 w-4 shrink-0 text-amber-400">
