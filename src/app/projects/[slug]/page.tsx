@@ -9,6 +9,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { EmiCalculator } from "@/components/EmiCalculator";
 import { AmenitiesGrid } from "@/components/AmenitiesGrid";
+import { ProjectGallery } from "@/components/ProjectGallery";
+import { ZoomableImage } from "@/components/ZoomableImage";
 import { absoluteUrl } from "@/lib/seo";
 import { getYoutubeEmbedUrl } from "@/lib/format";
 import { parseAmenitiesString } from "@/lib/amenities";
@@ -154,38 +156,7 @@ export default async function ProjectDetailPage({
       {faqJsonLd && <JsonLd data={faqJsonLd} />}
 
       <div className="mx-auto max-w-6xl px-4 pb-10 pt-4 sm:px-6">
-        {project.images.length > 0 ? (
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-4">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100 sm:col-span-2 sm:row-span-2">
-              <Image
-                src={project.images[0].url}
-                alt={`${project.name} — photo 1`}
-                fill
-                className="object-cover"
-                sizes="(min-width: 640px) 50vw, 100vw"
-                priority
-              />
-            </div>
-            {project.images.slice(1, 5).map((image, index) => (
-              <div
-                key={image.id}
-                className="relative hidden aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100 sm:block"
-              >
-                <Image
-                  src={image.url}
-                  alt={`${project.name} — photo ${index + 2}`}
-                  fill
-                  className="object-cover"
-                  sizes="25vw"
-                />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="flex aspect-[16/6] items-center justify-center rounded-2xl bg-slate-100 text-slate-400">
-            No photos available
-          </div>
-        )}
+        <ProjectGallery images={project.images} title={project.name} />
 
         <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-3">
           <div className="lg:col-span-2">
@@ -244,7 +215,7 @@ export default async function ProjectDetailPage({
                 <ul className="mt-2 space-y-1.5">
                   {highlights.map((line) => (
                     <li key={line} className="flex items-start gap-2 text-sm text-slate-600">
-                      <svg viewBox="0 0 24 24" fill="none" className="mt-0.5 h-4 w-4 shrink-0 text-green-600">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="mt-0.5 h-4 w-4 shrink-0 text-green-600">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                       {line}
@@ -307,15 +278,12 @@ export default async function ProjectDetailPage({
             {project.sitePlanUrl && (
               <div className="mt-8">
                 <h2 className="text-lg font-semibold text-slate-900">Site Plan</h2>
-                <div className="relative mt-3 aspect-[4/3] w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 sm:aspect-[16/9]">
-                  <Image
-                    src={project.sitePlanUrl}
-                    alt={`${project.name} site plan`}
-                    fill
-                    className="object-contain"
-                    sizes="(min-width: 1024px) 700px, 100vw"
-                  />
-                </div>
+                <ZoomableImage
+                  src={project.sitePlanUrl}
+                  alt={`${project.name} site plan`}
+                  className="mt-3 aspect-[4/3] w-full rounded-2xl border border-slate-200 bg-slate-50 sm:aspect-[16/9]"
+                  sizes="(min-width: 1024px) 700px, 100vw"
+                />
               </div>
             )}
 

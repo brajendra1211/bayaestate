@@ -103,7 +103,7 @@ export function Theme2({
               <div className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 border-t border-white/10 pt-5">
                 {TRUST_BADGES.map((badge) => (
                   <span key={badge.label} className="flex items-center gap-2 text-sm text-slate-300">
-                    <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4 shrink-0 text-amber-400">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-4 w-4 shrink-0 text-amber-400">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={badge.icon} />
                     </svg>
                     {badge.label}
@@ -142,7 +142,7 @@ export function Theme2({
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-white/10 pt-6">
                 {TRUST_BADGES.map((badge) => (
                   <span key={badge.label} className="flex items-center gap-2 text-sm text-slate-300">
-                    <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4 shrink-0 text-amber-400">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-4 w-4 shrink-0 text-amber-400">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={badge.icon} />
                     </svg>
                     {badge.label}
@@ -159,7 +159,7 @@ export function Theme2({
             >
               {!settings.heroImage && (
                 <div className="flex h-full items-center justify-center">
-                  <svg viewBox="0 0 24 24" fill="none" className="h-20 w-20 text-white/10">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-20 w-20 text-white/10">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.25} d="M4 21V8l8-5 8 5v13M9 21v-6h6v6M4 21h16" />
                   </svg>
                 </div>
@@ -183,7 +183,7 @@ export function Theme2({
           {statCards.map((stat) => (
             <div key={stat.label} className="flex items-center gap-4 px-2 py-2">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
-                <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-5 w-5">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d={stat.icon} />
                 </svg>
               </span>
@@ -203,7 +203,7 @@ export function Theme2({
           {HOW_IT_WORKS.map((item) => (
             <div key={item.step} className="text-center">
               <div className="relative mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-slate-900 text-white">
-                <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-6 w-6">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d={item.icon} />
                 </svg>
                 <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-xs font-bold text-white">
@@ -228,7 +228,7 @@ export function Theme2({
                 href={`/properties?propertyType=${value}`}
                 className="flex flex-col items-center gap-2 rounded-xl border border-slate-200 bg-white p-4 text-center transition hover:border-amber-300 hover:shadow-sm"
               >
-                <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6 text-slate-700">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-6 w-6 text-slate-700">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"

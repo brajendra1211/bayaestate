@@ -20,6 +20,7 @@ export function FaqAccordion({ items }: { items: { id: string; question: string;
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
+                stroke="currentColor"
                 className={`h-4 w-4 shrink-0 text-slate-400 transition-transform ${open ? "rotate-180" : ""}`}
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M6 9l6 6 6-6" />

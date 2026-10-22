@@ -38,7 +38,7 @@ export function AmenitiesGrid({ amenities }: { amenities: string[] }) {
       {amenities.map((amenity) => (
         <div key={amenity} className="flex items-center gap-2 text-sm text-slate-700">
           <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-50 text-blue-600">
-            <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-4 w-4">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d={iconFor(amenity)} />
             </svg>
           </span>

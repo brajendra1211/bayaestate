@@ -92,7 +92,7 @@ export function HeroSlider({ slides }: { slides: Slide[] }) {
             aria-label="Previous slide"
             className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur transition hover:bg-white/30 sm:left-5"
           >
-            <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-5 w-5">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
@@ -102,7 +102,7 @@ export function HeroSlider({ slides }: { slides: Slide[] }) {
             aria-label="Next slide"
             className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur transition hover:bg-white/30 sm:right-5"
           >
-            <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-5 w-5">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>

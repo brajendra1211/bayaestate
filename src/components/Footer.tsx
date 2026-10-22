@@ -44,7 +44,7 @@ function SocialLink({ href, kind }: { href: string; kind: keyof typeof SOCIAL_IC
       aria-label={kind}
       className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:border-blue-200 hover:text-blue-600"
     >
-      <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-4 w-4">
         {SOCIAL_ICONS[kind]}
       </svg>
     </a>

@@ -61,7 +61,7 @@ export function MobileBottomNavShell({ items }: { items: BottomNavItem[] }) {
               active ? "text-blue-600" : "text-slate-500"
             }`}
           >
-            <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-5 w-5">
               {ICONS[item.icon]}
             </svg>
             {item.label}
