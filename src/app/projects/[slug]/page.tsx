@@ -35,6 +35,17 @@ const inr = new Intl.NumberFormat("en-IN", {
   maximumFractionDigits: 0,
 });
 
+const KEY_FACT_ICONS: Record<string, string> = {
+  "Total units": "M4 21V8l8-5 8 5v13M9 21v-6h6v6M4 21h16",
+  "Project type": "M7 7h.01M3 11l8-8h8a2 2 0 012 2v8l-8 8-10-10z",
+  Status: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+  "Project size": "M9 3H3v6m12-6h6v6M3 15v6h6m6 0h6v-6M3 3l7 7m11-7l-7 7M3 21l7-7m11 7l-7-7",
+  "Launch date": "M8 2v4M16 2v4M3 10h18M5 6h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2z",
+  "Possession date": "M8 2v4M16 2v4M3 10h18M5 6h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2zM9 16l2 2 4-4",
+  "Total towers": "M4 21V10l5-4 5 4v11M4 21h16M14 21v-7l5-3v10M9 13h1m-1 4h1",
+  default: "M12 9v4m0 4h.01M12 3a9 9 0 100 18 9 9 0 000-18z",
+};
+
 function parseLines(value: string | null) {
   if (!value) return [];
   return value
@@ -271,11 +282,21 @@ export default async function ProjectDetailPage({
             {keyFacts.length > 0 && (
               <div className="mt-8">
                 <h2 className="text-lg font-semibold text-slate-900">Key Facts</h2>
-                <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-3 rounded-2xl border border-slate-200 p-4 sm:grid-cols-3">
+                <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
                   {keyFacts.map((fact) => (
-                    <div key={fact.label}>
-                      <p className="text-xs text-slate-400">{fact.label}</p>
-                      <p className="text-sm font-semibold text-slate-800">{fact.value}</p>
+                    <div
+                      key={fact.label}
+                      className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-3.5 shadow-sm"
+                    >
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-[18px] w-[18px]">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d={KEY_FACT_ICONS[fact.label] ?? KEY_FACT_ICONS.default} />
+                        </svg>
+                      </span>
+                      <span className="min-w-0">
+                        <p className="text-xs text-slate-500">{fact.label}</p>
+                        <p className="truncate text-sm font-semibold text-slate-900">{fact.value}</p>
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -285,16 +306,21 @@ export default async function ProjectDetailPage({
             {highlights.length > 0 && (
               <div className="mt-8">
                 <h2 className="text-lg font-semibold text-slate-900">{project.name} Highlights</h2>
-                <ul className="mt-2 space-y-1.5">
+                <div className="mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                   {highlights.map((line) => (
-                    <li key={line} className="flex items-start gap-2 text-sm text-slate-600">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="mt-0.5 h-4 w-4 shrink-0 text-green-600">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      {line}
-                    </li>
+                    <div
+                      key={line}
+                      className="flex items-start gap-3 rounded-xl border border-green-100 bg-green-50/60 p-3 text-sm text-slate-700"
+                    >
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-600 text-white">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="h-3.5 w-3.5">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                      <span className="pt-0.5">{line}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             )}
 
