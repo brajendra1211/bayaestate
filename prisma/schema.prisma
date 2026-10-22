@@ -184,6 +184,17 @@ model Project {
   brochureUrl     String?
   youtubeUrl      String?
   sitePlanUrl     String?
+  projectType     String?
+  totalUnits      Int?
+  projectSizeAcres Float?
+  launchDate      DateTime?
+  totalTowers     Int?
+  pricePerSqft    Int?
+  priceListUrl    String?
+  carParkingSpaces Int?
+  unitLiftRatio   String?
+  approvalDate    DateTime?
+  constructionStatusNote String? @db.Text
   metaTitle       String?
   metaDescription String?        @db.Text
   units           Property[]
@@ -191,6 +202,7 @@ model Project {
   floorPlans      ProjectFloorPlan[]
   faqs            ProjectFAQ[]
   landmarks       ProjectLandmark[]
+  reraPhases      ProjectReraPhase[]
   enquiries       Enquiry[]
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
@@ -238,6 +250,17 @@ model ProjectLandmark {
   name       String
   distanceKm Float
   order      Int      @default(0)
+
+  @@index([projectId])
+}
+
+model ProjectReraPhase {
+  id         String  @id @default(cuid())
+  projectId  String
+  project    Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  label      String
+  reraNumber String
+  order      Int     @default(0)
 
   @@index([projectId])
 }

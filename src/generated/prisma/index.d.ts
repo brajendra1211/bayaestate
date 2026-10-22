@@ -64,6 +64,11 @@ export type ProjectFAQ = $Result.DefaultSelection<Prisma.$ProjectFAQPayload>
  */
 export type ProjectLandmark = $Result.DefaultSelection<Prisma.$ProjectLandmarkPayload>
 /**
+ * Model ProjectReraPhase
+ * 
+ */
+export type ProjectReraPhase = $Result.DefaultSelection<Prisma.$ProjectReraPhasePayload>
+/**
  * Model Country
  * 
  */
@@ -501,6 +506,16 @@ export class PrismaClient<
     * ```
     */
   get projectLandmark(): Prisma.ProjectLandmarkDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.projectReraPhase`: Exposes CRUD operations for the **ProjectReraPhase** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProjectReraPhases
+    * const projectReraPhases = await prisma.projectReraPhase.findMany()
+    * ```
+    */
+  get projectReraPhase(): Prisma.ProjectReraPhaseDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.country`: Exposes CRUD operations for the **Country** model.
@@ -1078,6 +1093,7 @@ export namespace Prisma {
     ProjectFloorPlan: 'ProjectFloorPlan',
     ProjectFAQ: 'ProjectFAQ',
     ProjectLandmark: 'ProjectLandmark',
+    ProjectReraPhase: 'ProjectReraPhase',
     Country: 'Country',
     State: 'State',
     City: 'City',
@@ -1105,7 +1121,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "plan" | "subscription" | "leadView" | "developer" | "project" | "projectImage" | "projectFloorPlan" | "projectFAQ" | "projectLandmark" | "country" | "state" | "city" | "locality" | "property" | "propertyImage" | "enquiry" | "otpCode" | "savedProperty" | "amenity" | "heroSlide" | "siteSettings"
+      modelProps: "user" | "plan" | "subscription" | "leadView" | "developer" | "project" | "projectImage" | "projectFloorPlan" | "projectFAQ" | "projectLandmark" | "projectReraPhase" | "country" | "state" | "city" | "locality" | "property" | "propertyImage" | "enquiry" | "otpCode" | "savedProperty" | "amenity" | "heroSlide" | "siteSettings"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1766,6 +1782,72 @@ export namespace Prisma {
           count: {
             args: Prisma.ProjectLandmarkCountArgs<ExtArgs>
             result: $Utils.Optional<ProjectLandmarkCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProjectReraPhase: {
+        payload: Prisma.$ProjectReraPhasePayload<ExtArgs>
+        fields: Prisma.ProjectReraPhaseFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProjectReraPhaseFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectReraPhasePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProjectReraPhaseFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectReraPhasePayload>
+          }
+          findFirst: {
+            args: Prisma.ProjectReraPhaseFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectReraPhasePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProjectReraPhaseFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectReraPhasePayload>
+          }
+          findMany: {
+            args: Prisma.ProjectReraPhaseFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectReraPhasePayload>[]
+          }
+          create: {
+            args: Prisma.ProjectReraPhaseCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectReraPhasePayload>
+          }
+          createMany: {
+            args: Prisma.ProjectReraPhaseCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ProjectReraPhaseDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectReraPhasePayload>
+          }
+          update: {
+            args: Prisma.ProjectReraPhaseUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectReraPhasePayload>
+          }
+          deleteMany: {
+            args: Prisma.ProjectReraPhaseDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProjectReraPhaseUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ProjectReraPhaseUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProjectReraPhasePayload>
+          }
+          aggregate: {
+            args: Prisma.ProjectReraPhaseAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProjectReraPhase>
+          }
+          groupBy: {
+            args: Prisma.ProjectReraPhaseGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProjectReraPhaseGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProjectReraPhaseCountArgs<ExtArgs>
+            result: $Utils.Optional<ProjectReraPhaseCountAggregateOutputType> | number
           }
         }
       }
@@ -2694,6 +2776,7 @@ export namespace Prisma {
     projectFloorPlan?: ProjectFloorPlanOmit
     projectFAQ?: ProjectFAQOmit
     projectLandmark?: ProjectLandmarkOmit
+    projectReraPhase?: ProjectReraPhaseOmit
     country?: CountryOmit
     state?: StateOmit
     city?: CityOmit
@@ -2920,6 +3003,7 @@ export namespace Prisma {
     floorPlans: number
     faqs: number
     landmarks: number
+    reraPhases: number
     enquiries: number
   }
 
@@ -2929,6 +3013,7 @@ export namespace Prisma {
     floorPlans?: boolean | ProjectCountOutputTypeCountFloorPlansArgs
     faqs?: boolean | ProjectCountOutputTypeCountFaqsArgs
     landmarks?: boolean | ProjectCountOutputTypeCountLandmarksArgs
+    reraPhases?: boolean | ProjectCountOutputTypeCountReraPhasesArgs
     enquiries?: boolean | ProjectCountOutputTypeCountEnquiriesArgs
   }
 
@@ -2976,6 +3061,13 @@ export namespace Prisma {
    */
   export type ProjectCountOutputTypeCountLandmarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProjectLandmarkWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountReraPhasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectReraPhaseWhereInput
   }
 
   /**
@@ -8445,11 +8537,21 @@ export namespace Prisma {
   export type ProjectAvgAggregateOutputType = {
     priceMin: number | null
     priceMax: number | null
+    totalUnits: number | null
+    projectSizeAcres: number | null
+    totalTowers: number | null
+    pricePerSqft: number | null
+    carParkingSpaces: number | null
   }
 
   export type ProjectSumAggregateOutputType = {
     priceMin: number | null
     priceMax: number | null
+    totalUnits: number | null
+    projectSizeAcres: number | null
+    totalTowers: number | null
+    pricePerSqft: number | null
+    carParkingSpaces: number | null
   }
 
   export type ProjectMinAggregateOutputType = {
@@ -8471,6 +8573,17 @@ export namespace Prisma {
     brochureUrl: string | null
     youtubeUrl: string | null
     sitePlanUrl: string | null
+    projectType: string | null
+    totalUnits: number | null
+    projectSizeAcres: number | null
+    launchDate: Date | null
+    totalTowers: number | null
+    pricePerSqft: number | null
+    priceListUrl: string | null
+    carParkingSpaces: number | null
+    unitLiftRatio: string | null
+    approvalDate: Date | null
+    constructionStatusNote: string | null
     metaTitle: string | null
     metaDescription: string | null
     createdAt: Date | null
@@ -8496,6 +8609,17 @@ export namespace Prisma {
     brochureUrl: string | null
     youtubeUrl: string | null
     sitePlanUrl: string | null
+    projectType: string | null
+    totalUnits: number | null
+    projectSizeAcres: number | null
+    launchDate: Date | null
+    totalTowers: number | null
+    pricePerSqft: number | null
+    priceListUrl: string | null
+    carParkingSpaces: number | null
+    unitLiftRatio: string | null
+    approvalDate: Date | null
+    constructionStatusNote: string | null
     metaTitle: string | null
     metaDescription: string | null
     createdAt: Date | null
@@ -8521,6 +8645,17 @@ export namespace Prisma {
     brochureUrl: number
     youtubeUrl: number
     sitePlanUrl: number
+    projectType: number
+    totalUnits: number
+    projectSizeAcres: number
+    launchDate: number
+    totalTowers: number
+    pricePerSqft: number
+    priceListUrl: number
+    carParkingSpaces: number
+    unitLiftRatio: number
+    approvalDate: number
+    constructionStatusNote: number
     metaTitle: number
     metaDescription: number
     createdAt: number
@@ -8532,11 +8667,21 @@ export namespace Prisma {
   export type ProjectAvgAggregateInputType = {
     priceMin?: true
     priceMax?: true
+    totalUnits?: true
+    projectSizeAcres?: true
+    totalTowers?: true
+    pricePerSqft?: true
+    carParkingSpaces?: true
   }
 
   export type ProjectSumAggregateInputType = {
     priceMin?: true
     priceMax?: true
+    totalUnits?: true
+    projectSizeAcres?: true
+    totalTowers?: true
+    pricePerSqft?: true
+    carParkingSpaces?: true
   }
 
   export type ProjectMinAggregateInputType = {
@@ -8558,6 +8703,17 @@ export namespace Prisma {
     brochureUrl?: true
     youtubeUrl?: true
     sitePlanUrl?: true
+    projectType?: true
+    totalUnits?: true
+    projectSizeAcres?: true
+    launchDate?: true
+    totalTowers?: true
+    pricePerSqft?: true
+    priceListUrl?: true
+    carParkingSpaces?: true
+    unitLiftRatio?: true
+    approvalDate?: true
+    constructionStatusNote?: true
     metaTitle?: true
     metaDescription?: true
     createdAt?: true
@@ -8583,6 +8739,17 @@ export namespace Prisma {
     brochureUrl?: true
     youtubeUrl?: true
     sitePlanUrl?: true
+    projectType?: true
+    totalUnits?: true
+    projectSizeAcres?: true
+    launchDate?: true
+    totalTowers?: true
+    pricePerSqft?: true
+    priceListUrl?: true
+    carParkingSpaces?: true
+    unitLiftRatio?: true
+    approvalDate?: true
+    constructionStatusNote?: true
     metaTitle?: true
     metaDescription?: true
     createdAt?: true
@@ -8608,6 +8775,17 @@ export namespace Prisma {
     brochureUrl?: true
     youtubeUrl?: true
     sitePlanUrl?: true
+    projectType?: true
+    totalUnits?: true
+    projectSizeAcres?: true
+    launchDate?: true
+    totalTowers?: true
+    pricePerSqft?: true
+    priceListUrl?: true
+    carParkingSpaces?: true
+    unitLiftRatio?: true
+    approvalDate?: true
+    constructionStatusNote?: true
     metaTitle?: true
     metaDescription?: true
     createdAt?: true
@@ -8720,6 +8898,17 @@ export namespace Prisma {
     brochureUrl: string | null
     youtubeUrl: string | null
     sitePlanUrl: string | null
+    projectType: string | null
+    totalUnits: number | null
+    projectSizeAcres: number | null
+    launchDate: Date | null
+    totalTowers: number | null
+    pricePerSqft: number | null
+    priceListUrl: string | null
+    carParkingSpaces: number | null
+    unitLiftRatio: string | null
+    approvalDate: Date | null
+    constructionStatusNote: string | null
     metaTitle: string | null
     metaDescription: string | null
     createdAt: Date
@@ -8764,6 +8953,17 @@ export namespace Prisma {
     brochureUrl?: boolean
     youtubeUrl?: boolean
     sitePlanUrl?: boolean
+    projectType?: boolean
+    totalUnits?: boolean
+    projectSizeAcres?: boolean
+    launchDate?: boolean
+    totalTowers?: boolean
+    pricePerSqft?: boolean
+    priceListUrl?: boolean
+    carParkingSpaces?: boolean
+    unitLiftRatio?: boolean
+    approvalDate?: boolean
+    constructionStatusNote?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     createdAt?: boolean
@@ -8774,6 +8974,7 @@ export namespace Prisma {
     floorPlans?: boolean | Project$floorPlansArgs<ExtArgs>
     faqs?: boolean | Project$faqsArgs<ExtArgs>
     landmarks?: boolean | Project$landmarksArgs<ExtArgs>
+    reraPhases?: boolean | Project$reraPhasesArgs<ExtArgs>
     enquiries?: boolean | Project$enquiriesArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
@@ -8799,13 +9000,24 @@ export namespace Prisma {
     brochureUrl?: boolean
     youtubeUrl?: boolean
     sitePlanUrl?: boolean
+    projectType?: boolean
+    totalUnits?: boolean
+    projectSizeAcres?: boolean
+    launchDate?: boolean
+    totalTowers?: boolean
+    pricePerSqft?: boolean
+    priceListUrl?: boolean
+    carParkingSpaces?: boolean
+    unitLiftRatio?: boolean
+    approvalDate?: boolean
+    constructionStatusNote?: boolean
     metaTitle?: boolean
     metaDescription?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "name" | "description" | "status" | "developerId" | "city" | "locality" | "address" | "priceMin" | "priceMax" | "possessionDate" | "amenities" | "reraNumber" | "highlights" | "brochureUrl" | "youtubeUrl" | "sitePlanUrl" | "metaTitle" | "metaDescription" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "name" | "description" | "status" | "developerId" | "city" | "locality" | "address" | "priceMin" | "priceMax" | "possessionDate" | "amenities" | "reraNumber" | "highlights" | "brochureUrl" | "youtubeUrl" | "sitePlanUrl" | "projectType" | "totalUnits" | "projectSizeAcres" | "launchDate" | "totalTowers" | "pricePerSqft" | "priceListUrl" | "carParkingSpaces" | "unitLiftRatio" | "approvalDate" | "constructionStatusNote" | "metaTitle" | "metaDescription" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     developer?: boolean | DeveloperDefaultArgs<ExtArgs>
     units?: boolean | Project$unitsArgs<ExtArgs>
@@ -8813,6 +9025,7 @@ export namespace Prisma {
     floorPlans?: boolean | Project$floorPlansArgs<ExtArgs>
     faqs?: boolean | Project$faqsArgs<ExtArgs>
     landmarks?: boolean | Project$landmarksArgs<ExtArgs>
+    reraPhases?: boolean | Project$reraPhasesArgs<ExtArgs>
     enquiries?: boolean | Project$enquiriesArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -8826,6 +9039,7 @@ export namespace Prisma {
       floorPlans: Prisma.$ProjectFloorPlanPayload<ExtArgs>[]
       faqs: Prisma.$ProjectFAQPayload<ExtArgs>[]
       landmarks: Prisma.$ProjectLandmarkPayload<ExtArgs>[]
+      reraPhases: Prisma.$ProjectReraPhasePayload<ExtArgs>[]
       enquiries: Prisma.$EnquiryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -8847,6 +9061,17 @@ export namespace Prisma {
       brochureUrl: string | null
       youtubeUrl: string | null
       sitePlanUrl: string | null
+      projectType: string | null
+      totalUnits: number | null
+      projectSizeAcres: number | null
+      launchDate: Date | null
+      totalTowers: number | null
+      pricePerSqft: number | null
+      priceListUrl: string | null
+      carParkingSpaces: number | null
+      unitLiftRatio: string | null
+      approvalDate: Date | null
+      constructionStatusNote: string | null
       metaTitle: string | null
       metaDescription: string | null
       createdAt: Date
@@ -9197,6 +9422,7 @@ export namespace Prisma {
     floorPlans<T extends Project$floorPlansArgs<ExtArgs> = {}>(args?: Subset<T, Project$floorPlansArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectFloorPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     faqs<T extends Project$faqsArgs<ExtArgs> = {}>(args?: Subset<T, Project$faqsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectFAQPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     landmarks<T extends Project$landmarksArgs<ExtArgs> = {}>(args?: Subset<T, Project$landmarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectLandmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    reraPhases<T extends Project$reraPhasesArgs<ExtArgs> = {}>(args?: Subset<T, Project$reraPhasesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectReraPhasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     enquiries<T extends Project$enquiriesArgs<ExtArgs> = {}>(args?: Subset<T, Project$enquiriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EnquiryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -9245,6 +9471,17 @@ export namespace Prisma {
     readonly brochureUrl: FieldRef<"Project", 'String'>
     readonly youtubeUrl: FieldRef<"Project", 'String'>
     readonly sitePlanUrl: FieldRef<"Project", 'String'>
+    readonly projectType: FieldRef<"Project", 'String'>
+    readonly totalUnits: FieldRef<"Project", 'Int'>
+    readonly projectSizeAcres: FieldRef<"Project", 'Float'>
+    readonly launchDate: FieldRef<"Project", 'DateTime'>
+    readonly totalTowers: FieldRef<"Project", 'Int'>
+    readonly pricePerSqft: FieldRef<"Project", 'Int'>
+    readonly priceListUrl: FieldRef<"Project", 'String'>
+    readonly carParkingSpaces: FieldRef<"Project", 'Int'>
+    readonly unitLiftRatio: FieldRef<"Project", 'String'>
+    readonly approvalDate: FieldRef<"Project", 'DateTime'>
+    readonly constructionStatusNote: FieldRef<"Project", 'String'>
     readonly metaTitle: FieldRef<"Project", 'String'>
     readonly metaDescription: FieldRef<"Project", 'String'>
     readonly createdAt: FieldRef<"Project", 'DateTime'>
@@ -9714,6 +9951,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ProjectLandmarkScalarFieldEnum | ProjectLandmarkScalarFieldEnum[]
+  }
+
+  /**
+   * Project.reraPhases
+   */
+  export type Project$reraPhasesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectReraPhase
+     */
+    select?: ProjectReraPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectReraPhase
+     */
+    omit?: ProjectReraPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectReraPhaseInclude<ExtArgs> | null
+    where?: ProjectReraPhaseWhereInput
+    orderBy?: ProjectReraPhaseOrderByWithRelationInput | ProjectReraPhaseOrderByWithRelationInput[]
+    cursor?: ProjectReraPhaseWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProjectReraPhaseScalarFieldEnum | ProjectReraPhaseScalarFieldEnum[]
   }
 
   /**
@@ -13662,6 +13923,974 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ProjectLandmarkInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProjectReraPhase
+   */
+
+  export type AggregateProjectReraPhase = {
+    _count: ProjectReraPhaseCountAggregateOutputType | null
+    _avg: ProjectReraPhaseAvgAggregateOutputType | null
+    _sum: ProjectReraPhaseSumAggregateOutputType | null
+    _min: ProjectReraPhaseMinAggregateOutputType | null
+    _max: ProjectReraPhaseMaxAggregateOutputType | null
+  }
+
+  export type ProjectReraPhaseAvgAggregateOutputType = {
+    order: number | null
+  }
+
+  export type ProjectReraPhaseSumAggregateOutputType = {
+    order: number | null
+  }
+
+  export type ProjectReraPhaseMinAggregateOutputType = {
+    id: string | null
+    projectId: string | null
+    label: string | null
+    reraNumber: string | null
+    order: number | null
+  }
+
+  export type ProjectReraPhaseMaxAggregateOutputType = {
+    id: string | null
+    projectId: string | null
+    label: string | null
+    reraNumber: string | null
+    order: number | null
+  }
+
+  export type ProjectReraPhaseCountAggregateOutputType = {
+    id: number
+    projectId: number
+    label: number
+    reraNumber: number
+    order: number
+    _all: number
+  }
+
+
+  export type ProjectReraPhaseAvgAggregateInputType = {
+    order?: true
+  }
+
+  export type ProjectReraPhaseSumAggregateInputType = {
+    order?: true
+  }
+
+  export type ProjectReraPhaseMinAggregateInputType = {
+    id?: true
+    projectId?: true
+    label?: true
+    reraNumber?: true
+    order?: true
+  }
+
+  export type ProjectReraPhaseMaxAggregateInputType = {
+    id?: true
+    projectId?: true
+    label?: true
+    reraNumber?: true
+    order?: true
+  }
+
+  export type ProjectReraPhaseCountAggregateInputType = {
+    id?: true
+    projectId?: true
+    label?: true
+    reraNumber?: true
+    order?: true
+    _all?: true
+  }
+
+  export type ProjectReraPhaseAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectReraPhase to aggregate.
+     */
+    where?: ProjectReraPhaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectReraPhases to fetch.
+     */
+    orderBy?: ProjectReraPhaseOrderByWithRelationInput | ProjectReraPhaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProjectReraPhaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectReraPhases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectReraPhases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProjectReraPhases
+    **/
+    _count?: true | ProjectReraPhaseCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProjectReraPhaseAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProjectReraPhaseSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProjectReraPhaseMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProjectReraPhaseMaxAggregateInputType
+  }
+
+  export type GetProjectReraPhaseAggregateType<T extends ProjectReraPhaseAggregateArgs> = {
+        [P in keyof T & keyof AggregateProjectReraPhase]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProjectReraPhase[P]>
+      : GetScalarType<T[P], AggregateProjectReraPhase[P]>
+  }
+
+
+
+
+  export type ProjectReraPhaseGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProjectReraPhaseWhereInput
+    orderBy?: ProjectReraPhaseOrderByWithAggregationInput | ProjectReraPhaseOrderByWithAggregationInput[]
+    by: ProjectReraPhaseScalarFieldEnum[] | ProjectReraPhaseScalarFieldEnum
+    having?: ProjectReraPhaseScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProjectReraPhaseCountAggregateInputType | true
+    _avg?: ProjectReraPhaseAvgAggregateInputType
+    _sum?: ProjectReraPhaseSumAggregateInputType
+    _min?: ProjectReraPhaseMinAggregateInputType
+    _max?: ProjectReraPhaseMaxAggregateInputType
+  }
+
+  export type ProjectReraPhaseGroupByOutputType = {
+    id: string
+    projectId: string
+    label: string
+    reraNumber: string
+    order: number
+    _count: ProjectReraPhaseCountAggregateOutputType | null
+    _avg: ProjectReraPhaseAvgAggregateOutputType | null
+    _sum: ProjectReraPhaseSumAggregateOutputType | null
+    _min: ProjectReraPhaseMinAggregateOutputType | null
+    _max: ProjectReraPhaseMaxAggregateOutputType | null
+  }
+
+  type GetProjectReraPhaseGroupByPayload<T extends ProjectReraPhaseGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProjectReraPhaseGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProjectReraPhaseGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProjectReraPhaseGroupByOutputType[P]>
+            : GetScalarType<T[P], ProjectReraPhaseGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProjectReraPhaseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    projectId?: boolean
+    label?: boolean
+    reraNumber?: boolean
+    order?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["projectReraPhase"]>
+
+
+
+  export type ProjectReraPhaseSelectScalar = {
+    id?: boolean
+    projectId?: boolean
+    label?: boolean
+    reraNumber?: boolean
+    order?: boolean
+  }
+
+  export type ProjectReraPhaseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "projectId" | "label" | "reraNumber" | "order", ExtArgs["result"]["projectReraPhase"]>
+  export type ProjectReraPhaseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+
+  export type $ProjectReraPhasePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProjectReraPhase"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      projectId: string
+      label: string
+      reraNumber: string
+      order: number
+    }, ExtArgs["result"]["projectReraPhase"]>
+    composites: {}
+  }
+
+  type ProjectReraPhaseGetPayload<S extends boolean | null | undefined | ProjectReraPhaseDefaultArgs> = $Result.GetResult<Prisma.$ProjectReraPhasePayload, S>
+
+  type ProjectReraPhaseCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProjectReraPhaseFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProjectReraPhaseCountAggregateInputType | true
+    }
+
+  export interface ProjectReraPhaseDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProjectReraPhase'], meta: { name: 'ProjectReraPhase' } }
+    /**
+     * Find zero or one ProjectReraPhase that matches the filter.
+     * @param {ProjectReraPhaseFindUniqueArgs} args - Arguments to find a ProjectReraPhase
+     * @example
+     * // Get one ProjectReraPhase
+     * const projectReraPhase = await prisma.projectReraPhase.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProjectReraPhaseFindUniqueArgs>(args: SelectSubset<T, ProjectReraPhaseFindUniqueArgs<ExtArgs>>): Prisma__ProjectReraPhaseClient<$Result.GetResult<Prisma.$ProjectReraPhasePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProjectReraPhase that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProjectReraPhaseFindUniqueOrThrowArgs} args - Arguments to find a ProjectReraPhase
+     * @example
+     * // Get one ProjectReraPhase
+     * const projectReraPhase = await prisma.projectReraPhase.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProjectReraPhaseFindUniqueOrThrowArgs>(args: SelectSubset<T, ProjectReraPhaseFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProjectReraPhaseClient<$Result.GetResult<Prisma.$ProjectReraPhasePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectReraPhase that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectReraPhaseFindFirstArgs} args - Arguments to find a ProjectReraPhase
+     * @example
+     * // Get one ProjectReraPhase
+     * const projectReraPhase = await prisma.projectReraPhase.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProjectReraPhaseFindFirstArgs>(args?: SelectSubset<T, ProjectReraPhaseFindFirstArgs<ExtArgs>>): Prisma__ProjectReraPhaseClient<$Result.GetResult<Prisma.$ProjectReraPhasePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProjectReraPhase that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectReraPhaseFindFirstOrThrowArgs} args - Arguments to find a ProjectReraPhase
+     * @example
+     * // Get one ProjectReraPhase
+     * const projectReraPhase = await prisma.projectReraPhase.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProjectReraPhaseFindFirstOrThrowArgs>(args?: SelectSubset<T, ProjectReraPhaseFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProjectReraPhaseClient<$Result.GetResult<Prisma.$ProjectReraPhasePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProjectReraPhases that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectReraPhaseFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProjectReraPhases
+     * const projectReraPhases = await prisma.projectReraPhase.findMany()
+     * 
+     * // Get first 10 ProjectReraPhases
+     * const projectReraPhases = await prisma.projectReraPhase.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const projectReraPhaseWithIdOnly = await prisma.projectReraPhase.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProjectReraPhaseFindManyArgs>(args?: SelectSubset<T, ProjectReraPhaseFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProjectReraPhasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProjectReraPhase.
+     * @param {ProjectReraPhaseCreateArgs} args - Arguments to create a ProjectReraPhase.
+     * @example
+     * // Create one ProjectReraPhase
+     * const ProjectReraPhase = await prisma.projectReraPhase.create({
+     *   data: {
+     *     // ... data to create a ProjectReraPhase
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProjectReraPhaseCreateArgs>(args: SelectSubset<T, ProjectReraPhaseCreateArgs<ExtArgs>>): Prisma__ProjectReraPhaseClient<$Result.GetResult<Prisma.$ProjectReraPhasePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProjectReraPhases.
+     * @param {ProjectReraPhaseCreateManyArgs} args - Arguments to create many ProjectReraPhases.
+     * @example
+     * // Create many ProjectReraPhases
+     * const projectReraPhase = await prisma.projectReraPhase.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProjectReraPhaseCreateManyArgs>(args?: SelectSubset<T, ProjectReraPhaseCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ProjectReraPhase.
+     * @param {ProjectReraPhaseDeleteArgs} args - Arguments to delete one ProjectReraPhase.
+     * @example
+     * // Delete one ProjectReraPhase
+     * const ProjectReraPhase = await prisma.projectReraPhase.delete({
+     *   where: {
+     *     // ... filter to delete one ProjectReraPhase
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProjectReraPhaseDeleteArgs>(args: SelectSubset<T, ProjectReraPhaseDeleteArgs<ExtArgs>>): Prisma__ProjectReraPhaseClient<$Result.GetResult<Prisma.$ProjectReraPhasePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProjectReraPhase.
+     * @param {ProjectReraPhaseUpdateArgs} args - Arguments to update one ProjectReraPhase.
+     * @example
+     * // Update one ProjectReraPhase
+     * const projectReraPhase = await prisma.projectReraPhase.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProjectReraPhaseUpdateArgs>(args: SelectSubset<T, ProjectReraPhaseUpdateArgs<ExtArgs>>): Prisma__ProjectReraPhaseClient<$Result.GetResult<Prisma.$ProjectReraPhasePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProjectReraPhases.
+     * @param {ProjectReraPhaseDeleteManyArgs} args - Arguments to filter ProjectReraPhases to delete.
+     * @example
+     * // Delete a few ProjectReraPhases
+     * const { count } = await prisma.projectReraPhase.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProjectReraPhaseDeleteManyArgs>(args?: SelectSubset<T, ProjectReraPhaseDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProjectReraPhases.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectReraPhaseUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProjectReraPhases
+     * const projectReraPhase = await prisma.projectReraPhase.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProjectReraPhaseUpdateManyArgs>(args: SelectSubset<T, ProjectReraPhaseUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ProjectReraPhase.
+     * @param {ProjectReraPhaseUpsertArgs} args - Arguments to update or create a ProjectReraPhase.
+     * @example
+     * // Update or create a ProjectReraPhase
+     * const projectReraPhase = await prisma.projectReraPhase.upsert({
+     *   create: {
+     *     // ... data to create a ProjectReraPhase
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProjectReraPhase we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProjectReraPhaseUpsertArgs>(args: SelectSubset<T, ProjectReraPhaseUpsertArgs<ExtArgs>>): Prisma__ProjectReraPhaseClient<$Result.GetResult<Prisma.$ProjectReraPhasePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProjectReraPhases.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectReraPhaseCountArgs} args - Arguments to filter ProjectReraPhases to count.
+     * @example
+     * // Count the number of ProjectReraPhases
+     * const count = await prisma.projectReraPhase.count({
+     *   where: {
+     *     // ... the filter for the ProjectReraPhases we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProjectReraPhaseCountArgs>(
+      args?: Subset<T, ProjectReraPhaseCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProjectReraPhaseCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProjectReraPhase.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectReraPhaseAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProjectReraPhaseAggregateArgs>(args: Subset<T, ProjectReraPhaseAggregateArgs>): Prisma.PrismaPromise<GetProjectReraPhaseAggregateType<T>>
+
+    /**
+     * Group by ProjectReraPhase.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProjectReraPhaseGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProjectReraPhaseGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProjectReraPhaseGroupByArgs['orderBy'] }
+        : { orderBy?: ProjectReraPhaseGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProjectReraPhaseGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProjectReraPhaseGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProjectReraPhase model
+   */
+  readonly fields: ProjectReraPhaseFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProjectReraPhase.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProjectReraPhaseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProjectReraPhase model
+   */
+  interface ProjectReraPhaseFieldRefs {
+    readonly id: FieldRef<"ProjectReraPhase", 'String'>
+    readonly projectId: FieldRef<"ProjectReraPhase", 'String'>
+    readonly label: FieldRef<"ProjectReraPhase", 'String'>
+    readonly reraNumber: FieldRef<"ProjectReraPhase", 'String'>
+    readonly order: FieldRef<"ProjectReraPhase", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProjectReraPhase findUnique
+   */
+  export type ProjectReraPhaseFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectReraPhase
+     */
+    select?: ProjectReraPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectReraPhase
+     */
+    omit?: ProjectReraPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectReraPhaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectReraPhase to fetch.
+     */
+    where: ProjectReraPhaseWhereUniqueInput
+  }
+
+  /**
+   * ProjectReraPhase findUniqueOrThrow
+   */
+  export type ProjectReraPhaseFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectReraPhase
+     */
+    select?: ProjectReraPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectReraPhase
+     */
+    omit?: ProjectReraPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectReraPhaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectReraPhase to fetch.
+     */
+    where: ProjectReraPhaseWhereUniqueInput
+  }
+
+  /**
+   * ProjectReraPhase findFirst
+   */
+  export type ProjectReraPhaseFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectReraPhase
+     */
+    select?: ProjectReraPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectReraPhase
+     */
+    omit?: ProjectReraPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectReraPhaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectReraPhase to fetch.
+     */
+    where?: ProjectReraPhaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectReraPhases to fetch.
+     */
+    orderBy?: ProjectReraPhaseOrderByWithRelationInput | ProjectReraPhaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectReraPhases.
+     */
+    cursor?: ProjectReraPhaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectReraPhases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectReraPhases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectReraPhases.
+     */
+    distinct?: ProjectReraPhaseScalarFieldEnum | ProjectReraPhaseScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectReraPhase findFirstOrThrow
+   */
+  export type ProjectReraPhaseFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectReraPhase
+     */
+    select?: ProjectReraPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectReraPhase
+     */
+    omit?: ProjectReraPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectReraPhaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectReraPhase to fetch.
+     */
+    where?: ProjectReraPhaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectReraPhases to fetch.
+     */
+    orderBy?: ProjectReraPhaseOrderByWithRelationInput | ProjectReraPhaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProjectReraPhases.
+     */
+    cursor?: ProjectReraPhaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectReraPhases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectReraPhases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectReraPhases.
+     */
+    distinct?: ProjectReraPhaseScalarFieldEnum | ProjectReraPhaseScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectReraPhase findMany
+   */
+  export type ProjectReraPhaseFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectReraPhase
+     */
+    select?: ProjectReraPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectReraPhase
+     */
+    omit?: ProjectReraPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectReraPhaseInclude<ExtArgs> | null
+    /**
+     * Filter, which ProjectReraPhases to fetch.
+     */
+    where?: ProjectReraPhaseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProjectReraPhases to fetch.
+     */
+    orderBy?: ProjectReraPhaseOrderByWithRelationInput | ProjectReraPhaseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProjectReraPhases.
+     */
+    cursor?: ProjectReraPhaseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProjectReraPhases from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProjectReraPhases.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProjectReraPhases.
+     */
+    distinct?: ProjectReraPhaseScalarFieldEnum | ProjectReraPhaseScalarFieldEnum[]
+  }
+
+  /**
+   * ProjectReraPhase create
+   */
+  export type ProjectReraPhaseCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectReraPhase
+     */
+    select?: ProjectReraPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectReraPhase
+     */
+    omit?: ProjectReraPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectReraPhaseInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProjectReraPhase.
+     */
+    data: XOR<ProjectReraPhaseCreateInput, ProjectReraPhaseUncheckedCreateInput>
+  }
+
+  /**
+   * ProjectReraPhase createMany
+   */
+  export type ProjectReraPhaseCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProjectReraPhases.
+     */
+    data: ProjectReraPhaseCreateManyInput | ProjectReraPhaseCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProjectReraPhase update
+   */
+  export type ProjectReraPhaseUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectReraPhase
+     */
+    select?: ProjectReraPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectReraPhase
+     */
+    omit?: ProjectReraPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectReraPhaseInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProjectReraPhase.
+     */
+    data: XOR<ProjectReraPhaseUpdateInput, ProjectReraPhaseUncheckedUpdateInput>
+    /**
+     * Choose, which ProjectReraPhase to update.
+     */
+    where: ProjectReraPhaseWhereUniqueInput
+  }
+
+  /**
+   * ProjectReraPhase updateMany
+   */
+  export type ProjectReraPhaseUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProjectReraPhases.
+     */
+    data: XOR<ProjectReraPhaseUpdateManyMutationInput, ProjectReraPhaseUncheckedUpdateManyInput>
+    /**
+     * Filter which ProjectReraPhases to update
+     */
+    where?: ProjectReraPhaseWhereInput
+    /**
+     * Limit how many ProjectReraPhases to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectReraPhase upsert
+   */
+  export type ProjectReraPhaseUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectReraPhase
+     */
+    select?: ProjectReraPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectReraPhase
+     */
+    omit?: ProjectReraPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectReraPhaseInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProjectReraPhase to update in case it exists.
+     */
+    where: ProjectReraPhaseWhereUniqueInput
+    /**
+     * In case the ProjectReraPhase found by the `where` argument doesn't exist, create a new ProjectReraPhase with this data.
+     */
+    create: XOR<ProjectReraPhaseCreateInput, ProjectReraPhaseUncheckedCreateInput>
+    /**
+     * In case the ProjectReraPhase was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProjectReraPhaseUpdateInput, ProjectReraPhaseUncheckedUpdateInput>
+  }
+
+  /**
+   * ProjectReraPhase delete
+   */
+  export type ProjectReraPhaseDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectReraPhase
+     */
+    select?: ProjectReraPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectReraPhase
+     */
+    omit?: ProjectReraPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectReraPhaseInclude<ExtArgs> | null
+    /**
+     * Filter which ProjectReraPhase to delete.
+     */
+    where: ProjectReraPhaseWhereUniqueInput
+  }
+
+  /**
+   * ProjectReraPhase deleteMany
+   */
+  export type ProjectReraPhaseDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProjectReraPhases to delete
+     */
+    where?: ProjectReraPhaseWhereInput
+    /**
+     * Limit how many ProjectReraPhases to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProjectReraPhase without action
+   */
+  export type ProjectReraPhaseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectReraPhase
+     */
+    select?: ProjectReraPhaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProjectReraPhase
+     */
+    omit?: ProjectReraPhaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProjectReraPhaseInclude<ExtArgs> | null
   }
 
 
@@ -26123,6 +27352,17 @@ export namespace Prisma {
     brochureUrl: 'brochureUrl',
     youtubeUrl: 'youtubeUrl',
     sitePlanUrl: 'sitePlanUrl',
+    projectType: 'projectType',
+    totalUnits: 'totalUnits',
+    projectSizeAcres: 'projectSizeAcres',
+    launchDate: 'launchDate',
+    totalTowers: 'totalTowers',
+    pricePerSqft: 'pricePerSqft',
+    priceListUrl: 'priceListUrl',
+    carParkingSpaces: 'carParkingSpaces',
+    unitLiftRatio: 'unitLiftRatio',
+    approvalDate: 'approvalDate',
+    constructionStatusNote: 'constructionStatusNote',
     metaTitle: 'metaTitle',
     metaDescription: 'metaDescription',
     createdAt: 'createdAt',
@@ -26176,6 +27416,17 @@ export namespace Prisma {
   };
 
   export type ProjectLandmarkScalarFieldEnum = (typeof ProjectLandmarkScalarFieldEnum)[keyof typeof ProjectLandmarkScalarFieldEnum]
+
+
+  export const ProjectReraPhaseScalarFieldEnum: {
+    id: 'id',
+    projectId: 'projectId',
+    label: 'label',
+    reraNumber: 'reraNumber',
+    order: 'order'
+  };
+
+  export type ProjectReraPhaseScalarFieldEnum = (typeof ProjectReraPhaseScalarFieldEnum)[keyof typeof ProjectReraPhaseScalarFieldEnum]
 
 
   export const CountryScalarFieldEnum: {
@@ -26478,6 +27729,10 @@ export namespace Prisma {
     brochureUrl: 'brochureUrl',
     youtubeUrl: 'youtubeUrl',
     sitePlanUrl: 'sitePlanUrl',
+    projectType: 'projectType',
+    priceListUrl: 'priceListUrl',
+    unitLiftRatio: 'unitLiftRatio',
+    constructionStatusNote: 'constructionStatusNote',
     metaTitle: 'metaTitle',
     metaDescription: 'metaDescription'
   };
@@ -26522,6 +27777,16 @@ export namespace Prisma {
   };
 
   export type ProjectLandmarkOrderByRelevanceFieldEnum = (typeof ProjectLandmarkOrderByRelevanceFieldEnum)[keyof typeof ProjectLandmarkOrderByRelevanceFieldEnum]
+
+
+  export const ProjectReraPhaseOrderByRelevanceFieldEnum: {
+    id: 'id',
+    projectId: 'projectId',
+    label: 'label',
+    reraNumber: 'reraNumber'
+  };
+
+  export type ProjectReraPhaseOrderByRelevanceFieldEnum = (typeof ProjectReraPhaseOrderByRelevanceFieldEnum)[keyof typeof ProjectReraPhaseOrderByRelevanceFieldEnum]
 
 
   export const CountryOrderByRelevanceFieldEnum: {
@@ -27278,6 +28543,17 @@ export namespace Prisma {
     brochureUrl?: StringNullableFilter<"Project"> | string | null
     youtubeUrl?: StringNullableFilter<"Project"> | string | null
     sitePlanUrl?: StringNullableFilter<"Project"> | string | null
+    projectType?: StringNullableFilter<"Project"> | string | null
+    totalUnits?: IntNullableFilter<"Project"> | number | null
+    projectSizeAcres?: FloatNullableFilter<"Project"> | number | null
+    launchDate?: DateTimeNullableFilter<"Project"> | Date | string | null
+    totalTowers?: IntNullableFilter<"Project"> | number | null
+    pricePerSqft?: IntNullableFilter<"Project"> | number | null
+    priceListUrl?: StringNullableFilter<"Project"> | string | null
+    carParkingSpaces?: IntNullableFilter<"Project"> | number | null
+    unitLiftRatio?: StringNullableFilter<"Project"> | string | null
+    approvalDate?: DateTimeNullableFilter<"Project"> | Date | string | null
+    constructionStatusNote?: StringNullableFilter<"Project"> | string | null
     metaTitle?: StringNullableFilter<"Project"> | string | null
     metaDescription?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
@@ -27288,6 +28564,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanListRelationFilter
     faqs?: ProjectFAQListRelationFilter
     landmarks?: ProjectLandmarkListRelationFilter
+    reraPhases?: ProjectReraPhaseListRelationFilter
     enquiries?: EnquiryListRelationFilter
   }
 
@@ -27310,6 +28587,17 @@ export namespace Prisma {
     brochureUrl?: SortOrderInput | SortOrder
     youtubeUrl?: SortOrderInput | SortOrder
     sitePlanUrl?: SortOrderInput | SortOrder
+    projectType?: SortOrderInput | SortOrder
+    totalUnits?: SortOrderInput | SortOrder
+    projectSizeAcres?: SortOrderInput | SortOrder
+    launchDate?: SortOrderInput | SortOrder
+    totalTowers?: SortOrderInput | SortOrder
+    pricePerSqft?: SortOrderInput | SortOrder
+    priceListUrl?: SortOrderInput | SortOrder
+    carParkingSpaces?: SortOrderInput | SortOrder
+    unitLiftRatio?: SortOrderInput | SortOrder
+    approvalDate?: SortOrderInput | SortOrder
+    constructionStatusNote?: SortOrderInput | SortOrder
     metaTitle?: SortOrderInput | SortOrder
     metaDescription?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -27320,6 +28608,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanOrderByRelationAggregateInput
     faqs?: ProjectFAQOrderByRelationAggregateInput
     landmarks?: ProjectLandmarkOrderByRelationAggregateInput
+    reraPhases?: ProjectReraPhaseOrderByRelationAggregateInput
     enquiries?: EnquiryOrderByRelationAggregateInput
     _relevance?: ProjectOrderByRelevanceInput
   }
@@ -27346,6 +28635,17 @@ export namespace Prisma {
     brochureUrl?: StringNullableFilter<"Project"> | string | null
     youtubeUrl?: StringNullableFilter<"Project"> | string | null
     sitePlanUrl?: StringNullableFilter<"Project"> | string | null
+    projectType?: StringNullableFilter<"Project"> | string | null
+    totalUnits?: IntNullableFilter<"Project"> | number | null
+    projectSizeAcres?: FloatNullableFilter<"Project"> | number | null
+    launchDate?: DateTimeNullableFilter<"Project"> | Date | string | null
+    totalTowers?: IntNullableFilter<"Project"> | number | null
+    pricePerSqft?: IntNullableFilter<"Project"> | number | null
+    priceListUrl?: StringNullableFilter<"Project"> | string | null
+    carParkingSpaces?: IntNullableFilter<"Project"> | number | null
+    unitLiftRatio?: StringNullableFilter<"Project"> | string | null
+    approvalDate?: DateTimeNullableFilter<"Project"> | Date | string | null
+    constructionStatusNote?: StringNullableFilter<"Project"> | string | null
     metaTitle?: StringNullableFilter<"Project"> | string | null
     metaDescription?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
@@ -27356,6 +28656,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanListRelationFilter
     faqs?: ProjectFAQListRelationFilter
     landmarks?: ProjectLandmarkListRelationFilter
+    reraPhases?: ProjectReraPhaseListRelationFilter
     enquiries?: EnquiryListRelationFilter
   }, "id" | "slug">
 
@@ -27378,6 +28679,17 @@ export namespace Prisma {
     brochureUrl?: SortOrderInput | SortOrder
     youtubeUrl?: SortOrderInput | SortOrder
     sitePlanUrl?: SortOrderInput | SortOrder
+    projectType?: SortOrderInput | SortOrder
+    totalUnits?: SortOrderInput | SortOrder
+    projectSizeAcres?: SortOrderInput | SortOrder
+    launchDate?: SortOrderInput | SortOrder
+    totalTowers?: SortOrderInput | SortOrder
+    pricePerSqft?: SortOrderInput | SortOrder
+    priceListUrl?: SortOrderInput | SortOrder
+    carParkingSpaces?: SortOrderInput | SortOrder
+    unitLiftRatio?: SortOrderInput | SortOrder
+    approvalDate?: SortOrderInput | SortOrder
+    constructionStatusNote?: SortOrderInput | SortOrder
     metaTitle?: SortOrderInput | SortOrder
     metaDescription?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -27411,6 +28723,17 @@ export namespace Prisma {
     brochureUrl?: StringNullableWithAggregatesFilter<"Project"> | string | null
     youtubeUrl?: StringNullableWithAggregatesFilter<"Project"> | string | null
     sitePlanUrl?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    projectType?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    totalUnits?: IntNullableWithAggregatesFilter<"Project"> | number | null
+    projectSizeAcres?: FloatNullableWithAggregatesFilter<"Project"> | number | null
+    launchDate?: DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
+    totalTowers?: IntNullableWithAggregatesFilter<"Project"> | number | null
+    pricePerSqft?: IntNullableWithAggregatesFilter<"Project"> | number | null
+    priceListUrl?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    carParkingSpaces?: IntNullableWithAggregatesFilter<"Project"> | number | null
+    unitLiftRatio?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    approvalDate?: DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
+    constructionStatusNote?: StringNullableWithAggregatesFilter<"Project"> | string | null
     metaTitle?: StringNullableWithAggregatesFilter<"Project"> | string | null
     metaDescription?: StringNullableWithAggregatesFilter<"Project"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
@@ -27657,6 +28980,64 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"ProjectLandmark"> | string
     distanceKm?: FloatWithAggregatesFilter<"ProjectLandmark"> | number
     order?: IntWithAggregatesFilter<"ProjectLandmark"> | number
+  }
+
+  export type ProjectReraPhaseWhereInput = {
+    AND?: ProjectReraPhaseWhereInput | ProjectReraPhaseWhereInput[]
+    OR?: ProjectReraPhaseWhereInput[]
+    NOT?: ProjectReraPhaseWhereInput | ProjectReraPhaseWhereInput[]
+    id?: StringFilter<"ProjectReraPhase"> | string
+    projectId?: StringFilter<"ProjectReraPhase"> | string
+    label?: StringFilter<"ProjectReraPhase"> | string
+    reraNumber?: StringFilter<"ProjectReraPhase"> | string
+    order?: IntFilter<"ProjectReraPhase"> | number
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }
+
+  export type ProjectReraPhaseOrderByWithRelationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    label?: SortOrder
+    reraNumber?: SortOrder
+    order?: SortOrder
+    project?: ProjectOrderByWithRelationInput
+    _relevance?: ProjectReraPhaseOrderByRelevanceInput
+  }
+
+  export type ProjectReraPhaseWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ProjectReraPhaseWhereInput | ProjectReraPhaseWhereInput[]
+    OR?: ProjectReraPhaseWhereInput[]
+    NOT?: ProjectReraPhaseWhereInput | ProjectReraPhaseWhereInput[]
+    projectId?: StringFilter<"ProjectReraPhase"> | string
+    label?: StringFilter<"ProjectReraPhase"> | string
+    reraNumber?: StringFilter<"ProjectReraPhase"> | string
+    order?: IntFilter<"ProjectReraPhase"> | number
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }, "id">
+
+  export type ProjectReraPhaseOrderByWithAggregationInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    label?: SortOrder
+    reraNumber?: SortOrder
+    order?: SortOrder
+    _count?: ProjectReraPhaseCountOrderByAggregateInput
+    _avg?: ProjectReraPhaseAvgOrderByAggregateInput
+    _max?: ProjectReraPhaseMaxOrderByAggregateInput
+    _min?: ProjectReraPhaseMinOrderByAggregateInput
+    _sum?: ProjectReraPhaseSumOrderByAggregateInput
+  }
+
+  export type ProjectReraPhaseScalarWhereWithAggregatesInput = {
+    AND?: ProjectReraPhaseScalarWhereWithAggregatesInput | ProjectReraPhaseScalarWhereWithAggregatesInput[]
+    OR?: ProjectReraPhaseScalarWhereWithAggregatesInput[]
+    NOT?: ProjectReraPhaseScalarWhereWithAggregatesInput | ProjectReraPhaseScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ProjectReraPhase"> | string
+    projectId?: StringWithAggregatesFilter<"ProjectReraPhase"> | string
+    label?: StringWithAggregatesFilter<"ProjectReraPhase"> | string
+    reraNumber?: StringWithAggregatesFilter<"ProjectReraPhase"> | string
+    order?: IntWithAggregatesFilter<"ProjectReraPhase"> | number
   }
 
   export type CountryWhereInput = {
@@ -29254,6 +30635,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -29264,6 +30656,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanCreateNestedManyWithoutProjectInput
     faqs?: ProjectFAQCreateNestedManyWithoutProjectInput
     landmarks?: ProjectLandmarkCreateNestedManyWithoutProjectInput
+    reraPhases?: ProjectReraPhaseCreateNestedManyWithoutProjectInput
     enquiries?: EnquiryCreateNestedManyWithoutProjectInput
   }
 
@@ -29286,6 +30679,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -29295,6 +30699,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanUncheckedCreateNestedManyWithoutProjectInput
     faqs?: ProjectFAQUncheckedCreateNestedManyWithoutProjectInput
     landmarks?: ProjectLandmarkUncheckedCreateNestedManyWithoutProjectInput
+    reraPhases?: ProjectReraPhaseUncheckedCreateNestedManyWithoutProjectInput
     enquiries?: EnquiryUncheckedCreateNestedManyWithoutProjectInput
   }
 
@@ -29316,6 +30721,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29326,6 +30742,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanUpdateManyWithoutProjectNestedInput
     faqs?: ProjectFAQUpdateManyWithoutProjectNestedInput
     landmarks?: ProjectLandmarkUpdateManyWithoutProjectNestedInput
+    reraPhases?: ProjectReraPhaseUpdateManyWithoutProjectNestedInput
     enquiries?: EnquiryUpdateManyWithoutProjectNestedInput
   }
 
@@ -29348,6 +30765,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29357,6 +30785,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanUncheckedUpdateManyWithoutProjectNestedInput
     faqs?: ProjectFAQUncheckedUpdateManyWithoutProjectNestedInput
     landmarks?: ProjectLandmarkUncheckedUpdateManyWithoutProjectNestedInput
+    reraPhases?: ProjectReraPhaseUncheckedUpdateManyWithoutProjectNestedInput
     enquiries?: EnquiryUncheckedUpdateManyWithoutProjectNestedInput
   }
 
@@ -29379,6 +30808,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -29403,6 +30843,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29428,6 +30879,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -29665,6 +31127,61 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     distanceKm?: FloatFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectReraPhaseCreateInput = {
+    id?: string
+    label: string
+    reraNumber: string
+    order?: number
+    project: ProjectCreateNestedOneWithoutReraPhasesInput
+  }
+
+  export type ProjectReraPhaseUncheckedCreateInput = {
+    id?: string
+    projectId: string
+    label: string
+    reraNumber: string
+    order?: number
+  }
+
+  export type ProjectReraPhaseUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    reraNumber?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    project?: ProjectUpdateOneRequiredWithoutReraPhasesNestedInput
+  }
+
+  export type ProjectReraPhaseUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    reraNumber?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectReraPhaseCreateManyInput = {
+    id?: string
+    projectId: string
+    label: string
+    reraNumber: string
+    order?: number
+  }
+
+  export type ProjectReraPhaseUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    reraNumber?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectReraPhaseUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    projectId?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    reraNumber?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
   }
 
@@ -31453,6 +32970,17 @@ export namespace Prisma {
     not?: NestedEnumProjectStatusFilter<$PrismaModel> | $Enums.ProjectStatus
   }
 
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type DeveloperScalarRelationFilter = {
     is?: DeveloperWhereInput
     isNot?: DeveloperWhereInput
@@ -31482,6 +33010,12 @@ export namespace Prisma {
     none?: ProjectLandmarkWhereInput
   }
 
+  export type ProjectReraPhaseListRelationFilter = {
+    every?: ProjectReraPhaseWhereInput
+    some?: ProjectReraPhaseWhereInput
+    none?: ProjectReraPhaseWhereInput
+  }
+
   export type ProjectImageOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -31495,6 +33029,10 @@ export namespace Prisma {
   }
 
   export type ProjectLandmarkOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProjectReraPhaseOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -31523,6 +33061,17 @@ export namespace Prisma {
     brochureUrl?: SortOrder
     youtubeUrl?: SortOrder
     sitePlanUrl?: SortOrder
+    projectType?: SortOrder
+    totalUnits?: SortOrder
+    projectSizeAcres?: SortOrder
+    launchDate?: SortOrder
+    totalTowers?: SortOrder
+    pricePerSqft?: SortOrder
+    priceListUrl?: SortOrder
+    carParkingSpaces?: SortOrder
+    unitLiftRatio?: SortOrder
+    approvalDate?: SortOrder
+    constructionStatusNote?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     createdAt?: SortOrder
@@ -31532,6 +33081,11 @@ export namespace Prisma {
   export type ProjectAvgOrderByAggregateInput = {
     priceMin?: SortOrder
     priceMax?: SortOrder
+    totalUnits?: SortOrder
+    projectSizeAcres?: SortOrder
+    totalTowers?: SortOrder
+    pricePerSqft?: SortOrder
+    carParkingSpaces?: SortOrder
   }
 
   export type ProjectMaxOrderByAggregateInput = {
@@ -31553,6 +33107,17 @@ export namespace Prisma {
     brochureUrl?: SortOrder
     youtubeUrl?: SortOrder
     sitePlanUrl?: SortOrder
+    projectType?: SortOrder
+    totalUnits?: SortOrder
+    projectSizeAcres?: SortOrder
+    launchDate?: SortOrder
+    totalTowers?: SortOrder
+    pricePerSqft?: SortOrder
+    priceListUrl?: SortOrder
+    carParkingSpaces?: SortOrder
+    unitLiftRatio?: SortOrder
+    approvalDate?: SortOrder
+    constructionStatusNote?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     createdAt?: SortOrder
@@ -31578,6 +33143,17 @@ export namespace Prisma {
     brochureUrl?: SortOrder
     youtubeUrl?: SortOrder
     sitePlanUrl?: SortOrder
+    projectType?: SortOrder
+    totalUnits?: SortOrder
+    projectSizeAcres?: SortOrder
+    launchDate?: SortOrder
+    totalTowers?: SortOrder
+    pricePerSqft?: SortOrder
+    priceListUrl?: SortOrder
+    carParkingSpaces?: SortOrder
+    unitLiftRatio?: SortOrder
+    approvalDate?: SortOrder
+    constructionStatusNote?: SortOrder
     metaTitle?: SortOrder
     metaDescription?: SortOrder
     createdAt?: SortOrder
@@ -31587,6 +33163,11 @@ export namespace Prisma {
   export type ProjectSumOrderByAggregateInput = {
     priceMin?: SortOrder
     priceMax?: SortOrder
+    totalUnits?: SortOrder
+    projectSizeAcres?: SortOrder
+    totalTowers?: SortOrder
+    pricePerSqft?: SortOrder
+    carParkingSpaces?: SortOrder
   }
 
   export type EnumProjectStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -31597,6 +33178,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumProjectStatusFilter<$PrismaModel>
     _max?: NestedEnumProjectStatusFilter<$PrismaModel>
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type ProjectScalarRelationFilter = {
@@ -31795,6 +33392,44 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type ProjectReraPhaseOrderByRelevanceInput = {
+    fields: ProjectReraPhaseOrderByRelevanceFieldEnum | ProjectReraPhaseOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ProjectReraPhaseCountOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    label?: SortOrder
+    reraNumber?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ProjectReraPhaseAvgOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type ProjectReraPhaseMaxOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    label?: SortOrder
+    reraNumber?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ProjectReraPhaseMinOrderByAggregateInput = {
+    id?: SortOrder
+    projectId?: SortOrder
+    label?: SortOrder
+    reraNumber?: SortOrder
+    order?: SortOrder
+  }
+
+  export type ProjectReraPhaseSumOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
   export type StateListRelationFilter = {
     every?: StateWhereInput
     some?: StateWhereInput
@@ -31882,17 +33517,6 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
-  export type FloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
   export type StateScalarRelationFilter = {
     is?: StateWhereInput
     isNot?: StateWhereInput
@@ -31970,22 +33594,6 @@ export namespace Prisma {
   export type CitySumOrderByAggregateInput = {
     latitude?: SortOrder
     longitude?: SortOrder
-  }
-
-  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedFloatNullableFilter<$PrismaModel>
-    _min?: NestedFloatNullableFilter<$PrismaModel>
-    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type CityScalarRelationFilter = {
@@ -33107,6 +34715,13 @@ export namespace Prisma {
     connect?: ProjectLandmarkWhereUniqueInput | ProjectLandmarkWhereUniqueInput[]
   }
 
+  export type ProjectReraPhaseCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectReraPhaseCreateWithoutProjectInput, ProjectReraPhaseUncheckedCreateWithoutProjectInput> | ProjectReraPhaseCreateWithoutProjectInput[] | ProjectReraPhaseUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectReraPhaseCreateOrConnectWithoutProjectInput | ProjectReraPhaseCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectReraPhaseCreateManyProjectInputEnvelope
+    connect?: ProjectReraPhaseWhereUniqueInput | ProjectReraPhaseWhereUniqueInput[]
+  }
+
   export type EnquiryCreateNestedManyWithoutProjectInput = {
     create?: XOR<EnquiryCreateWithoutProjectInput, EnquiryUncheckedCreateWithoutProjectInput> | EnquiryCreateWithoutProjectInput[] | EnquiryUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: EnquiryCreateOrConnectWithoutProjectInput | EnquiryCreateOrConnectWithoutProjectInput[]
@@ -33149,6 +34764,13 @@ export namespace Prisma {
     connect?: ProjectLandmarkWhereUniqueInput | ProjectLandmarkWhereUniqueInput[]
   }
 
+  export type ProjectReraPhaseUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ProjectReraPhaseCreateWithoutProjectInput, ProjectReraPhaseUncheckedCreateWithoutProjectInput> | ProjectReraPhaseCreateWithoutProjectInput[] | ProjectReraPhaseUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectReraPhaseCreateOrConnectWithoutProjectInput | ProjectReraPhaseCreateOrConnectWithoutProjectInput[]
+    createMany?: ProjectReraPhaseCreateManyProjectInputEnvelope
+    connect?: ProjectReraPhaseWhereUniqueInput | ProjectReraPhaseWhereUniqueInput[]
+  }
+
   export type EnquiryUncheckedCreateNestedManyWithoutProjectInput = {
     create?: XOR<EnquiryCreateWithoutProjectInput, EnquiryUncheckedCreateWithoutProjectInput> | EnquiryCreateWithoutProjectInput[] | EnquiryUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: EnquiryCreateOrConnectWithoutProjectInput | EnquiryCreateOrConnectWithoutProjectInput[]
@@ -33158,6 +34780,14 @@ export namespace Prisma {
 
   export type EnumProjectStatusFieldUpdateOperationsInput = {
     set?: $Enums.ProjectStatus
+  }
+
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type DeveloperUpdateOneRequiredWithoutProjectsNestedInput = {
@@ -33236,6 +34866,20 @@ export namespace Prisma {
     update?: ProjectLandmarkUpdateWithWhereUniqueWithoutProjectInput | ProjectLandmarkUpdateWithWhereUniqueWithoutProjectInput[]
     updateMany?: ProjectLandmarkUpdateManyWithWhereWithoutProjectInput | ProjectLandmarkUpdateManyWithWhereWithoutProjectInput[]
     deleteMany?: ProjectLandmarkScalarWhereInput | ProjectLandmarkScalarWhereInput[]
+  }
+
+  export type ProjectReraPhaseUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectReraPhaseCreateWithoutProjectInput, ProjectReraPhaseUncheckedCreateWithoutProjectInput> | ProjectReraPhaseCreateWithoutProjectInput[] | ProjectReraPhaseUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectReraPhaseCreateOrConnectWithoutProjectInput | ProjectReraPhaseCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectReraPhaseUpsertWithWhereUniqueWithoutProjectInput | ProjectReraPhaseUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectReraPhaseCreateManyProjectInputEnvelope
+    set?: ProjectReraPhaseWhereUniqueInput | ProjectReraPhaseWhereUniqueInput[]
+    disconnect?: ProjectReraPhaseWhereUniqueInput | ProjectReraPhaseWhereUniqueInput[]
+    delete?: ProjectReraPhaseWhereUniqueInput | ProjectReraPhaseWhereUniqueInput[]
+    connect?: ProjectReraPhaseWhereUniqueInput | ProjectReraPhaseWhereUniqueInput[]
+    update?: ProjectReraPhaseUpdateWithWhereUniqueWithoutProjectInput | ProjectReraPhaseUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectReraPhaseUpdateManyWithWhereWithoutProjectInput | ProjectReraPhaseUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectReraPhaseScalarWhereInput | ProjectReraPhaseScalarWhereInput[]
   }
 
   export type EnquiryUpdateManyWithoutProjectNestedInput = {
@@ -33322,6 +34966,20 @@ export namespace Prisma {
     deleteMany?: ProjectLandmarkScalarWhereInput | ProjectLandmarkScalarWhereInput[]
   }
 
+  export type ProjectReraPhaseUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ProjectReraPhaseCreateWithoutProjectInput, ProjectReraPhaseUncheckedCreateWithoutProjectInput> | ProjectReraPhaseCreateWithoutProjectInput[] | ProjectReraPhaseUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ProjectReraPhaseCreateOrConnectWithoutProjectInput | ProjectReraPhaseCreateOrConnectWithoutProjectInput[]
+    upsert?: ProjectReraPhaseUpsertWithWhereUniqueWithoutProjectInput | ProjectReraPhaseUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ProjectReraPhaseCreateManyProjectInputEnvelope
+    set?: ProjectReraPhaseWhereUniqueInput | ProjectReraPhaseWhereUniqueInput[]
+    disconnect?: ProjectReraPhaseWhereUniqueInput | ProjectReraPhaseWhereUniqueInput[]
+    delete?: ProjectReraPhaseWhereUniqueInput | ProjectReraPhaseWhereUniqueInput[]
+    connect?: ProjectReraPhaseWhereUniqueInput | ProjectReraPhaseWhereUniqueInput[]
+    update?: ProjectReraPhaseUpdateWithWhereUniqueWithoutProjectInput | ProjectReraPhaseUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ProjectReraPhaseUpdateManyWithWhereWithoutProjectInput | ProjectReraPhaseUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ProjectReraPhaseScalarWhereInput | ProjectReraPhaseScalarWhereInput[]
+  }
+
   export type EnquiryUncheckedUpdateManyWithoutProjectNestedInput = {
     create?: XOR<EnquiryCreateWithoutProjectInput, EnquiryUncheckedCreateWithoutProjectInput> | EnquiryCreateWithoutProjectInput[] | EnquiryUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: EnquiryCreateOrConnectWithoutProjectInput | EnquiryCreateOrConnectWithoutProjectInput[]
@@ -33398,6 +35056,20 @@ export namespace Prisma {
     upsert?: ProjectUpsertWithoutLandmarksInput
     connect?: ProjectWhereUniqueInput
     update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutLandmarksInput, ProjectUpdateWithoutLandmarksInput>, ProjectUncheckedUpdateWithoutLandmarksInput>
+  }
+
+  export type ProjectCreateNestedOneWithoutReraPhasesInput = {
+    create?: XOR<ProjectCreateWithoutReraPhasesInput, ProjectUncheckedCreateWithoutReraPhasesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutReraPhasesInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type ProjectUpdateOneRequiredWithoutReraPhasesNestedInput = {
+    create?: XOR<ProjectCreateWithoutReraPhasesInput, ProjectUncheckedCreateWithoutReraPhasesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutReraPhasesInput
+    upsert?: ProjectUpsertWithoutReraPhasesInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutReraPhasesInput, ProjectUpdateWithoutReraPhasesInput>, ProjectUncheckedUpdateWithoutReraPhasesInput>
   }
 
   export type StateCreateNestedManyWithoutCountryInput = {
@@ -33516,14 +35188,6 @@ export namespace Prisma {
     connectOrCreate?: LocalityCreateOrConnectWithoutCityInput | LocalityCreateOrConnectWithoutCityInput[]
     createMany?: LocalityCreateManyCityInputEnvelope
     connect?: LocalityWhereUniqueInput | LocalityWhereUniqueInput[]
-  }
-
-  export type NullableFloatFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type StateUpdateOneRequiredWithoutCitiesNestedInput = {
@@ -34165,22 +35829,6 @@ export namespace Prisma {
     _max?: NestedEnumProjectStatusFilter<$PrismaModel>
   }
 
-  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
-  }
-
   export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | null
@@ -34195,6 +35843,22 @@ export namespace Prisma {
     _sum?: NestedFloatNullableFilter<$PrismaModel>
     _min?: NestedFloatNullableFilter<$PrismaModel>
     _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type NestedEnumListingTypeFilter<$PrismaModel = never> = {
@@ -35092,6 +36756,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -35101,6 +36776,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanCreateNestedManyWithoutProjectInput
     faqs?: ProjectFAQCreateNestedManyWithoutProjectInput
     landmarks?: ProjectLandmarkCreateNestedManyWithoutProjectInput
+    reraPhases?: ProjectReraPhaseCreateNestedManyWithoutProjectInput
     enquiries?: EnquiryCreateNestedManyWithoutProjectInput
   }
 
@@ -35122,6 +36798,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -35131,6 +36818,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanUncheckedCreateNestedManyWithoutProjectInput
     faqs?: ProjectFAQUncheckedCreateNestedManyWithoutProjectInput
     landmarks?: ProjectLandmarkUncheckedCreateNestedManyWithoutProjectInput
+    reraPhases?: ProjectReraPhaseUncheckedCreateNestedManyWithoutProjectInput
     enquiries?: EnquiryUncheckedCreateNestedManyWithoutProjectInput
   }
 
@@ -35182,6 +36870,17 @@ export namespace Prisma {
     brochureUrl?: StringNullableFilter<"Project"> | string | null
     youtubeUrl?: StringNullableFilter<"Project"> | string | null
     sitePlanUrl?: StringNullableFilter<"Project"> | string | null
+    projectType?: StringNullableFilter<"Project"> | string | null
+    totalUnits?: IntNullableFilter<"Project"> | number | null
+    projectSizeAcres?: FloatNullableFilter<"Project"> | number | null
+    launchDate?: DateTimeNullableFilter<"Project"> | Date | string | null
+    totalTowers?: IntNullableFilter<"Project"> | number | null
+    pricePerSqft?: IntNullableFilter<"Project"> | number | null
+    priceListUrl?: StringNullableFilter<"Project"> | string | null
+    carParkingSpaces?: IntNullableFilter<"Project"> | number | null
+    unitLiftRatio?: StringNullableFilter<"Project"> | string | null
+    approvalDate?: DateTimeNullableFilter<"Project"> | Date | string | null
+    constructionStatusNote?: StringNullableFilter<"Project"> | string | null
     metaTitle?: StringNullableFilter<"Project"> | string | null
     metaDescription?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
@@ -35411,6 +37110,30 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ProjectReraPhaseCreateWithoutProjectInput = {
+    id?: string
+    label: string
+    reraNumber: string
+    order?: number
+  }
+
+  export type ProjectReraPhaseUncheckedCreateWithoutProjectInput = {
+    id?: string
+    label: string
+    reraNumber: string
+    order?: number
+  }
+
+  export type ProjectReraPhaseCreateOrConnectWithoutProjectInput = {
+    where: ProjectReraPhaseWhereUniqueInput
+    create: XOR<ProjectReraPhaseCreateWithoutProjectInput, ProjectReraPhaseUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectReraPhaseCreateManyProjectInputEnvelope = {
+    data: ProjectReraPhaseCreateManyProjectInput | ProjectReraPhaseCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EnquiryCreateWithoutProjectInput = {
     id?: string
     name: string
@@ -35618,6 +37341,33 @@ export namespace Prisma {
     order?: IntFilter<"ProjectLandmark"> | number
   }
 
+  export type ProjectReraPhaseUpsertWithWhereUniqueWithoutProjectInput = {
+    where: ProjectReraPhaseWhereUniqueInput
+    update: XOR<ProjectReraPhaseUpdateWithoutProjectInput, ProjectReraPhaseUncheckedUpdateWithoutProjectInput>
+    create: XOR<ProjectReraPhaseCreateWithoutProjectInput, ProjectReraPhaseUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ProjectReraPhaseUpdateWithWhereUniqueWithoutProjectInput = {
+    where: ProjectReraPhaseWhereUniqueInput
+    data: XOR<ProjectReraPhaseUpdateWithoutProjectInput, ProjectReraPhaseUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type ProjectReraPhaseUpdateManyWithWhereWithoutProjectInput = {
+    where: ProjectReraPhaseScalarWhereInput
+    data: XOR<ProjectReraPhaseUpdateManyMutationInput, ProjectReraPhaseUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type ProjectReraPhaseScalarWhereInput = {
+    AND?: ProjectReraPhaseScalarWhereInput | ProjectReraPhaseScalarWhereInput[]
+    OR?: ProjectReraPhaseScalarWhereInput[]
+    NOT?: ProjectReraPhaseScalarWhereInput | ProjectReraPhaseScalarWhereInput[]
+    id?: StringFilter<"ProjectReraPhase"> | string
+    projectId?: StringFilter<"ProjectReraPhase"> | string
+    label?: StringFilter<"ProjectReraPhase"> | string
+    reraNumber?: StringFilter<"ProjectReraPhase"> | string
+    order?: IntFilter<"ProjectReraPhase"> | number
+  }
+
   export type EnquiryUpsertWithWhereUniqueWithoutProjectInput = {
     where: EnquiryWhereUniqueInput
     update: XOR<EnquiryUpdateWithoutProjectInput, EnquiryUncheckedUpdateWithoutProjectInput>
@@ -35652,6 +37402,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -35661,6 +37422,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanCreateNestedManyWithoutProjectInput
     faqs?: ProjectFAQCreateNestedManyWithoutProjectInput
     landmarks?: ProjectLandmarkCreateNestedManyWithoutProjectInput
+    reraPhases?: ProjectReraPhaseCreateNestedManyWithoutProjectInput
     enquiries?: EnquiryCreateNestedManyWithoutProjectInput
   }
 
@@ -35683,6 +37445,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -35691,6 +37464,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanUncheckedCreateNestedManyWithoutProjectInput
     faqs?: ProjectFAQUncheckedCreateNestedManyWithoutProjectInput
     landmarks?: ProjectLandmarkUncheckedCreateNestedManyWithoutProjectInput
+    reraPhases?: ProjectReraPhaseUncheckedCreateNestedManyWithoutProjectInput
     enquiries?: EnquiryUncheckedCreateNestedManyWithoutProjectInput
   }
 
@@ -35728,6 +37502,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35737,6 +37522,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanUpdateManyWithoutProjectNestedInput
     faqs?: ProjectFAQUpdateManyWithoutProjectNestedInput
     landmarks?: ProjectLandmarkUpdateManyWithoutProjectNestedInput
+    reraPhases?: ProjectReraPhaseUpdateManyWithoutProjectNestedInput
     enquiries?: EnquiryUpdateManyWithoutProjectNestedInput
   }
 
@@ -35759,6 +37545,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35767,6 +37564,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanUncheckedUpdateManyWithoutProjectNestedInput
     faqs?: ProjectFAQUncheckedUpdateManyWithoutProjectNestedInput
     landmarks?: ProjectLandmarkUncheckedUpdateManyWithoutProjectNestedInput
+    reraPhases?: ProjectReraPhaseUncheckedUpdateManyWithoutProjectNestedInput
     enquiries?: EnquiryUncheckedUpdateManyWithoutProjectNestedInput
   }
 
@@ -35788,6 +37586,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -35797,6 +37606,7 @@ export namespace Prisma {
     images?: ProjectImageCreateNestedManyWithoutProjectInput
     faqs?: ProjectFAQCreateNestedManyWithoutProjectInput
     landmarks?: ProjectLandmarkCreateNestedManyWithoutProjectInput
+    reraPhases?: ProjectReraPhaseCreateNestedManyWithoutProjectInput
     enquiries?: EnquiryCreateNestedManyWithoutProjectInput
   }
 
@@ -35819,6 +37629,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -35827,6 +37648,7 @@ export namespace Prisma {
     images?: ProjectImageUncheckedCreateNestedManyWithoutProjectInput
     faqs?: ProjectFAQUncheckedCreateNestedManyWithoutProjectInput
     landmarks?: ProjectLandmarkUncheckedCreateNestedManyWithoutProjectInput
+    reraPhases?: ProjectReraPhaseUncheckedCreateNestedManyWithoutProjectInput
     enquiries?: EnquiryUncheckedCreateNestedManyWithoutProjectInput
   }
 
@@ -35864,6 +37686,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35873,6 +37706,7 @@ export namespace Prisma {
     images?: ProjectImageUpdateManyWithoutProjectNestedInput
     faqs?: ProjectFAQUpdateManyWithoutProjectNestedInput
     landmarks?: ProjectLandmarkUpdateManyWithoutProjectNestedInput
+    reraPhases?: ProjectReraPhaseUpdateManyWithoutProjectNestedInput
     enquiries?: EnquiryUpdateManyWithoutProjectNestedInput
   }
 
@@ -35895,6 +37729,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35903,6 +37748,7 @@ export namespace Prisma {
     images?: ProjectImageUncheckedUpdateManyWithoutProjectNestedInput
     faqs?: ProjectFAQUncheckedUpdateManyWithoutProjectNestedInput
     landmarks?: ProjectLandmarkUncheckedUpdateManyWithoutProjectNestedInput
+    reraPhases?: ProjectReraPhaseUncheckedUpdateManyWithoutProjectNestedInput
     enquiries?: EnquiryUncheckedUpdateManyWithoutProjectNestedInput
   }
 
@@ -35924,6 +37770,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -35933,6 +37790,7 @@ export namespace Prisma {
     images?: ProjectImageCreateNestedManyWithoutProjectInput
     floorPlans?: ProjectFloorPlanCreateNestedManyWithoutProjectInput
     landmarks?: ProjectLandmarkCreateNestedManyWithoutProjectInput
+    reraPhases?: ProjectReraPhaseCreateNestedManyWithoutProjectInput
     enquiries?: EnquiryCreateNestedManyWithoutProjectInput
   }
 
@@ -35955,6 +37813,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -35963,6 +37832,7 @@ export namespace Prisma {
     images?: ProjectImageUncheckedCreateNestedManyWithoutProjectInput
     floorPlans?: ProjectFloorPlanUncheckedCreateNestedManyWithoutProjectInput
     landmarks?: ProjectLandmarkUncheckedCreateNestedManyWithoutProjectInput
+    reraPhases?: ProjectReraPhaseUncheckedCreateNestedManyWithoutProjectInput
     enquiries?: EnquiryUncheckedCreateNestedManyWithoutProjectInput
   }
 
@@ -36000,6 +37870,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -36009,6 +37890,7 @@ export namespace Prisma {
     images?: ProjectImageUpdateManyWithoutProjectNestedInput
     floorPlans?: ProjectFloorPlanUpdateManyWithoutProjectNestedInput
     landmarks?: ProjectLandmarkUpdateManyWithoutProjectNestedInput
+    reraPhases?: ProjectReraPhaseUpdateManyWithoutProjectNestedInput
     enquiries?: EnquiryUpdateManyWithoutProjectNestedInput
   }
 
@@ -36031,6 +37913,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -36039,6 +37932,7 @@ export namespace Prisma {
     images?: ProjectImageUncheckedUpdateManyWithoutProjectNestedInput
     floorPlans?: ProjectFloorPlanUncheckedUpdateManyWithoutProjectNestedInput
     landmarks?: ProjectLandmarkUncheckedUpdateManyWithoutProjectNestedInput
+    reraPhases?: ProjectReraPhaseUncheckedUpdateManyWithoutProjectNestedInput
     enquiries?: EnquiryUncheckedUpdateManyWithoutProjectNestedInput
   }
 
@@ -36060,6 +37954,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -36069,6 +37974,7 @@ export namespace Prisma {
     images?: ProjectImageCreateNestedManyWithoutProjectInput
     floorPlans?: ProjectFloorPlanCreateNestedManyWithoutProjectInput
     faqs?: ProjectFAQCreateNestedManyWithoutProjectInput
+    reraPhases?: ProjectReraPhaseCreateNestedManyWithoutProjectInput
     enquiries?: EnquiryCreateNestedManyWithoutProjectInput
   }
 
@@ -36091,6 +37997,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -36099,6 +38016,7 @@ export namespace Prisma {
     images?: ProjectImageUncheckedCreateNestedManyWithoutProjectInput
     floorPlans?: ProjectFloorPlanUncheckedCreateNestedManyWithoutProjectInput
     faqs?: ProjectFAQUncheckedCreateNestedManyWithoutProjectInput
+    reraPhases?: ProjectReraPhaseUncheckedCreateNestedManyWithoutProjectInput
     enquiries?: EnquiryUncheckedCreateNestedManyWithoutProjectInput
   }
 
@@ -36136,6 +38054,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -36145,6 +38074,7 @@ export namespace Prisma {
     images?: ProjectImageUpdateManyWithoutProjectNestedInput
     floorPlans?: ProjectFloorPlanUpdateManyWithoutProjectNestedInput
     faqs?: ProjectFAQUpdateManyWithoutProjectNestedInput
+    reraPhases?: ProjectReraPhaseUpdateManyWithoutProjectNestedInput
     enquiries?: EnquiryUpdateManyWithoutProjectNestedInput
   }
 
@@ -36167,6 +38097,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -36175,6 +38116,191 @@ export namespace Prisma {
     images?: ProjectImageUncheckedUpdateManyWithoutProjectNestedInput
     floorPlans?: ProjectFloorPlanUncheckedUpdateManyWithoutProjectNestedInput
     faqs?: ProjectFAQUncheckedUpdateManyWithoutProjectNestedInput
+    reraPhases?: ProjectReraPhaseUncheckedUpdateManyWithoutProjectNestedInput
+    enquiries?: EnquiryUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectCreateWithoutReraPhasesInput = {
+    id?: string
+    slug: string
+    name: string
+    description: string
+    status?: $Enums.ProjectStatus
+    city: string
+    locality?: string | null
+    address?: string | null
+    priceMin?: number | null
+    priceMax?: number | null
+    possessionDate?: Date | string | null
+    amenities?: string | null
+    reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    developer: DeveloperCreateNestedOneWithoutProjectsInput
+    units?: PropertyCreateNestedManyWithoutProjectInput
+    images?: ProjectImageCreateNestedManyWithoutProjectInput
+    floorPlans?: ProjectFloorPlanCreateNestedManyWithoutProjectInput
+    faqs?: ProjectFAQCreateNestedManyWithoutProjectInput
+    landmarks?: ProjectLandmarkCreateNestedManyWithoutProjectInput
+    enquiries?: EnquiryCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutReraPhasesInput = {
+    id?: string
+    slug: string
+    name: string
+    description: string
+    status?: $Enums.ProjectStatus
+    developerId: string
+    city: string
+    locality?: string | null
+    address?: string | null
+    priceMin?: number | null
+    priceMax?: number | null
+    possessionDate?: Date | string | null
+    amenities?: string | null
+    reraNumber?: string | null
+    highlights?: string | null
+    brochureUrl?: string | null
+    youtubeUrl?: string | null
+    sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
+    metaTitle?: string | null
+    metaDescription?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    units?: PropertyUncheckedCreateNestedManyWithoutProjectInput
+    images?: ProjectImageUncheckedCreateNestedManyWithoutProjectInput
+    floorPlans?: ProjectFloorPlanUncheckedCreateNestedManyWithoutProjectInput
+    faqs?: ProjectFAQUncheckedCreateNestedManyWithoutProjectInput
+    landmarks?: ProjectLandmarkUncheckedCreateNestedManyWithoutProjectInput
+    enquiries?: EnquiryUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutReraPhasesInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutReraPhasesInput, ProjectUncheckedCreateWithoutReraPhasesInput>
+  }
+
+  export type ProjectUpsertWithoutReraPhasesInput = {
+    update: XOR<ProjectUpdateWithoutReraPhasesInput, ProjectUncheckedUpdateWithoutReraPhasesInput>
+    create: XOR<ProjectCreateWithoutReraPhasesInput, ProjectUncheckedCreateWithoutReraPhasesInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutReraPhasesInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutReraPhasesInput, ProjectUncheckedUpdateWithoutReraPhasesInput>
+  }
+
+  export type ProjectUpdateWithoutReraPhasesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    city?: StringFieldUpdateOperationsInput | string
+    locality?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    priceMin?: NullableIntFieldUpdateOperationsInput | number | null
+    priceMax?: NullableIntFieldUpdateOperationsInput | number | null
+    possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    amenities?: NullableStringFieldUpdateOperationsInput | string | null
+    reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    developer?: DeveloperUpdateOneRequiredWithoutProjectsNestedInput
+    units?: PropertyUpdateManyWithoutProjectNestedInput
+    images?: ProjectImageUpdateManyWithoutProjectNestedInput
+    floorPlans?: ProjectFloorPlanUpdateManyWithoutProjectNestedInput
+    faqs?: ProjectFAQUpdateManyWithoutProjectNestedInput
+    landmarks?: ProjectLandmarkUpdateManyWithoutProjectNestedInput
+    enquiries?: EnquiryUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutReraPhasesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    status?: EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+    developerId?: StringFieldUpdateOperationsInput | string
+    city?: StringFieldUpdateOperationsInput | string
+    locality?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    priceMin?: NullableIntFieldUpdateOperationsInput | number | null
+    priceMax?: NullableIntFieldUpdateOperationsInput | number | null
+    possessionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    amenities?: NullableStringFieldUpdateOperationsInput | string | null
+    reraNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    highlights?: NullableStringFieldUpdateOperationsInput | string | null
+    brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
+    metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
+    metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    units?: PropertyUncheckedUpdateManyWithoutProjectNestedInput
+    images?: ProjectImageUncheckedUpdateManyWithoutProjectNestedInput
+    floorPlans?: ProjectFloorPlanUncheckedUpdateManyWithoutProjectNestedInput
+    faqs?: ProjectFAQUncheckedUpdateManyWithoutProjectNestedInput
+    landmarks?: ProjectLandmarkUncheckedUpdateManyWithoutProjectNestedInput
     enquiries?: EnquiryUncheckedUpdateManyWithoutProjectNestedInput
   }
 
@@ -36626,6 +38752,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -36635,6 +38772,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanCreateNestedManyWithoutProjectInput
     faqs?: ProjectFAQCreateNestedManyWithoutProjectInput
     landmarks?: ProjectLandmarkCreateNestedManyWithoutProjectInput
+    reraPhases?: ProjectReraPhaseCreateNestedManyWithoutProjectInput
     enquiries?: EnquiryCreateNestedManyWithoutProjectInput
   }
 
@@ -36657,6 +38795,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -36665,6 +38814,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanUncheckedCreateNestedManyWithoutProjectInput
     faqs?: ProjectFAQUncheckedCreateNestedManyWithoutProjectInput
     landmarks?: ProjectLandmarkUncheckedCreateNestedManyWithoutProjectInput
+    reraPhases?: ProjectReraPhaseUncheckedCreateNestedManyWithoutProjectInput
     enquiries?: EnquiryUncheckedCreateNestedManyWithoutProjectInput
   }
 
@@ -36841,6 +38991,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -36850,6 +39011,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanUpdateManyWithoutProjectNestedInput
     faqs?: ProjectFAQUpdateManyWithoutProjectNestedInput
     landmarks?: ProjectLandmarkUpdateManyWithoutProjectNestedInput
+    reraPhases?: ProjectReraPhaseUpdateManyWithoutProjectNestedInput
     enquiries?: EnquiryUpdateManyWithoutProjectNestedInput
   }
 
@@ -36872,6 +39034,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -36880,6 +39053,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanUncheckedUpdateManyWithoutProjectNestedInput
     faqs?: ProjectFAQUncheckedUpdateManyWithoutProjectNestedInput
     landmarks?: ProjectLandmarkUncheckedUpdateManyWithoutProjectNestedInput
+    reraPhases?: ProjectReraPhaseUncheckedUpdateManyWithoutProjectNestedInput
     enquiries?: EnquiryUncheckedUpdateManyWithoutProjectNestedInput
   }
 
@@ -37197,6 +39371,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -37207,6 +39392,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanCreateNestedManyWithoutProjectInput
     faqs?: ProjectFAQCreateNestedManyWithoutProjectInput
     landmarks?: ProjectLandmarkCreateNestedManyWithoutProjectInput
+    reraPhases?: ProjectReraPhaseCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutEnquiriesInput = {
@@ -37228,6 +39414,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -37237,6 +39434,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanUncheckedCreateNestedManyWithoutProjectInput
     faqs?: ProjectFAQUncheckedCreateNestedManyWithoutProjectInput
     landmarks?: ProjectLandmarkUncheckedCreateNestedManyWithoutProjectInput
+    reraPhases?: ProjectReraPhaseUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutEnquiriesInput = {
@@ -37431,6 +39629,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -37441,6 +39650,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanUpdateManyWithoutProjectNestedInput
     faqs?: ProjectFAQUpdateManyWithoutProjectNestedInput
     landmarks?: ProjectLandmarkUpdateManyWithoutProjectNestedInput
+    reraPhases?: ProjectReraPhaseUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutEnquiriesInput = {
@@ -37462,6 +39672,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -37471,6 +39692,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanUncheckedUpdateManyWithoutProjectNestedInput
     faqs?: ProjectFAQUncheckedUpdateManyWithoutProjectNestedInput
     landmarks?: ProjectLandmarkUncheckedUpdateManyWithoutProjectNestedInput
+    reraPhases?: ProjectReraPhaseUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type UserUpsertWithoutEnquiriesInput = {
@@ -38150,6 +40372,17 @@ export namespace Prisma {
     brochureUrl?: string | null
     youtubeUrl?: string | null
     sitePlanUrl?: string | null
+    projectType?: string | null
+    totalUnits?: number | null
+    projectSizeAcres?: number | null
+    launchDate?: Date | string | null
+    totalTowers?: number | null
+    pricePerSqft?: number | null
+    priceListUrl?: string | null
+    carParkingSpaces?: number | null
+    unitLiftRatio?: string | null
+    approvalDate?: Date | string | null
+    constructionStatusNote?: string | null
     metaTitle?: string | null
     metaDescription?: string | null
     createdAt?: Date | string
@@ -38174,6 +40407,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38183,6 +40427,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanUpdateManyWithoutProjectNestedInput
     faqs?: ProjectFAQUpdateManyWithoutProjectNestedInput
     landmarks?: ProjectLandmarkUpdateManyWithoutProjectNestedInput
+    reraPhases?: ProjectReraPhaseUpdateManyWithoutProjectNestedInput
     enquiries?: EnquiryUpdateManyWithoutProjectNestedInput
   }
 
@@ -38204,6 +40449,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38213,6 +40469,7 @@ export namespace Prisma {
     floorPlans?: ProjectFloorPlanUncheckedUpdateManyWithoutProjectNestedInput
     faqs?: ProjectFAQUncheckedUpdateManyWithoutProjectNestedInput
     landmarks?: ProjectLandmarkUncheckedUpdateManyWithoutProjectNestedInput
+    reraPhases?: ProjectReraPhaseUncheckedUpdateManyWithoutProjectNestedInput
     enquiries?: EnquiryUncheckedUpdateManyWithoutProjectNestedInput
   }
 
@@ -38234,6 +40491,17 @@ export namespace Prisma {
     brochureUrl?: NullableStringFieldUpdateOperationsInput | string | null
     youtubeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     sitePlanUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    projectType?: NullableStringFieldUpdateOperationsInput | string | null
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    projectSizeAcres?: NullableFloatFieldUpdateOperationsInput | number | null
+    launchDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    totalTowers?: NullableIntFieldUpdateOperationsInput | number | null
+    pricePerSqft?: NullableIntFieldUpdateOperationsInput | number | null
+    priceListUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    carParkingSpaces?: NullableIntFieldUpdateOperationsInput | number | null
+    unitLiftRatio?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    constructionStatusNote?: NullableStringFieldUpdateOperationsInput | string | null
     metaTitle?: NullableStringFieldUpdateOperationsInput | string | null
     metaDescription?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38300,6 +40568,13 @@ export namespace Prisma {
     category: string
     name: string
     distanceKm: number
+    order?: number
+  }
+
+  export type ProjectReraPhaseCreateManyProjectInput = {
+    id?: string
+    label: string
+    reraNumber: string
     order?: number
   }
 
@@ -38506,6 +40781,27 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     distanceKm?: FloatFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectReraPhaseUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    reraNumber?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectReraPhaseUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    reraNumber?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProjectReraPhaseUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
+    reraNumber?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
   }
 

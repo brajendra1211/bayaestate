@@ -14,6 +14,8 @@ import {
   moveProjectFaq,
   createProjectLandmark,
   deleteProjectLandmark,
+  createProjectReraPhase,
+  deleteProjectReraPhase,
 } from "../../../../../actions";
 
 type Params = Promise<{ id: string; projectId: string }>;
@@ -23,6 +25,7 @@ const ERROR_MESSAGES: Record<string, string> = {
   floorplan: "Enter a configuration name and area for the floor plan.",
   faq: "Enter both a question and an answer.",
   landmark: "Enter a category, name, and distance for the landmark.",
+  rera: "Enter both a phase label and a RERA number.",
 };
 
 export default async function EditProjectPage({
@@ -46,6 +49,7 @@ export default async function EditProjectPage({
       floorPlans: { orderBy: { order: "asc" } },
       faqs: { orderBy: { order: "asc" } },
       landmarks: { orderBy: { order: "asc" } },
+      reraPhases: { orderBy: { order: "asc" } },
     },
   });
   if (!project || project.developerId !== id) notFound();
@@ -104,6 +108,17 @@ export default async function EditProjectPage({
             brochureUrl: project.brochureUrl,
             youtubeUrl: project.youtubeUrl,
             sitePlanUrl: project.sitePlanUrl,
+            projectType: project.projectType,
+            totalUnits: project.totalUnits,
+            projectSizeAcres: project.projectSizeAcres,
+            launchDate: project.launchDate ? project.launchDate.toISOString().slice(0, 10) : null,
+            totalTowers: project.totalTowers,
+            pricePerSqft: project.pricePerSqft,
+            priceListUrl: project.priceListUrl,
+            carParkingSpaces: project.carParkingSpaces,
+            unitLiftRatio: project.unitLiftRatio,
+            approvalDate: project.approvalDate ? project.approvalDate.toISOString().slice(0, 10) : null,
+            constructionStatusNote: project.constructionStatusNote,
             metaTitle: project.metaTitle,
             metaDescription: project.metaDescription,
             images: project.images.map((image) => ({ url: image.url })),
@@ -248,6 +263,53 @@ export default async function EditProjectPage({
                 </span>
                 <form action={deleteProjectLandmark}>
                   <input type="hidden" name="id" value={landmark.id} />
+                  <input type="hidden" name="projectId" value={project.id} />
+                  <input type="hidden" name="developerId" value={id} />
+                  <button type="submit" className="rounded-lg px-2 py-1 text-xs font-medium text-red-600 hover:bg-red-50">Delete</button>
+                </form>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      <div className="mt-8 max-w-3xl rounded-2xl border border-slate-200 bg-white p-6">
+        <h2 className="font-semibold text-slate-900">RERA phases</h2>
+        <p className="mt-1 text-sm text-slate-500">
+          For projects registered in multiple phases. Leave empty to just use the single RERA number above.
+        </p>
+
+        <form action={createProjectReraPhase} className="mt-4 grid grid-cols-1 gap-3 rounded-xl border border-slate-100 p-4 sm:grid-cols-3">
+          <input type="hidden" name="projectId" value={project.id} />
+          <input type="hidden" name="developerId" value={id} />
+          <input
+            type="text"
+            name="label"
+            required
+            placeholder="e.g. Phase 1"
+            className="rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+          <input
+            type="text"
+            name="reraNumber"
+            required
+            placeholder="RERA number"
+            className="rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+          <button type="submit" className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700">
+            Add
+          </button>
+        </form>
+
+        {project.reraPhases.length > 0 && (
+          <ul className="mt-4 space-y-2">
+            {project.reraPhases.map((phase) => (
+              <li key={phase.id} className="flex items-center justify-between rounded-xl border border-slate-200 p-3 text-sm">
+                <span>
+                  <span className="font-medium text-slate-800">{phase.label}:</span> {phase.reraNumber}
+                </span>
+                <form action={deleteProjectReraPhase}>
+                  <input type="hidden" name="id" value={phase.id} />
                   <input type="hidden" name="projectId" value={project.id} />
                   <input type="hidden" name="developerId" value={id} />
                   <button type="submit" className="rounded-lg px-2 py-1 text-xs font-medium text-red-600 hover:bg-red-50">Delete</button>

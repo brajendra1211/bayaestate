@@ -208,6 +208,17 @@ exports.Prisma.ProjectScalarFieldEnum = {
   brochureUrl: 'brochureUrl',
   youtubeUrl: 'youtubeUrl',
   sitePlanUrl: 'sitePlanUrl',
+  projectType: 'projectType',
+  totalUnits: 'totalUnits',
+  projectSizeAcres: 'projectSizeAcres',
+  launchDate: 'launchDate',
+  totalTowers: 'totalTowers',
+  pricePerSqft: 'pricePerSqft',
+  priceListUrl: 'priceListUrl',
+  carParkingSpaces: 'carParkingSpaces',
+  unitLiftRatio: 'unitLiftRatio',
+  approvalDate: 'approvalDate',
+  constructionStatusNote: 'constructionStatusNote',
   metaTitle: 'metaTitle',
   metaDescription: 'metaDescription',
   createdAt: 'createdAt',
@@ -245,6 +256,14 @@ exports.Prisma.ProjectLandmarkScalarFieldEnum = {
   category: 'category',
   name: 'name',
   distanceKm: 'distanceKm',
+  order: 'order'
+};
+
+exports.Prisma.ProjectReraPhaseScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  label: 'label',
+  reraNumber: 'reraNumber',
   order: 'order'
 };
 
@@ -491,6 +510,10 @@ exports.Prisma.ProjectOrderByRelevanceFieldEnum = {
   brochureUrl: 'brochureUrl',
   youtubeUrl: 'youtubeUrl',
   sitePlanUrl: 'sitePlanUrl',
+  projectType: 'projectType',
+  priceListUrl: 'priceListUrl',
+  unitLiftRatio: 'unitLiftRatio',
+  constructionStatusNote: 'constructionStatusNote',
   metaTitle: 'metaTitle',
   metaDescription: 'metaDescription'
 };
@@ -520,6 +543,13 @@ exports.Prisma.ProjectLandmarkOrderByRelevanceFieldEnum = {
   projectId: 'projectId',
   category: 'category',
   name: 'name'
+};
+
+exports.Prisma.ProjectReraPhaseOrderByRelevanceFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  label: 'label',
+  reraNumber: 'reraNumber'
 };
 
 exports.Prisma.CountryOrderByRelevanceFieldEnum = {
@@ -735,6 +765,7 @@ exports.Prisma.ModelName = {
   ProjectFloorPlan: 'ProjectFloorPlan',
   ProjectFAQ: 'ProjectFAQ',
   ProjectLandmark: 'ProjectLandmark',
+  ProjectReraPhase: 'ProjectReraPhase',
   Country: 'Country',
   State: 'State',
   City: 'City',

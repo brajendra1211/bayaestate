@@ -24,6 +24,17 @@ type ProjectFormValues = {
   brochureUrl: string | null;
   youtubeUrl: string | null;
   sitePlanUrl: string | null;
+  projectType: string | null;
+  totalUnits: number | null;
+  projectSizeAcres: number | null;
+  launchDate: string | null;
+  totalTowers: number | null;
+  pricePerSqft: number | null;
+  priceListUrl: string | null;
+  carParkingSpaces: number | null;
+  unitLiftRatio: string | null;
+  approvalDate: string | null;
+  constructionStatusNote: string | null;
   metaTitle: string | null;
   metaDescription: string | null;
   images: ImageItem[];
@@ -49,12 +60,20 @@ export function ProjectForm({
   const [brochureUrl, setBrochureUrl] = useState<string | null>(defaultValues?.brochureUrl ?? null);
   const [brochureUploading, setBrochureUploading] = useState(false);
   const [brochureError, setBrochureError] = useState<string | null>(null);
+  const [priceListUrl, setPriceListUrl] = useState<string | null>(defaultValues?.priceListUrl ?? null);
+  const [priceListUploading, setPriceListUploading] = useState(false);
+  const [priceListError, setPriceListError] = useState<string | null>(null);
 
-  async function handleBrochureFile(event: ChangeEvent<HTMLInputElement>) {
+  async function handleDocumentUpload(
+    event: ChangeEvent<HTMLInputElement>,
+    setUrl: (url: string) => void,
+    setBusy: (busy: boolean) => void,
+    setErr: (err: string | null) => void
+  ) {
     const file = event.target.files?.[0];
     if (!file) return;
-    setBrochureUploading(true);
-    setBrochureError(null);
+    setBusy(true);
+    setErr(null);
 
     const body = new FormData();
     body.append("file", file);
@@ -65,14 +84,19 @@ export function ProjectForm({
         throw new Error(data.error ?? "Upload failed");
       }
       const data = await response.json();
-      setBrochureUrl(data.url);
+      setUrl(data.url);
     } catch (error) {
-      setBrochureError(error instanceof Error ? error.message : "Upload failed");
+      setErr(error instanceof Error ? error.message : "Upload failed");
     }
 
-    setBrochureUploading(false);
+    setBusy(false);
     event.target.value = "";
   }
+
+  const handleBrochureFile = (event: ChangeEvent<HTMLInputElement>) =>
+    handleDocumentUpload(event, setBrochureUrl, setBrochureUploading, setBrochureError);
+  const handlePriceListFile = (event: ChangeEvent<HTMLInputElement>) =>
+    handleDocumentUpload(event, setPriceListUrl, setPriceListUploading, setPriceListError);
 
   async function handleFiles(event: ChangeEvent<HTMLInputElement>) {
     const files = event.target.files;
@@ -215,6 +239,124 @@ export function ProjectForm({
         </div>
 
         <div className="sm:col-span-2">
+          <h3 className="text-sm font-semibold text-slate-900">Key facts</h3>
+          <p className="mt-0.5 text-xs text-slate-500">
+            Optional — shown as a details grid and stats row on the project page. Leave any blank to hide it.
+          </p>
+        </div>
+
+        <div>
+          <label className="text-sm font-medium text-slate-700">Project type</label>
+          <input
+            type="text"
+            name="projectType"
+            placeholder="e.g. Residential"
+            defaultValue={defaultValues?.projectType ?? undefined}
+            className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="text-sm font-medium text-slate-700">Total units</label>
+          <input
+            type="number"
+            name="totalUnits"
+            min={0}
+            defaultValue={defaultValues?.totalUnits ?? undefined}
+            className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="text-sm font-medium text-slate-700">Project size (acres)</label>
+          <input
+            type="number"
+            name="projectSizeAcres"
+            min={0}
+            step="0.01"
+            defaultValue={defaultValues?.projectSizeAcres ?? undefined}
+            className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="text-sm font-medium text-slate-700">Total towers</label>
+          <input
+            type="number"
+            name="totalTowers"
+            min={0}
+            defaultValue={defaultValues?.totalTowers ?? undefined}
+            className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="text-sm font-medium text-slate-700">Launch date</label>
+          <input
+            type="date"
+            name="launchDate"
+            defaultValue={defaultValues?.launchDate ?? undefined}
+            className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="text-sm font-medium text-slate-700">Approval date</label>
+          <input
+            type="date"
+            name="approvalDate"
+            defaultValue={defaultValues?.approvalDate ?? undefined}
+            className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="text-sm font-medium text-slate-700">Base price (₹/sqft)</label>
+          <input
+            type="number"
+            name="pricePerSqft"
+            min={0}
+            defaultValue={defaultValues?.pricePerSqft ?? undefined}
+            className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="text-sm font-medium text-slate-700">Car parking spaces</label>
+          <input
+            type="number"
+            name="carParkingSpaces"
+            min={0}
+            defaultValue={defaultValues?.carParkingSpaces ?? undefined}
+            className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="text-sm font-medium text-slate-700">Unit : lift ratio</label>
+          <input
+            type="text"
+            name="unitLiftRatio"
+            placeholder="e.g. 1:4"
+            defaultValue={defaultValues?.unitLiftRatio ?? undefined}
+            className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+
+        <div className="sm:col-span-2">
+          <label className="text-sm font-medium text-slate-700">Construction status notes</label>
+          <p className="mt-1 text-xs text-slate-500">
+            Optional — a short paragraph on phase/construction progress, shown under &quot;Possession &amp; construction status&quot;.
+          </p>
+          <textarea
+            name="constructionStatusNote"
+            rows={3}
+            defaultValue={defaultValues?.constructionStatusNote ?? undefined}
+            className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+
+        <div className="sm:col-span-2">
           <label className="text-sm font-medium text-slate-700">Description</label>
           <textarea
             name="description"
@@ -307,6 +449,35 @@ export function ProjectForm({
               View uploaded brochure
             </a>
             <button type="button" onClick={() => setBrochureUrl(null)} className="text-xs font-medium text-red-600 hover:underline">
+              Remove
+            </button>
+          </div>
+        )}
+      </div>
+
+      <div>
+        <label className="text-sm font-medium text-slate-700">Price list (PDF)</label>
+        <p className="mt-1 text-xs text-slate-500">
+          Optional — a separate downloadable price list, distinct from the brochure.
+        </p>
+        <input type="hidden" name="priceListUrl" value={priceListUrl ?? ""} />
+        <div className="mt-2 flex flex-wrap items-center gap-3">
+          <input
+            type="file"
+            accept="application/pdf"
+            onChange={handlePriceListFile}
+            disabled={priceListUploading}
+            className="block text-sm text-slate-500 file:mr-3 file:cursor-pointer file:rounded-xl file:border-0 file:bg-blue-600 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white file:transition hover:file:bg-blue-700 disabled:file:cursor-not-allowed disabled:file:opacity-60"
+          />
+          {priceListUploading && <p className="text-xs text-slate-500">Uploading…</p>}
+        </div>
+        {priceListError && <p className="mt-1 text-xs text-red-600">{priceListError}</p>}
+        {priceListUrl && (
+          <div className="mt-2 flex items-center gap-2 text-sm">
+            <a href={priceListUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              View uploaded price list
+            </a>
+            <button type="button" onClick={() => setPriceListUrl(null)} className="text-xs font-medium text-red-600 hover:underline">
               Remove
             </button>
           </div>

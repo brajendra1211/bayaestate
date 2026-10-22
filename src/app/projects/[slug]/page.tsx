@@ -8,9 +8,12 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { EmiCalculator } from "@/components/EmiCalculator";
+import { BudgetCalculator } from "@/components/BudgetCalculator";
+import { AreaConverter } from "@/components/AreaConverter";
 import { AmenitiesGrid } from "@/components/AmenitiesGrid";
 import { ProjectGallery } from "@/components/ProjectGallery";
 import { ZoomableImage } from "@/components/ZoomableImage";
+import { FloorPlanTabs } from "@/components/FloorPlanTabs";
 import { absoluteUrl } from "@/lib/seo";
 import { getYoutubeEmbedUrl } from "@/lib/format";
 import { parseAmenitiesString } from "@/lib/amenities";
@@ -49,6 +52,7 @@ async function getProject(slug: string) {
       floorPlans: { orderBy: { order: "asc" } },
       faqs: { orderBy: { order: "asc" } },
       landmarks: { orderBy: { order: "asc" } },
+      reraPhases: { orderBy: { order: "asc" } },
       units: {
         where: { approvalStatus: "APPROVED", owner: PUBLIC_LISTER_FILTER, ...notExpiredFilter() },
         include: { images: { orderBy: { order: "asc" }, take: 1 } },
@@ -109,6 +113,32 @@ export default async function ProjectDetailPage({
     return acc;
   }, {});
 
+  const keyFacts = [
+    project.totalUnits ? { label: "Total units", value: project.totalUnits.toLocaleString("en-IN") } : null,
+    project.projectType ? { label: "Project type", value: project.projectType } : null,
+    { label: "Status", value: PROJECT_STATUS_LABELS[project.status] },
+    project.projectSizeAcres ? { label: "Project size", value: `${project.projectSizeAcres} acres` } : null,
+    project.launchDate
+      ? { label: "Launch date", value: project.launchDate.toLocaleDateString("en-IN", { month: "long", year: "numeric" }) }
+      : null,
+    project.possessionDate
+      ? { label: "Possession date", value: project.possessionDate.toLocaleDateString("en-IN", { month: "long", year: "numeric" }) }
+      : null,
+    project.totalTowers ? { label: "Total towers", value: project.totalTowers.toLocaleString("en-IN") } : null,
+  ].filter((fact): fact is { label: string; value: string } => fact !== null);
+
+  const unitsPerAcre =
+    project.totalUnits && project.projectSizeAcres ? Math.round(project.totalUnits / project.projectSizeAcres) : null;
+
+  const statTiles = [
+    project.projectSizeAcres ? { label: "Acres", value: `${project.projectSizeAcres}` } : null,
+    project.totalTowers ? { label: "Towers", value: `${project.totalTowers}` } : null,
+    project.unitLiftRatio ? { label: "Unit : Lift ratio", value: project.unitLiftRatio } : null,
+    project.carParkingSpaces ? { label: "Car parking", value: `~${project.carParkingSpaces.toLocaleString("en-IN")}` } : null,
+    project.totalUnits ? { label: "Apartments", value: `~${project.totalUnits.toLocaleString("en-IN")}` } : null,
+    unitsPerAcre ? { label: "Units / acre", value: `~${unitsPerAcre}` } : null,
+  ].filter((tile): tile is { label: string; value: string } => tile !== null);
+
   const projectJsonLd = {
     "@context": "https://schema.org",
     "@type": "ApartmentComplex",
@@ -164,11 +194,20 @@ export default async function ProjectDetailPage({
               <span className="inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
                 {PROJECT_STATUS_LABELS[project.status]}
               </span>
-              {project.reraNumber && (
-                <span className="inline-block rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-700">
-                  RERA Registered
-                </span>
-              )}
+              {project.reraPhases.length > 0
+                ? project.reraPhases.map((phase) => (
+                    <span
+                      key={phase.id}
+                      className="inline-block rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-700"
+                    >
+                      RERA ({phase.label}): {phase.reraNumber}
+                    </span>
+                  ))
+                : project.reraNumber && (
+                    <span className="inline-block rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-700">
+                      RERA Registered
+                    </span>
+                  )}
             </div>
             <h1 className="mt-3 text-3xl font-bold text-slate-900">{project.name}</h1>
             <p className="mt-1 text-slate-500">
@@ -188,6 +227,11 @@ export default async function ProjectDetailPage({
                 {project.priceMax ? inr.format(project.priceMax) : ""}
               </p>
             )}
+            {project.pricePerSqft && (
+              <p className="mt-1 text-sm text-slate-500">
+                Base price: <span className="font-medium text-slate-700">₹{project.pricePerSqft.toLocaleString("en-IN")} / sqft</span>
+              </p>
+            )}
 
             {project.possessionDate && (
               <p className="mt-2 text-sm text-slate-500">
@@ -195,18 +239,47 @@ export default async function ProjectDetailPage({
               </p>
             )}
 
-            {project.brochureUrl && (
-              <a
-                href={project.brochureUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 py-2.5 text-sm font-semibold text-blue-700 hover:bg-blue-100"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
-                </svg>
-                Download Brochure (PDF)
-              </a>
+            <div className="mt-4 flex flex-wrap gap-3">
+              {project.brochureUrl && (
+                <a
+                  href={project.brochureUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 py-2.5 text-sm font-semibold text-blue-700 hover:bg-blue-100"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+                  </svg>
+                  Download Brochure (PDF)
+                </a>
+              )}
+              {project.priceListUrl && (
+                <a
+                  href={project.priceListUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-100"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+                  </svg>
+                  Download Price List
+                </a>
+              )}
+            </div>
+
+            {keyFacts.length > 0 && (
+              <div className="mt-8">
+                <h2 className="text-lg font-semibold text-slate-900">Key Facts</h2>
+                <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-3 rounded-2xl border border-slate-200 p-4 sm:grid-cols-3">
+                  {keyFacts.map((fact) => (
+                    <div key={fact.label}>
+                      <p className="text-xs text-slate-400">{fact.label}</p>
+                      <p className="text-sm font-semibold text-slate-800">{fact.value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             )}
 
             {highlights.length > 0 && (
@@ -222,6 +295,17 @@ export default async function ProjectDetailPage({
                     </li>
                   ))}
                 </ul>
+              </div>
+            )}
+
+            {statTiles.length > 0 && (
+              <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {statTiles.map((tile) => (
+                  <div key={tile.label} className="rounded-xl bg-slate-50 p-3 text-center">
+                    <p className="text-lg font-bold text-slate-900">{tile.value}</p>
+                    <p className="text-xs text-slate-500">{tile.label}</p>
+                  </div>
+                ))}
               </div>
             )}
 
@@ -250,27 +334,47 @@ export default async function ProjectDetailPage({
                 <h2 className="text-lg font-semibold text-slate-900">
                   {project.name} Floor Plans & Pricing
                 </h2>
-                <div className="mt-3 overflow-x-auto rounded-2xl border border-slate-200">
-                  <table className="w-full min-w-[480px] text-left text-sm">
-                    <thead className="bg-slate-50 text-xs font-semibold uppercase text-slate-500">
-                      <tr>
-                        <th className="px-4 py-2.5">Configuration</th>
-                        <th className="px-4 py-2.5">Area</th>
-                        <th className="px-4 py-2.5">Price</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-100">
-                      {project.floorPlans.map((plan) => (
-                        <tr key={plan.id}>
-                          <td className="px-4 py-3 font-medium text-slate-800">{plan.configuration}</td>
-                          <td className="px-4 py-3 text-slate-600">{plan.areaSqft.toLocaleString("en-IN")} sqft</td>
-                          <td className="px-4 py-3 text-slate-600">
-                            {plan.price ? inr.format(plan.price) : "Price on request"}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                <div className="mt-3">
+                  <FloorPlanTabs floorPlans={project.floorPlans} />
+                </div>
+              </div>
+            )}
+
+            {(project.constructionStatusNote || project.approvalDate) && (
+              <div className="mt-8">
+                <h2 className="text-lg font-semibold text-slate-900">Possession &amp; Construction Status</h2>
+                {project.constructionStatusNote && (
+                  <p className="mt-2 whitespace-pre-line text-slate-600">{project.constructionStatusNote}</p>
+                )}
+                <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                  <div className="rounded-xl border border-slate-200 p-3">
+                    <p className="text-xs text-slate-400">Status</p>
+                    <p className="text-sm font-semibold text-slate-800">{PROJECT_STATUS_LABELS[project.status]}</p>
+                  </div>
+                  {project.launchDate && (
+                    <div className="rounded-xl border border-slate-200 p-3">
+                      <p className="text-xs text-slate-400">Launch date</p>
+                      <p className="text-sm font-semibold text-slate-800">
+                        {project.launchDate.toLocaleDateString("en-IN", { month: "short", year: "numeric" })}
+                      </p>
+                    </div>
+                  )}
+                  {project.possessionDate && (
+                    <div className="rounded-xl border border-slate-200 p-3">
+                      <p className="text-xs text-slate-400">Possession (per RERA)</p>
+                      <p className="text-sm font-semibold text-slate-800">
+                        {project.possessionDate.toLocaleDateString("en-IN", { month: "short", year: "numeric" })}
+                      </p>
+                    </div>
+                  )}
+                  {project.approvalDate && (
+                    <div className="rounded-xl border border-slate-200 p-3">
+                      <p className="text-xs text-slate-400">Approval date</p>
+                      <p className="text-sm font-semibold text-slate-800">
+                        {project.approvalDate.toLocaleDateString("en-IN", { month: "short", year: "numeric" })}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -417,6 +521,8 @@ export default async function ProjectDetailPage({
               </div>
 
               <EmiCalculator defaultPrice={project.priceMin ?? project.priceMax} />
+              <BudgetCalculator />
+              <AreaConverter />
             </div>
           </div>
         </div>

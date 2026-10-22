@@ -149,6 +149,22 @@ export async function deleteDeveloper(formData: FormData) {
   redirect("/admin/developers");
 }
 
+function readProjectKeyFacts(formData: FormData) {
+  return {
+    projectType: String(formData.get("projectType") ?? "").trim() || null,
+    totalUnits: formData.get("totalUnits") ? Number(formData.get("totalUnits")) : null,
+    projectSizeAcres: formData.get("projectSizeAcres") ? Number(formData.get("projectSizeAcres")) : null,
+    launchDate: formData.get("launchDate") ? new Date(String(formData.get("launchDate"))) : null,
+    totalTowers: formData.get("totalTowers") ? Number(formData.get("totalTowers")) : null,
+    pricePerSqft: formData.get("pricePerSqft") ? Number(formData.get("pricePerSqft")) : null,
+    priceListUrl: String(formData.get("priceListUrl") ?? "").trim() || null,
+    carParkingSpaces: formData.get("carParkingSpaces") ? Number(formData.get("carParkingSpaces")) : null,
+    unitLiftRatio: String(formData.get("unitLiftRatio") ?? "").trim() || null,
+    approvalDate: formData.get("approvalDate") ? new Date(String(formData.get("approvalDate"))) : null,
+    constructionStatusNote: String(formData.get("constructionStatusNote") ?? "").trim() || null,
+  };
+}
+
 export async function createProject(formData: FormData) {
   await requireAdmin();
   const developerId = String(formData.get("developerId") ?? "");
@@ -180,6 +196,7 @@ export async function createProject(formData: FormData) {
       brochureUrl: String(formData.get("brochureUrl") ?? "").trim() || null,
       youtubeUrl: String(formData.get("youtubeUrl") ?? "").trim() || null,
       sitePlanUrl: String(formData.get("sitePlanUrl") ?? "").trim() || null,
+      ...readProjectKeyFacts(formData),
       metaTitle: String(formData.get("metaTitle") ?? "").trim() || null,
       metaDescription: String(formData.get("metaDescription") ?? "").trim() || null,
       images: { create: images.map((url, order) => ({ url, order })) },
@@ -226,6 +243,7 @@ export async function updateProject(formData: FormData) {
         brochureUrl: String(formData.get("brochureUrl") ?? "").trim() || null,
         youtubeUrl: String(formData.get("youtubeUrl") ?? "").trim() || null,
         sitePlanUrl: String(formData.get("sitePlanUrl") ?? "").trim() || null,
+        ...readProjectKeyFacts(formData),
         metaTitle: String(formData.get("metaTitle") ?? "").trim() || null,
         metaDescription: String(formData.get("metaDescription") ?? "").trim() || null,
         images: { create: images.map((url, order) => ({ url, order })) },
@@ -1041,5 +1059,24 @@ export async function deleteProjectLandmark(formData: FormData) {
   await requireAdmin();
   const id = String(formData.get("id") ?? "");
   await prisma.projectLandmark.delete({ where: { id } });
+  redirect(projectEditUrl(formData, "saved=1"));
+}
+
+export async function createProjectReraPhase(formData: FormData) {
+  await requireAdmin();
+  const projectId = String(formData.get("projectId") ?? "");
+  const label = String(formData.get("label") ?? "").trim();
+  const reraNumber = String(formData.get("reraNumber") ?? "").trim();
+  if (!label || !reraNumber) redirect(projectEditUrl(formData, "error=rera"));
+
+  const count = await prisma.projectReraPhase.count({ where: { projectId } });
+  await prisma.projectReraPhase.create({ data: { projectId, label, reraNumber, order: count } });
+  redirect(projectEditUrl(formData, "saved=1"));
+}
+
+export async function deleteProjectReraPhase(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  await prisma.projectReraPhase.delete({ where: { id } });
   redirect(projectEditUrl(formData, "saved=1"));
 }

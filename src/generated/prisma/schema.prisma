@@ -165,35 +165,47 @@ model Developer {
 }
 
 model Project {
-  id              String             @id @default(cuid())
-  slug            String             @unique
-  name            String
-  description     String             @db.Text
-  status          ProjectStatus      @default(UPCOMING)
-  developerId     String
-  developer       Developer          @relation(fields: [developerId], references: [id], onDelete: Cascade)
-  city            String
-  locality        String?
-  address         String?            @db.Text
-  priceMin        Int?
-  priceMax        Int?
-  possessionDate  DateTime?
-  amenities       String?            @db.Text
-  reraNumber      String?
-  highlights      String?            @db.Text
-  brochureUrl     String?
-  youtubeUrl      String?
-  sitePlanUrl     String?
-  metaTitle       String?
-  metaDescription String?            @db.Text
-  units           Property[]
-  images          ProjectImage[]
-  floorPlans      ProjectFloorPlan[]
-  faqs            ProjectFAQ[]
-  landmarks       ProjectLandmark[]
-  enquiries       Enquiry[]
-  createdAt       DateTime           @default(now())
-  updatedAt       DateTime           @updatedAt
+  id                     String             @id @default(cuid())
+  slug                   String             @unique
+  name                   String
+  description            String             @db.Text
+  status                 ProjectStatus      @default(UPCOMING)
+  developerId            String
+  developer              Developer          @relation(fields: [developerId], references: [id], onDelete: Cascade)
+  city                   String
+  locality               String?
+  address                String?            @db.Text
+  priceMin               Int?
+  priceMax               Int?
+  possessionDate         DateTime?
+  amenities              String?            @db.Text
+  reraNumber             String?
+  highlights             String?            @db.Text
+  brochureUrl            String?
+  youtubeUrl             String?
+  sitePlanUrl            String?
+  projectType            String?
+  totalUnits             Int?
+  projectSizeAcres       Float?
+  launchDate             DateTime?
+  totalTowers            Int?
+  pricePerSqft           Int?
+  priceListUrl           String?
+  carParkingSpaces       Int?
+  unitLiftRatio          String?
+  approvalDate           DateTime?
+  constructionStatusNote String?            @db.Text
+  metaTitle              String?
+  metaDescription        String?            @db.Text
+  units                  Property[]
+  images                 ProjectImage[]
+  floorPlans             ProjectFloorPlan[]
+  faqs                   ProjectFAQ[]
+  landmarks              ProjectLandmark[]
+  reraPhases             ProjectReraPhase[]
+  enquiries              Enquiry[]
+  createdAt              DateTime           @default(now())
+  updatedAt              DateTime           @updatedAt
 
   @@index([developerId])
 }
@@ -237,6 +249,17 @@ model ProjectLandmark {
   category   String
   name       String
   distanceKm Float
+  order      Int     @default(0)
+
+  @@index([projectId])
+}
+
+model ProjectReraPhase {
+  id         String  @id @default(cuid())
+  projectId  String
+  project    Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  label      String
+  reraNumber String
   order      Int     @default(0)
 
   @@index([projectId])
