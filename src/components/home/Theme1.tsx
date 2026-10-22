@@ -23,12 +23,26 @@ export function Theme1({
   return (
     <div>
       {slides.length > 0 ? (
-        <>
+        <div className="relative">
           <HeroSlider slides={slides} />
-          {/* The slider already carries the hero message, so this is just a
-              clean search strip underneath it — not a second full hero,
-              which looked like a stacked, non-sliding duplicate banner. */}
-          <section className="border-b border-slate-200 bg-slate-50 px-4 py-6 sm:px-6">
+          {/* Floats the search card over the slider on larger screens, like a
+              typical hero search widget — on mobile the hero is too short for
+              that, so a plain strip below it (rendered separately) takes over. */}
+          <div className="pointer-events-none absolute inset-0 z-20 hidden items-center justify-end px-6 sm:flex sm:pr-16 lg:pr-24">
+            <div className="pointer-events-auto w-full max-w-sm rounded-2xl bg-white p-5 shadow-2xl">
+              <SearchBar />
+              <div className="mt-3 flex flex-wrap items-center justify-center gap-3 text-xs">
+                <NearMeButton />
+                <Link
+                  href="/properties-in"
+                  className="font-medium text-slate-500 underline-offset-2 hover:text-slate-900 hover:underline"
+                >
+                  Or browse by location
+                </Link>
+              </div>
+            </div>
+          </div>
+          <section className="border-b border-slate-200 bg-slate-50 px-4 py-6 sm:hidden">
             <div className="mx-auto max-w-2xl text-center">
               <SearchBar />
               <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
@@ -42,7 +56,7 @@ export function Theme1({
               </div>
             </div>
           </section>
-        </>
+        </div>
       ) : (
         <section
           className={`relative overflow-hidden bg-cover bg-center px-4 py-20 text-center text-white sm:px-6 ${
