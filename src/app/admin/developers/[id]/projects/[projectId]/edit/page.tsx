@@ -383,6 +383,16 @@ export default async function EditProjectPage({
           </ul>
         )}
       </div>
+
+      <div className="sticky bottom-0 mt-8 flex max-w-3xl justify-end border-t border-slate-200 bg-white/95 px-4 py-4 backdrop-blur">
+        <button
+          type="submit"
+          form="project-form"
+          className="rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+        >
+          Save changes
+        </button>
+      </div>
     </div>
   );
 }

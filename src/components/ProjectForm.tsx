@@ -129,7 +129,7 @@ export function ProjectForm({
   }
 
   return (
-    <form action={action} className="space-y-6">
+    <form id="project-form" action={action} className="space-y-6">
       {defaultValues?.id && <input type="hidden" name="id" value={defaultValues.id} />}
       <input type="hidden" name="developerId" value={developerId} />
       {images.map((image) => (
