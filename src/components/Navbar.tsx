@@ -7,12 +7,37 @@ import { NavDropdown } from "@/components/NavDropdown";
 
 type NavLink = { href: string; label: string };
 
-const SEARCH_INTENT_LINKS: NavLink[] = [
-  { href: "/properties?listingType=SALE", label: "Buyer" },
-  { href: "/register?type=OWNER", label: "Seller" },
-  { href: "/dealers", label: "Property Agents" },
-  { href: "/properties?listingType=RENT", label: "Tenant" },
-  { href: "/register?type=OWNER", label: "Rent Out" },
+const INTENT_MENUS: { label: string; items: NavLink[] }[] = [
+  {
+    label: "Buy",
+    items: [
+      { href: "/properties?listingType=SALE", label: "Search properties for sale" },
+      { href: "/projects", label: "Search new projects" },
+      { href: "/dealers", label: "Search agents" },
+    ],
+  },
+  {
+    label: "Rent",
+    items: [
+      { href: "/properties?listingType=RENT", label: "Search properties for rent" },
+      { href: "/dealers", label: "Search agents" },
+    ],
+  },
+  {
+    label: "Sell",
+    items: [
+      { href: "/register?type=OWNER", label: "List your property" },
+      { href: "/dealers", label: "Search agents" },
+      { href: "/register?type=OWNER", label: "Advertise Property FREE" },
+    ],
+  },
+  {
+    label: "Rent Out",
+    items: [
+      { href: "/register?type=OWNER", label: "List your property for rent" },
+      { href: "/register?type=OWNER", label: "Advertise Property FREE" },
+    ],
+  },
 ];
 
 export async function Navbar({
@@ -86,7 +111,8 @@ export async function Navbar({
               {link.label}
             </Link>
           ))}
-          {isIntentNav && <NavDropdown label="Search" items={SEARCH_INTENT_LINKS} />}
+          {isIntentNav &&
+            INTENT_MENUS.map((menu) => <NavDropdown key={menu.label} label={menu.label} items={menu.items} />)}
         </nav>
 
         <div className="flex items-center gap-3">
@@ -122,22 +148,23 @@ export async function Navbar({
                   {link.label}
                 </Link>
               ))}
-              {isIntentNav && (
-                <>
-                  <p className="px-3 pt-3 text-xs font-semibold uppercase tracking-wide text-slate-400">
-                    Search
-                  </p>
-                  {SEARCH_INTENT_LINKS.map((link) => (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </>
-              )}
+              {isIntentNav &&
+                INTENT_MENUS.map((menu) => (
+                  <div key={menu.label}>
+                    <p className="px-3 pt-3 text-xs font-semibold uppercase tracking-wide text-slate-400">
+                      {menu.label}
+                    </p>
+                    {menu.items.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                ))}
             </div>
 
             <div className="my-2 border-t border-slate-100" />
